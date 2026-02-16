@@ -170,40 +170,76 @@
                                 </div>
                             </div>
                             <div class="min-h-[160px]">
+
                                 <div id="numba-description" class="tab-content animate-fade-in block">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">High-Performance Feature
-                                        Engineering</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Optimizing a credit risk pipeline
-                                        using Numba (JIT Compiler) to process behavioral data at C-like speeds.</p>
-                                </div>
-                                <div id="numba-problem" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Computational Latency</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Standard Python operations were
-                                        <span class="text-white bg-white/10 px-1 rounded">computationally
-                                            prohibitive</span> (~58s per batch), forcing reliance on weak aggregates.
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        High-Performance Feature Engineering</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Optimizing a credit risk pipeline using Numba (JIT Compiler) to process
+                                        behavioral data at C-like speeds.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Enabling the calculation of complex, stateful features without the overhead of
+                                        standard Python loops.
                                     </p>
                                 </div>
+
+                                <div id="numba-problem" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Computational Latency</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Standard Python and Pandas operations were <span
+                                            class="text-white bg-white/10 px-1 rounded">computationally
+                                            prohibitive</span> (~58s per batch) making granular analysis impossible.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        This forced a reliance on weak "static aggregates" (e.g., total spend) that
+                                        blind the model to critical behavioral trends like delinquency streaks.
+                                    </p>
+                                </div>
+
                                 <div id="numba-data" class="tab-content animate-fade-in hidden">
                                     <h4 class="text-accent font-mono text-xs uppercase mb-3">Dense User-Time Matrix</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Transformed raw logs into a dense
-                                        NumPy matrix <span class="text-white font-mono">(User × Time)</span> optimized
-                                        for cache-friendly Numba iteration.</p>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Raw transaction logs were pivoted into a dense, cache-friendly NumPy matrix
+                                        <span class="text-white font-mono">(User × Time)</span> structure.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        This specific layout is optimized for Numba iteration, allowing for efficient
+                                        sequential access to historical payment behaviors.
+                                    </p>
                                 </div>
+
                                 <div id="numba-method" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">JIT Compilation</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Applied <code
-                                            class="text-accent">@njit</code> decorators to custom logic loops, strictly
-                                        validated by pytest and PSI to prevent drift.</p>
-                                </div>
-                                <div id="numba-outcome" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Business Impact</h4>
-                                    <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
-                                        <span class="block text-2xl font-bold text-white">50,000x</span>
-                                        <span class="text-xs text-gray-500">Speedup (58s → 1ms)</span>
-                                    </div>
-                                    <p class="text-sm text-gray-300">Resulted in a <span
-                                            class="text-accent font-bold">+4.2% AUC uplift</span> by enabling complex
-                                        behavioral features.</p>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">JIT Compilation & Robust
+                                        Validation</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Applied the <code class="text-accent">@njit</code> decorator to compile custom
+                                        loops into optimized machine code,
+                                        strictly reinforced by pytest for logic and PSI for stability.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        This unlocked complex stateful features like late streaks and velocity slopes,
+                                        ensuring mathematical correctness and drift resistance (PSI < 0.1). </p> </div>
+                                            <div id="numba-outcome" class="tab-content animate-fade-in hidden">
+                                            <h4 class="text-accent font-mono text-xs uppercase mb-3">Business Impact
+                                            </h4>
+                                            <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
+                                                <span class="block text-2xl font-bold text-white">50,000x</span>
+                                                <span class="text-xs text-gray-500">Speedup (58s → 1ms)</span>
+                                            </div>
+                                            <p class="text-sm text-gray-300">
+                                                Achieved a paradigm-shifting execution speedup and the inclusion of
+                                                these new
+                                                behavioral features directly resulted in a <span
+                                                    class="text-accent font-bold">+4.2% AUC uplift</span>
+                                            </p>
+                                            <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                                Minimized cloud compute overhead by eliminating high-latency processing
+                                                bottlenecks.
+                                                Proactively identifies high-risk profiles to mitigate potential bad debt
+                                                exposure before it occurs.
+                                            </p>
                                 </div>
                             </div>
                             <div class="pt-6 mt-auto flex flex-wrap gap-3">
@@ -274,56 +310,99 @@
                             </div>
                         </div>
                         <div class="w-full md:w-[70%] bg-bgCard p-6 md:p-8 flex flex-col relative h-auto md:h-full">
+
                             <div class="pb-4 border-b border-gray-700/50 mb-6">
                                 <div class="flex justify-between items-center">
-                                    <h3 class="text-lg font-bold text-white">Fixed Broadband Detection</h3>
+                                    <h3 class="text-lg font-bold text-white">Fixed Broadband Infrastructure Detection
+                                    </h3>
                                     <span
-                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">YOLOv8</span>
+                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">Ultralytics/YOLOv8</span>
                                 </div>
                             </div>
+
                             <div class="min-h-[160px]">
+
                                 <div id="telkomsel-description" class="tab-content animate-fade-in block">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Competitive Intelligence
-                                    </h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Automated pipeline to detect
-                                        competitor infrastructure using YOLOv8 for Telkomsel’s Business Growth division.
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Competitive Intelligence via Computer Vision</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Developed an automated pipeline to detect competitor telecom infrastructure
+                                        using YOLOv8 for Telkomsel’s Business Growth and Analytics division.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Transformed manual, labor-intensive field surveys into a scalable, visual
+                                        analytics prototype for market penetration analysis.
                                     </p>
                                 </div>
+
                                 <div id="telkomsel-problem" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Invisible Infrastructure
-                                    </h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Manual mapping is costly. Standard
-                                        models fail on thin cables and occluded poles in chaotic street environments.
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Invisible Infrastructure</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        <span class="text-white bg-white/10 px-1 rounded">
+                                            Manual mapping is costly</span>,
+                                        while standard models fail to detect thin cables and
+                                        heavily occluded poles in chaotic street environments.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Severe class imbalance (e.g., rare providers) and environmental noise
+                                        rendered off-the-shelf detection models ineffective.
                                     </p>
                                 </div>
+
                                 <div id="telkomsel-data" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Hybrid Dataset</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Constructed a proprietary dataset
-                                        from field surveys, augmented with synthetic data to address severe class
-                                        imbalance.</p>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Hybrid Dataset Strategy
+                                    </h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Constructed a proprietary dataset from scratch via manual field collection of
+                                        street-level infrastructure imagery.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Curated and annotated specifically for this task, then augmented with synthetic
+                                        data to address severe class imbalance.
+                                    </p>
                                 </div>
+
                                 <div id="telkomsel-method" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">High-Res Engineering</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Optimized YOLOv8 training with
-                                        1248px resolution scaling. Implemented geospatial mapping (BPS shapefiles) to
-                                        link detections to regions.</p>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">High-Res YOLOv8 Engineering
+                                    </h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Optimized YOLOv8 training with 1248px resolution scaling to recover fine-grained
+                                        features like fiber optic cables.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Implemented a custom inference engine with EXIF extraction and geospatial
+                                        mapping (BPS shapefiles) to link detections to specific sub-districts.
+                                    </p>
                                 </div>
+
                                 <div id="telkomsel-outcome" class="tab-content animate-fade-in hidden">
                                     <h4 class="text-accent font-mono text-xs uppercase mb-3">Technical Result</h4>
                                     <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
                                         <span class="block text-l font-bold text-white">Operational Prototype</span>
-                                        <span class="text-xs text-gray-500">+24% Accuracy Improvement</span>
+                                        <span class="text-xs text-gray-500">+24% Accuracy</span>
                                     </div>
-                                    <p class="text-sm text-gray-300">Achieved 0.763 mAP50, successfully resurrecting
-                                        minority classes from 0% detection rate.</p>
+                                    <p class="text-sm text-gray-300">
+                                        Achieved a robust 0.763 mAP50 (up from 0.52 baseline) and successfully
+                                        resurrected failing minority classes (~0% → ~50%).
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Delivered a deployment-ready tool that automates the conversion of raw street
+                                        photos into mapped competitive intelligence.
+                                    </p>
                                 </div>
+
                             </div>
+
                             <div class="pt-6 mt-auto flex flex-wrap gap-3">
+
                                 <a href="https://github.com/Muanai/real-world-telecom-infrastructure-object-detection"
                                     target="_blank"
                                     class="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-accent border border-accent/30 rounded overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-[0_0_15px_rgba(46,230,197,0.3)] active:scale-95">
+
                                     <span
                                         class="absolute inset-0 w-full h-full bg-accent/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+
                                     <span class="relative z-10 font-bold">Repository</span>
                                     <svg class="w-4 h-4 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
                                         fill="currentColor" viewBox="0 0 24 24">
@@ -346,8 +425,7 @@
                             class="absolute inset-0 w-full h-full object-cover object-center opacity-60 group-hover:opacity-100 transition duration-500">
                         <div class="absolute bottom-0 left-0 p-4 w-full">
                             <span
-                                class="text-xs font-mono text-accent bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-gray-700">SwinV2
-                                + ConvNeXt</span>
+                                class="text-xs font-mono text-accent bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-gray-700">GRAD-CAM</span>
                         </div>
                     </div>
                     <div class="w-full md:w-[65%] flex flex-col md:flex-row h-auto md:h-full">
@@ -375,55 +453,96 @@
                             </div>
                         </div>
                         <div class="w-full md:w-[70%] bg-bgCard p-6 md:p-8 flex flex-col relative h-auto md:h-full">
+
                             <div class="pb-4 border-b border-gray-700/50 mb-6">
                                 <div class="flex justify-between items-center">
-                                    <h3 class="text-lg font-bold text-white">SOTA Food Recognition</h3>
+                                    <h3 class="text-lg font-bold text-white">Traditional Food Image Classification</h3>
                                     <span
-                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">Computer
-                                        Vision</span>
+                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">Swinv2/ConvNeXt</span>
                                 </div>
                             </div>
+
                             <div class="min-h-[160px]">
+
                                 <div id="action-description" class="tab-content animate-fade-in block">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Competition Pipeline</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Designed a competition-grade system
-                                        leveraging Vision Transformers (SwinV2) and ConvNeXt to classify 15 types of
-                                        traditional Indonesian cuisine.</p>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        SOTA Food Recognition Pipeline</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Designed a competition-grade computer vision system leveraging Vision
+                                        Transformers (SwinV2) and ConvNeXt to classify 15 types of traditional
+                                        Indonesian cuisine.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        A high-performance solution aimed at helping MSMEs automate inventory and sales
+                                        through visual recognition.
+                                    </p>
                                 </div>
+
                                 <div id="action-problem" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Fine-Grained Ambiguity</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Distinguishing visually similar
-                                        dishes with high inter-class similarity, using a limited dataset of only ~4,200
-                                        labeled images.</p>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Fine-Grained Visual Ambiguity</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Distinguishing between visually similar traditional dishes (high inter-class
+                                        similarity) was difficult due to a limited dataset of only ~4,200 labeled
+                                        images.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Standard CNNs struggled to generalize, risking overfitting on the small,
+                                        proprietary training set.
+                                    </p>
                                 </div>
+
                                 <div id="action-data" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Data Scarcity</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Restricted proprietary dataset.
-                                        Relied heavily on aggressive augmentation and generating synthetic training
-                                        signals via pseudo-labeling.</p>
-                                </div>
-                                <div id="action-method" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Teacher-Student Ensemble
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Limited Proprietary Dataset
                                     </h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Implemented a Teacher-Student
-                                        framework. Combined ConvNeXtV2 (local texture) with SwinV2 (global context)
-                                        using Geometric Mean Ensemble.</p>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Worked with a restricted, proprietary dataset of 15 food classes, requiring
+                                        aggressive augmentation strategies to prevent data starvation.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Due to data scarcity, the project relied heavily on generating synthetic
+                                        training signals via pseudo-labeling.
+                                    </p>
                                 </div>
+
+                                <div id="action-method" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Semi-Supervised
+                                        Teacher-Student Ensemble</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Implemented a Teacher-Student framework where high-confidence predictions
+                                        (>0.86) from a ConvNeXt Teacher were used to train robust Student models.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Combined the local texture bias of ConvNeXtV2 with the global context of SwinV2
+                                        using a Geometric Mean Ensemble to calibrate probabilities
+                                    </p>
+                                </div>
+
                                 <div id="action-outcome" class="tab-content animate-fade-in hidden">
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Top 10% Leaderboard</h4>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Top-Tier Leaderboard
+                                        Performance</h4>
                                     <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
-                                        <span class="block text-l font-bold text-white">Score: 0.9522</span>
-                                        <span class="text-xs text-gray-500">Rank 11/131 (National Data Mining)</span>
+                                        <span class="block text-l font-bold text-white">Leaderboard Score of
+                                            0.9522</span>
+                                        <span class="text-xs text-gray-500">securing a position in the top 10% (Rank
+                                            11/131) of the competition.</span>
                                     </div>
-                                    <p class="text-sm text-gray-300">Robust against noise using Test Time Augmentation
-                                        (TTA).</p>
+                                    <p class="text-sm text-gray-300">
+                                        Proven robustness with Test Time Augmentation (TTA), delivering high-confidence
+                                        predictions even on unaligned or noisy test images.
+                                    </p>
                                 </div>
+
                             </div>
+
                             <div class="pt-6 mt-auto flex flex-wrap gap-3">
+
                                 <a href="https://github.com/Muanai/msmes-food-image-classification" target="_blank"
                                     class="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-accent border border-accent/30 rounded overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-[0_0_15px_rgba(46,230,197,0.3)] active:scale-95">
+
                                     <span
                                         class="absolute inset-0 w-full h-full bg-accent/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+
                                     <span class="relative z-10 font-bold">Repository</span>
                                     <svg class="w-4 h-4 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
                                         fill="currentColor" viewBox="0 0 24 24">
