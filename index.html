@@ -10,6 +10,11 @@
     <title>Muanai Khalifah Revindo | ML Engineer</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <script type="application/ld+json">
         {
@@ -25,7 +30,38 @@
         }
     </script>
 
+    <script src="script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const vantaElement = document.querySelector("#vanta-canvas");
+
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (vantaElement && !prefersReducedMotion) {
+                window.vantaEffect = VANTA.TOPOLOGY({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x2ee6c5,
+                    backgroundColor: 0x0d1117,
+                });
+            } else if (prefersReducedMotion) {
+                console.info(
+                    "OS motion reduction enabled. Vanta topology gracefully skipped to save resources.");
+            } else {
+                console.warn("System halt: Vanta canvas target missing.");
+            }
+        });
+    </script>
 
     <script>
         tailwind.config = {
@@ -44,9 +80,7 @@
                         /* Muted Grey */
                     },
                     fontFamily: {
-                        mono: ['SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New',
-                            'monospace'
-                        ],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
                     }
                 }
@@ -56,12 +90,12 @@
 </head>
 
 <body
-    class="bg-bgMain text-textMain font-sans antialiased selection:bg-accent selection:text-bgMain flex flex-col min-h-screen">
+    class="text-textMain font-sans antialiased selection:bg-accent selection:text-bgMain flex flex-col min-h-screen bg-bgMain">
 
-    <header class="w-full relative bg-[#0d1117] border-b border-gray-800 overflow-hidden">
+    <header class="w-full relative border-b border-gray-800 overflow-hidden bg-transparent md:backdrop-blur-sm">
 
-        <div class="absolute inset-0 z-0 opacity-20"
-            style="background-image: radial-gradient(#2d3748 1px, transparent 1px); background-size: 32px 32px;">
+        <div id="vanta-canvas" class="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none"
+            style="-webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 90%); mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 90%);">
         </div>
 
         <div
@@ -74,13 +108,11 @@
                 <div class="flex items-center gap-3 group">
                     <div
                         class="w-8 h-8 bg-gradient-to-br from-gray-800 to-black border border-gray-700 rounded-lg flex items-center justify-center text-white group-hover:text-accent transition-colors shadow-lg shadow-accent/10">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path
-                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z">
                             </path>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg>
                     </div>
                     <span
@@ -99,8 +131,7 @@
                     Engines That Ship.
                 </h1>
 
-                <p
-                    class="text-lg md:text-xl text-textMuted leading-relaxed max-w-2xl mb-10 border-l-2 border-gray-700 pl-6">
+                <p class="text-lg md:text-xl text-textMuted leading-relaxed max-w-2xl mb-10 border-gray-700">
                     Building and deploying ML systems,
                     with a strong interest in business impact and
                     <span class="text-gray-200">ROI-driven AI</span>.
