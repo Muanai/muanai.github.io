@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Muanai - Machine Learning Engineer Portfolio. High-performance ML & Fintech Risk Engines.">
+    <meta name="google-site-verification" content="B0cYjQJg6UY6LMI9QDMu5Og9y4ztUZ7wcfzJegS9kXM" />
+    <title>Muanai Khalifah Revindo | ML Engineer</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Muanai Khalifah Revindo",
+            "url": "https://muanai.github.io",
+            "sameAs": [
+                "https://www.linkedin.com/in/muanai-khalifah-revindo-a0020b2ab/",
+                "https://medium.com/@muanaikhalifahr",
+                "https://github.com/Muanai"
+            ]
+        }
+    </script>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const vantaElement = document.querySelector("#vanta-canvas");
+
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (vantaElement && !prefersReducedMotion) {
+                window.vantaEffect = VANTA.TOPOLOGY({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x2ee6c5,
+                    backgroundColor: 0x0d1117,
+                });
+            } else if (prefersReducedMotion) {
+                console.info(
+                    "OS motion reduction enabled. Vanta topology gracefully skipped to save resources.");
+            } else {
+                console.warn("System halt: Vanta canvas target missing.");
+            }
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: '#1A202C',
+                        /* Midnight Slate Deep */
+                        bgCard: '#2D3748',
+                        /* Midnight Slate Surface */
+                        accent: '#2EE6C5',
+                        /* Cryo Teal */
+                        textMain: '#F7FAFC',
+                        /* Electric White */
+                        textMuted: '#A0AEC0',
+                        /* Muted Grey */
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="text-textMain font-sans antialiased selection:bg-accent selection:text-bgMain flex flex-col min-h-screen bg-bgMain">
+
+    <header class="w-full relative border-b border-gray-800 overflow-hidden bg-transparent md:backdrop-blur-sm">
+
+        <div id="vanta-canvas" class="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none"
+            style="-webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 90%); mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 90%);">
+        </div>
+
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-accent/10 blur-[100px] rounded-full pointer-events-none">
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 pt-12 pb-24 md:pt-20 md:pb-32">
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 md:mb-24 gap-4">
+                <div class="flex items-center gap-3 group">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-br from-gray-800 to-black border border-gray-700 rounded-lg flex items-center justify-center text-white group-hover:text-accent transition-colors shadow-lg shadow-accent/10">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span
+                        class="font-mono text-sm tracking-wider text-gray-300 group-hover:text-white transition-colors">MUANAI
+                        KHALIFAH REVINDO</span>
+                </div>
+            </div>
+
+            <div class="max-w-4xl">
+                <p class="text-accent font-mono text-sm mb-4 tracking-wide pl-1">
+                    > Machine Learning Engineer
+                </p>
+
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white leading-tight">
+                    Building Intelligent
+                    Engines That Ship.
+                </h1>
+
+                <p class="text-lg md:text-xl text-textMuted leading-relaxed max-w-2xl mb-10 border-gray-700">
+                    Building and deploying ML systems,
+                    with a strong interest in business impact and
+                    <span class="text-gray-200">ROI-driven AI</span>.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#projects"
+                        class="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-bgMain text-sm font-bold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_15px_rgba(46,230,197,0.4)] hover:-translate-y-0.5">
+                        <span class="relative z-10">See What I've Built</span>
+                        <svg class="w-4 h-4 relative z-10 group-hover:translate-y-1 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </a>
+
+                    <a href="https://github.com/Muanai" target="_blank"
+                        class="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 border border-gray-700 text-gray-300 text-sm font-medium rounded-lg hover:border-white hover:text-white transition-all duration-300 hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>GitHub Profile</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <p class="sr-only">
+        Muanai Khalifah Revindo is a Machine Learning Engineer.
+    </p>
+
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-12 md:py-20 w-full">
+
+        <section id="projects" class="mb-20">
+            <h2 class="text-sm font-mono text-textMuted uppercase tracking-widest mb-8 border-b border-gray-700 pb-2">
+                Selected Projects
+            </h2>
+
+            <div class="space-y-12">
+                <article
+                    class="bg-bgCard rounded-xl overflow-hidden border border-gray-700 shadow-2xl h-auto md:h-[450px] flex flex-col md:flex-row relative group"
+                    id="project-numba">
+                    <div
+                        class="w-full md:w-[35%] h-64 md:h-full relative bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 shrink-0">
+                        <img src="assets/projects/numba_benchmark.webp" alt="Performance Graph"
+                            class="absolute inset-0 w-full h-full object-cover object-center opacity-60 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full">
+                            <span
+                                class="text-xs font-mono text-accent bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-gray-700">Benchmark</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-[65%] flex flex-col md:flex-row h-auto md:h-full">
+                        <div
+                            class="w-full md:w-[30%] bg-bgMain border-b md:border-b-0 md:border-r border-gray-700 flex flex-row md:flex-col p-2 md:py-6 overflow-x-auto md:overflow-visible shrink-0 no-scrollbar">
+                            <p
+                                class="hidden md:block text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-3 pl-3">
+                                Contents</p>
+                            <div class="flex flex-row md:flex-col w-full gap-2 md:gap-0">
+                                <button onclick="openTab('numba', 'description')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-accent text-white bg-white/5 hover:text-gray-300 transition-all duration-200"
+                                    data-target="description">Description</button>
+                                <button onclick="openTab('numba', 'problem')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="problem">Problem</button>
+                                <button onclick="openTab('numba', 'data')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="data">Data</button>
+                                <button onclick="openTab('numba', 'method')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="method">Method</button>
+                                <button onclick="openTab('numba', 'outcome')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="outcome">Outcome</button>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-[70%] bg-bgCard p-6 md:p-8 flex flex-col relative h-auto md:h-full">
+                            <div class="pb-4 border-b border-gray-700/50 mb-6">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-lg font-bold text-white">Credit Risk Feature Engine</h3>
+                                    <span
+                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">Python/Numba</span>
+                                </div>
+                            </div>
+                            <div class="min-h-[160px]">
+
+                                <div id="numba-description" class="tab-content animate-fade-in block">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        High-Performance Feature Engineering</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Optimizing a credit risk pipeline using Numba (JIT Compiler) to process
+                                        behavioral data at C-like speeds.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Enabling the calculation of complex, stateful features without the overhead of
+                                        standard Python loops.
+                                    </p>
+                                </div>
+
+                                <div id="numba-problem" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Computational Latency</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Standard Python and Pandas operations were <span
+                                            class="text-white bg-white/10 px-1 rounded">computationally
+                                            prohibitive</span> (~58s per batch) making granular analysis impossible.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        This forced a reliance on weak "static aggregates" (e.g., total spend) that
+                                        blind the model to critical behavioral trends like delinquency streaks.
+                                    </p>
+                                </div>
+
+                                <div id="numba-data" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Dense User-Time Matrix</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Raw transaction logs were pivoted into a dense, cache-friendly NumPy matrix
+                                        <span class="text-white font-mono">(User × Time)</span> structure.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        This specific layout is optimized for Numba iteration, allowing for efficient
+                                        sequential access to historical payment behaviors.
+                                    </p>
+                                </div>
+
+                                <div id="numba-method" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">JIT Compilation & Robust
+                                        Validation</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Applied the <code class="text-accent">@njit</code> decorator to compile custom
+                                        loops into optimized machine code,
+                                        strictly reinforced by pytest for logic and PSI for stability.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        This unlocked complex stateful features like late streaks and velocity slopes,
+                                        ensuring mathematical correctness and drift resistance (PSI < 0.1). </p> </div>
+                                            <div id="numba-outcome" class="tab-content animate-fade-in hidden">
+                                            <h4 class="text-accent font-mono text-xs uppercase mb-3">Business Impact
+                                            </h4>
+                                            <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
+                                                <span class="block text-2xl font-bold text-white">50,000x</span>
+                                                <span class="text-xs text-gray-500">Speedup (58s → 1ms)</span>
+                                            </div>
+                                            <p class="text-sm text-gray-300">
+                                                Achieved a paradigm-shifting execution speedup and the inclusion of
+                                                these new
+                                                behavioral features directly resulted in a <span
+                                                    class="text-accent font-bold">+4.2% AUC uplift</span>
+                                            </p>
+                                            <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                                Minimized cloud compute overhead by eliminating high-latency processing
+                                                bottlenecks.
+                                                Proactively identifies high-risk profiles to mitigate potential bad debt
+                                                exposure before it occurs.
+                                            </p>
+                                </div>
+                            </div>
+                            <div class="pt-6 mt-auto flex flex-wrap gap-3">
+                                <a href="https://github.com/Muanai/credit-risk-feature-engine" target="_blank"
+                                    class="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-accent border border-accent/30 rounded overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-[0_0_15px_rgba(46,230,197,0.3)] active:scale-95">
+                                    <span
+                                        class="absolute inset-0 w-full h-full bg-accent/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+                                    <span class="relative z-10 font-bold">Repository</span>
+                                    <svg class="w-4 h-4 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                                <a href="https://medium.com/@muanaikhalifahr/credit-risk-feature-engineering-with-python-numba-eb9643908f9c"
+                                    target="_blank"
+                                    class="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-gray-400 border border-gray-600 rounded overflow-hidden transition-all duration-300 hover:text-white hover:border-white hover:shadow-[0_0_10px_rgba(255,255,255,0.2)] active:scale-95">
+                                    <span
+                                        class="absolute inset-0 w-full h-full bg-white/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+                                    <span class="relative z-10">Article</span>
+                                    <svg class="w-4 h-4 relative z-10 transform group-hover:-translate-y-0.5 transition-transform duration-300"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article
+                    class="bg-bgCard rounded-xl overflow-hidden border border-gray-700 shadow-2xl h-auto md:h-[450px] flex flex-col md:flex-row relative group"
+                    id="project-telkomsel">
+                    <div
+                        class="w-full md:w-[35%] h-64 md:h-full relative bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 shrink-0">
+                        <img src="assets/projects/telkomsel_app.webp" alt="Inference App"
+                            class="absolute inset-0 w-full h-full object-cover object-center opacity-60 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full">
+                            <span
+                                class="text-xs font-mono text-accent bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-gray-700">Desktop
+                                Inference App</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-[65%] flex flex-col md:flex-row h-auto md:h-full">
+                        <div
+                            class="w-full md:w-[30%] bg-bgMain border-b md:border-b-0 md:border-r border-gray-700 flex flex-row md:flex-col p-2 md:py-6 overflow-x-auto md:overflow-visible shrink-0 no-scrollbar">
+                            <p
+                                class="hidden md:block text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-3 pl-3">
+                                Contents</p>
+                            <div class="flex flex-row md:flex-col w-full gap-2 md:gap-0">
+                                <button onclick="openTab('telkomsel', 'description')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-accent text-white bg-white/5 hover:text-gray-300 transition-all duration-200"
+                                    data-target="description">Description</button>
+                                <button onclick="openTab('telkomsel', 'problem')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="problem">Problem</button>
+                                <button onclick="openTab('telkomsel', 'data')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="data">Data</button>
+                                <button onclick="openTab('telkomsel', 'method')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="method">Method</button>
+                                <button onclick="openTab('telkomsel', 'outcome')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="outcome">Outcome</button>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-[70%] bg-bgCard p-6 md:p-8 flex flex-col relative h-auto md:h-full">
+
+                            <div class="pb-4 border-b border-gray-700/50 mb-6">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-lg font-bold text-white">Fixed Broadband Infrastructure Detection
+                                    </h3>
+                                    <span
+                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">Ultralytics/YOLOv8</span>
+                                </div>
+                            </div>
+
+                            <div class="min-h-[160px]">
+
+                                <div id="telkomsel-description" class="tab-content animate-fade-in block">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Competitive Intelligence via Computer Vision</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Developed an automated pipeline to detect competitor telecom infrastructure
+                                        using YOLOv8 for Telkomsel’s Business Growth and Analytics division.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Transformed manual, labor-intensive field surveys into a scalable, visual
+                                        analytics prototype for market penetration analysis.
+                                    </p>
+                                </div>
+
+                                <div id="telkomsel-problem" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Invisible Infrastructure</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        <span class="text-white bg-white/10 px-1 rounded">
+                                            Manual mapping is costly</span>,
+                                        while standard models fail to detect thin cables and
+                                        heavily occluded poles in chaotic street environments.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Severe class imbalance (e.g., rare providers) and environmental noise
+                                        rendered off-the-shelf detection models ineffective.
+                                    </p>
+                                </div>
+
+                                <div id="telkomsel-data" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Hybrid Dataset Strategy
+                                    </h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Constructed a proprietary dataset from scratch via manual field collection of
+                                        street-level infrastructure imagery.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Curated and annotated specifically for this task, then augmented with synthetic
+                                        data to address severe class imbalance.
+                                    </p>
+                                </div>
+
+                                <div id="telkomsel-method" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">High-Res YOLOv8 Engineering
+                                    </h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Optimized YOLOv8 training with 1248px resolution scaling to recover fine-grained
+                                        features like fiber optic cables.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Implemented a custom inference engine with EXIF extraction and geospatial
+                                        mapping (BPS shapefiles) to link detections to specific sub-districts.
+                                    </p>
+                                </div>
+
+                                <div id="telkomsel-outcome" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Technical Result</h4>
+                                    <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
+                                        <span class="block text-l font-bold text-white">Operational Prototype</span>
+                                        <span class="text-xs text-gray-500">+24% Accuracy</span>
+                                    </div>
+                                    <p class="text-sm text-gray-300">
+                                        Achieved a robust 0.763 mAP50 (up from 0.52 baseline) and successfully
+                                        resurrected failing minority classes (~0% → ~50%).
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Delivered a deployment-ready tool that automates the conversion of raw street
+                                        photos into mapped competitive intelligence.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="pt-6 mt-auto flex flex-wrap gap-3">
+
+                                <a href="https://github.com/Muanai/real-world-telecom-infrastructure-object-detection"
+                                    target="_blank"
+                                    class="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-accent border border-accent/30 rounded overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-[0_0_15px_rgba(46,230,197,0.3)] active:scale-95">
+
+                                    <span
+                                        class="absolute inset-0 w-full h-full bg-accent/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+
+                                    <span class="relative z-10 font-bold">Repository</span>
+                                    <svg class="w-4 h-4 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article
+                    class="bg-bgCard rounded-xl overflow-hidden border border-gray-700 shadow-2xl h-auto md:h-[450px] flex flex-col md:flex-row relative group"
+                    id="project-action">
+                    <div
+                        class="w-full md:w-[35%] h-64 md:h-full relative bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 shrink-0">
+                        <img src="assets/projects/action_gradcam.webp" alt="GradCAM"
+                            class="absolute inset-0 w-full h-full object-cover object-center opacity-60 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full">
+                            <span
+                                class="text-xs font-mono text-accent bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-gray-700">GRAD-CAM</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-[65%] flex flex-col md:flex-row h-auto md:h-full">
+                        <div
+                            class="w-full md:w-[30%] bg-bgMain border-b md:border-b-0 md:border-r border-gray-700 flex flex-row md:flex-col p-2 md:py-6 overflow-x-auto md:overflow-visible shrink-0 no-scrollbar">
+                            <p
+                                class="hidden md:block text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-3 pl-3">
+                                Contents</p>
+                            <div class="flex flex-row md:flex-col w-full gap-2 md:gap-0">
+                                <button onclick="openTab('action', 'description')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-accent text-white bg-white/5 hover:text-gray-300 transition-all duration-200"
+                                    data-target="description">Description</button>
+                                <button onclick="openTab('action', 'problem')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="problem">Problem</button>
+                                <button onclick="openTab('action', 'data')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="data">Data</button>
+                                <button onclick="openTab('action', 'method')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="method">Method</button>
+                                <button onclick="openTab('action', 'outcome')"
+                                    class="tab-btn whitespace-nowrap flex-1 md:w-full text-center md:text-left px-4 py-2 md:py-3 text-sm font-mono border-b-2 md:border-b-0 md:border-l-2 border-transparent text-gray-500 hover:text-gray-300 transition-all duration-200"
+                                    data-target="outcome">Outcome</button>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-[70%] bg-bgCard p-6 md:p-8 flex flex-col relative h-auto md:h-full">
+
+                            <div class="pb-4 border-b border-gray-700/50 mb-6">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-lg font-bold text-white">Traditional Food Image Classification</h3>
+                                    <span
+                                        class="text-[10px] text-accent border border-accent/30 px-2 py-0.5 rounded bg-accent/5">Swinv2/ConvNeXt</span>
+                                </div>
+                            </div>
+
+                            <div class="min-h-[160px]">
+
+                                <div id="action-description" class="tab-content animate-fade-in block">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        SOTA Food Recognition Pipeline</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Designed a competition-grade computer vision system leveraging Vision
+                                        Transformers (SwinV2) and ConvNeXt to classify 15 types of traditional
+                                        Indonesian cuisine.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        A high-performance solution aimed at helping MSMEs automate inventory and sales
+                                        through visual recognition.
+                                    </p>
+                                </div>
+
+                                <div id="action-problem" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">
+                                        Fine-Grained Visual Ambiguity</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Distinguishing between visually similar traditional dishes (high inter-class
+                                        similarity) was difficult due to a limited dataset of only ~4,200 labeled
+                                        images.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Standard CNNs struggled to generalize, risking overfitting on the small,
+                                        proprietary training set.
+                                    </p>
+                                </div>
+
+                                <div id="action-data" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Limited Proprietary Dataset
+                                    </h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Worked with a restricted, proprietary dataset of 15 food classes, requiring
+                                        aggressive augmentation strategies to prevent data starvation.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Due to data scarcity, the project relied heavily on generating synthetic
+                                        training signals via pseudo-labeling.
+                                    </p>
+                                </div>
+
+                                <div id="action-method" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Semi-Supervised
+                                        Teacher-Student Ensemble</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        Implemented a Teacher-Student framework where high-confidence predictions
+                                        (>0.86) from a ConvNeXt Teacher were used to train robust Student models.
+                                    </p>
+                                    <p class="text-sm text-textMuted mt-2 leading-relaxed">
+                                        Combined the local texture bias of ConvNeXtV2 with the global context of SwinV2
+                                        using a Geometric Mean Ensemble to calibrate probabilities
+                                    </p>
+                                </div>
+
+                                <div id="action-outcome" class="tab-content animate-fade-in hidden">
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-3">Top-Tier Leaderboard
+                                        Performance</h4>
+                                    <div class="bg-bgMain p-4 rounded border-l-2 border-accent mb-2">
+                                        <span class="block text-l font-bold text-white">Leaderboard Score of
+                                            0.9522</span>
+                                        <span class="text-xs text-gray-500">securing a position in the top 10% (Rank
+                                            11/131) of the competition.</span>
+                                    </div>
+                                    <p class="text-sm text-gray-300">
+                                        Proven robustness with Test Time Augmentation (TTA), delivering high-confidence
+                                        predictions even on unaligned or noisy test images.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="pt-6 mt-auto flex flex-wrap gap-3">
+
+                                <a href="https://github.com/Muanai/msmes-food-image-classification" target="_blank"
+                                    class="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-accent border border-accent/30 rounded overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-[0_0_15px_rgba(46,230,197,0.3)] active:scale-95">
+
+                                    <span
+                                        class="absolute inset-0 w-full h-full bg-accent/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+
+                                    <span class="relative z-10 font-bold">Repository</span>
+                                    <svg class="w-4 h-4 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="certifications" class="mb-20">
+            <h2 class="text-sm font-mono text-textMuted uppercase tracking-widest mb-6 border-b border-gray-700 pb-2">
+                Certifications
+            </h2>
+            <div class="space-y-4">
+                <div
+                    class="relative bg-bgCard border border-gray-700 rounded-lg p-4 transition-all duration-300 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                    <a href="assets/certifications/huawei.png" target="_blank"
+                        class="group shrink-0 w-full md:w-32 h-32 md:h-24 bg-gray-900 rounded border border-gray-600 overflow-hidden relative cursor-zoom-in">
+                        <img src="assets/certifications/huawei.png" alt="Huawei Cert"
+                            class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                    <div class="flex-1 w-full min-w-0">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                            <h3 class="font-bold text-white text-lg leading-tight break-words pr-0 md:pr-4">Huawei
+                                Certified ICT Associate - AI Training</h3>
+                            <span
+                                class="shrink-0 self-start md:self-center text-xs font-mono text-gray-500 border border-gray-700 px-2 py-0.5 rounded bg-gray-800 whitespace-nowrap mt-1 md:mt-0">Issued:
+                                April 2025</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">AI
+                                Fundamentals</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">ML
+                                Basics</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">DL
+                                & Foundation Models</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">AI
+                                Dev Frameworks</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">Huawei
+                                AI Platform</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">Applied
+                                AI</span>
+                        </div>
+                        <div
+                            class="flex flex-wrap items-center gap-4 text-xs font-mono text-gray-500 border-t border-gray-700/50 pt-3">
+                            <span class="flex items-center gap-1 break-all">
+                                Serial Number: <span class="text-gray-300 ml-1">HUC25OAITHOEO001000170</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div
+                    class="relative bg-bgCard border border-gray-700 rounded-lg p-4 transition-all duration-300 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                    <a href="assets/certifications/bcgx-genai.png" target="_blank"
+                        class="group shrink-0 w-full md:w-32 h-32 md:h-24 bg-gray-900 rounded border border-gray-600 overflow-hidden relative cursor-zoom-in">
+                        <img src="assets/certifications/bcgx-genai.png" alt="Huawei Cert"
+                            class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                    <div class="flex-1 w-full min-w-0">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                            <h3 class="font-bold text-white text-lg leading-tight break-words pr-0 md:pr-4">BCG X - Gen
+                                AI</h3>
+                            <span
+                                class="shrink-0 self-start md:self-center text-xs font-mono text-gray-500 border border-gray-700 px-2 py-0.5 rounded bg-gray-800 whitespace-nowrap mt-1 md:mt-0">Issued:
+                                March 2026</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">AI
+                                Developments</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">Natural
+                                Language Processing</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">
+                                Data Extraction</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">Data
+                                Science</span>
+                            <span
+                                class="text-[10px] font-mono text-accent border border-accent/30 px-2 py-1 rounded bg-accent/5">Financial
+                                Analysis</span>
+                        </div>
+                        <div
+                            class="flex flex-wrap items-center gap-4 text-xs font-mono text-gray-500 border-t border-gray-700/50 pt-3">
+                            <span class="flex items-center gap-1 break-all">
+                                Serial Number: <span class="text-gray-300 ml-1">HUC25OAITHOEO001000170</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="mb-20">
+            <h2 class="text-sm font-mono text-textMuted uppercase tracking-widest mb-8 border-b border-gray-800 pb-2">
+                Certifications & Credentials
+            </h2>
+
+            <div class="flex flex-col gap-4">
+
+                <div
+                    class="group flex flex-col md:flex-row gap-6 p-5 md:p-6 bg-bgCard/50 hover:bg-bgCard/20 border border-gray-800/50 hover:border-gray-700 rounded-2xl transition-all duration-300 items-start md:items-center">
+
+                    <div
+                        class="w-14 h-14 rounded-full bg-white border border-gray-800 flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="assets/logos/bcgx.png" alt="BCG Logo"
+                            class="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                            onerror="this.outerHTML='<span class=\'font-bold text-gray-400 font-mono\'>BX</span>'">
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-200 group-hover:text-white transition-colors truncate">
+                            BCG X - Generative AI
+                        </h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-sm text-accent font-medium">Boston Consulting Group</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-700"></span>
+                            <span class="text-xs font-mono text-gray-500">Issued Mar 2026</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span
+                                class="text-[10px] font-mono text-gray-400 px-2.5 py-1 rounded-md bg-gray-900 border border-gray-800">Natural
+                                Language Processing</span>
+                            <span
+                                class="text-[10px] font-mono text-gray-400 px-2.5 py-1 rounded-md bg-gray-900 border border-gray-800">Data
+                                Science</span>
+                            <span
+                                class="text-[10px] font-mono text-gray-400 px-2.5 py-1 rounded-md bg-gray-900 border border-gray-800">Financial
+                                Analysis</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto mt-2 md:mt-0 gap-4 shrink-0">
+                        <div class="text-left md:text-right">
+                            <p class="text-[9px] font-mono text-gray-600 uppercase mb-0.5">Credential ID</p>
+                            <p class="text-xs font-mono text-gray-400 select-all">BCGX-GENAI-2026</p>
+                        </div>
+
+                        <a href="https://verify.credential.net/dummy-link" target="_blank"
+                            class="flex items-center gap-2 px-4 py-2 bg-transparent hover:bg-white text-gray-400 hover:text-black border border-gray-700 hover:border-white rounded-lg text-xs font-mono transition-all">
+                            <span>Verify Credential</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="group flex flex-col md:flex-row gap-6 p-5 md:p-6 bg-bgCard/50 hover:bg-bgCard/20 border border-gray-800/50 hover:border-gray-700 rounded-2xl transition-all duration-300 items-start md:items-center">
+
+                    <div
+                        class="w-14 h-14 rounded-full bg-white/5 border border-gray-800 flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="assets/logos/huawei-logo.png" alt="Huawei Logo"
+                            class="w-8 h-8 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                            onerror="this.outerHTML='<span class=\'font-bold text-gray-400 font-mono\'>HW</span>'">
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-200 group-hover:text-white transition-colors truncate">
+                            Huawei Certified ICT Associate - AI
+                        </h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-sm text-accent font-medium">Huawei Technologies</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-700"></span>
+                            <span class="text-xs font-mono text-gray-500">Issued Apr 2025</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span
+                                class="text-[10px] font-mono text-gray-400 px-2.5 py-1 rounded-md bg-gray-900 border border-gray-800">Deep
+                                Learning</span>
+                            <span
+                                class="text-[10px] font-mono text-gray-400 px-2.5 py-1 rounded-md bg-gray-900 border border-gray-800">Foundation
+                                Models</span>
+                            <span
+                                class="text-[10px] font-mono text-gray-400 px-2.5 py-1 rounded-md bg-gray-900 border border-gray-800">MindSpore</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto mt-2 md:mt-0 gap-4 shrink-0">
+                        <div class="text-left md:text-right">
+                            <p class="text-[9px] font-mono text-gray-600 uppercase mb-0.5">Credential ID</p>
+                            <p class="text-xs font-mono text-gray-400 select-all truncate max-w-[120px]"
+                                title="HUC25OAITHOEO001000170">HUC25OAITHOEO...</p>
+                        </div>
+
+                        <a href="assets/certifications/huawei.png" target="_blank"
+                            class="flex items-center gap-2 px-4 py-2 bg-transparent hover:bg-accent/10 text-gray-400 hover:text-accent border border-gray-700 hover:border-accent/50 rounded-lg text-xs font-mono transition-all">
+                            <span>View Image</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="skills" class="mb-20">
+            <h2 class="text-sm font-mono text-textMuted uppercase tracking-widest mb-8 border-b border-gray-700 pb-2">
+                Technical Stack
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div
+                    class="bg-bgCard/50 p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors group">
+                    <div class="flex items-center gap-3 mb-4 border-b border-gray-800 pb-3">
+                        <div class="p-2 bg-gray-800 rounded text-gray-400 group-hover:text-accent transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-textMain text-sm">Languages & Cores</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Python</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Java</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">SQL</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Bash/Shell</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">NumPy</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Pandas</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">OpenCV</span>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-bgCard/50 p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors group">
+                    <div class="flex items-center gap-3 mb-4 border-b border-gray-800 pb-3">
+                        <div class="p-2 bg-gray-800 rounded text-gray-400 group-hover:text-accent transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-textMain text-sm">ML Engineering</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Scikit-learn</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">PyTorch</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">TensorFlow/Keras</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Numba
+                            (JIT)</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Image
+                            Annotation</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Computer
+                            Vision</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Natural
+                            Language Processing</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Training
+                            & Evaluation</span>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-bgCard/50 p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors group">
+                    <div class="flex items-center gap-3 mb-4 border-b border-gray-800 pb-3">
+                        <div class="p-2 bg-gray-800 rounded text-gray-400 group-hover:text-accent transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-textMain text-sm">Tools & Workflow</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Git/GitHub</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Jupyter
+                            Notebook</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">CVAT</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Experiment
+                            Documentation</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Reproducible
+                            ML Workflow</span>
+                        <span
+                            class="px-3 py-1.5 text-xs font-mono text-gray-400 border border-gray-700 rounded bg-gray-800/50 hover:border-white hover:text-white transition-colors cursor-default">Virtual
+                            Environment (venv)</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full border-t border-gray-800 bg-[#0d1117] relative overflow-hidden">
+
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-accent/50 to-transparent blur-sm">
+        </div>
+
+        <div
+            class="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-2">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                    </span>
+                    <span class="text-xs font-mono text-gray-400 tracking-widest uppercase">Open for
+                        Collaboration</span>
+                </div>
+
+                <h2 class="text-3xl md:text-3xl font-bold text-white max-w-lg leading-tight">
+                    Let's build intelligent solutions <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-600">that actually
+                        ship.</span>
+                </h2>
+
+                <p class="text-sm text-gray-500 font-mono pt-2">
+                    Based in Palembang, ID &bull; Comfortable with Remote Collaboration
+                </p>
+            </div>
+
+            <div class="flex flex-col w-full md:w-auto gap-3">
+
+                <a href="mailto:muanaikhalifahr@gmail.com"
+                    class="group flex items-center justify-between w-full md:w-72 px-6 py-4 bg-gray-900 border border-gray-800 rounded-lg hover:border-accent hover:bg-accent/5 transition-all duration-300">
+                    <span class="text-sm font-mono text-gray-300 group-hover:text-accent transition-colors">Reach
+                        out</span>
+                    <svg class="w-4 h-4 text-gray-600 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/in/muanai-khalifah-revindo-a0020b2ab/" target="_blank"
+                    class="group flex items-center justify-between w-full md:w-72 px-6 py-4 bg-gray-900 border border-gray-800 rounded-lg hover:border-blue-500 hover:bg-blue-500/5 transition-all duration-300">
+                    <span
+                        class="text-sm font-mono text-gray-300 group-hover:text-blue-400 transition-colors">LinkedIn</span>
+                    <svg class="w-4 h-4 text-gray-600 group-hover:text-blue-400 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </a>
+
+                <a href="https://medium.com/@muanaikhalifahr" target="_blank"
+                    class="group flex items-center justify-between w-full md:w-72 px-6 py-4 bg-gray-900 border border-gray-800 rounded-lg hover:border-white hover:bg-white/5 transition-all duration-300">
+                    <span class="text-sm font-mono text-gray-300 group-hover:text-white transition-colors">Medium</span>
+                    <svg class="w-4 h-4 text-gray-600 group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-900 bg-black py-6">
+            <div
+                class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-600 font-mono uppercase tracking-widest">
+                <span>&copy; 2026 Muanai Khalifah Revindo</span>
+                <span class="hidden md:block">Engineered with Intent</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
