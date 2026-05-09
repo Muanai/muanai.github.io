@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found · MKRP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --canvas:          #010102;
+      --surface-1:       #0f1011;
+      --surface-2:       #141516;
+      --hairline:        #23252a;
+      --hairline-strong: #34343a;
+      --ink:             #f7f8f8;
+      --ink-muted:       #d0d6e0;
+      --ink-subtle:      #8a8f98;
+      --ink-tertiary:    #62666d;
+      --accent:          #6b63ff;
+      --accent-hover:    #8a84ff;
+      --accent-dim:      rgba(107, 99, 255, 0.12);
+      --font-display:    'Geist', -apple-system, system-ui, sans-serif;
+      --font-mono:       'JetBrains Mono', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--font-display);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    /* ── Blanket cursor none ── */
+    *, *::before, *::after { cursor: none !important; }
+    @media (hover: none) {
+      *, *::before, *::after { cursor: auto !important; }
+      #cursor-ring, #cursor-dot { display: none !important; }
+    }
+
+    /* ════════════════════════════════
+       CANVAS BACKGROUND
+    ════════════════════════════════ */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════
+       LAYOUT
+    ════════════════════════════════ */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    /* ════════════════════════════════
+       404 GLITCH NUMBER
+    ════════════════════════════════ */
+    .error-code {
+      font-family: var(--font-mono);
+      font-size: clamp(100px, 20vw, 200px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(107, 99, 255, 0.5);
+      position: relative;
+      user-select: none;
+      margin-bottom: 8px;
+    }
+
+    /* Glitch layers */
+    .error-code::before,
+    .error-code::after {
+      content: '404';
+      position: absolute;
+      inset: 0;
+      -webkit-text-stroke: 1px transparent;
+    }
+
+    .error-code::before {
+      color: rgba(107, 99, 255, 0.4);
+      animation: glitch-1 3.5s infinite;
+      clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+    }
+
+    .error-code::after {
+      color: rgba(160, 155, 255, 0.3);
+      animation: glitch-2 3.5s infinite;
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+    }
+
+    @keyframes glitch-1 {
+      0%, 90%, 100% { transform: translate(0); opacity: 0; }
+      91%            { transform: translate(-4px, 1px); opacity: 1; }
+      93%            { transform: translate(4px, -1px); opacity: 1; }
+      95%            { transform: translate(-2px, 2px); opacity: 1; }
+      97%            { transform: translate(2px, -1px); opacity: 1; }
+      99%            { transform: translate(0); opacity: 0; }
+    }
+
+    @keyframes glitch-2 {
+      0%, 88%, 100% { transform: translate(0); opacity: 0; }
+      89%            { transform: translate(4px, -2px); opacity: 1; }
+      91%            { transform: translate(-4px, 1px); opacity: 1; }
+      93%            { transform: translate(2px, 2px); opacity: 1; }
+      95%            { transform: translate(-2px, -1px); opacity: 1; }
+      97%            { transform: translate(0); opacity: 0; }
+    }
+
+    /* ════════════════════════════════
+       TERMINAL BLOCK
+    ════════════════════════════════ */
+    .terminal {
+      background: var(--surface-1);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      margin: 32px auto 40px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .terminal-dot:nth-child(1) { background: #ff5f57; }
+    .terminal-dot:nth-child(2) { background: #febc2e; }
+    .terminal-dot:nth-child(3) { background: #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-tertiary);
+      letter-spacing: 0.04em;
+      margin-right: 26px; /* balance the dots */
+    }
+
+    .terminal-body {
+      padding: 20px 20px 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .t-line { display: flex; gap: 10px; }
+
+    .t-prompt { color: var(--accent); flex-shrink: 0; }
+
+    .t-cmd    { color: var(--ink-muted); }
+
+    .t-out    {
+      padding-left: 20px;
+      color: var(--ink-subtle);
+    }
+
+    .t-err    {
+      padding-left: 20px;
+      color: #ff6b6b;
+    }
+
+    .t-ok     {
+      padding-left: 20px;
+      color: #3ecf8e;
+    }
+
+    .t-cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--accent);
+      vertical-align: middle;
+      animation: blink 1.1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* Typewriter animation for each line */
+    .t-typed {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typeout 0.4s steps(40) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.3s; }
+    .delay-2 { animation-delay: 0.9s; }
+    .delay-3 { animation-delay: 1.5s; }
+    .delay-4 { animation-delay: 2.0s; }
+    .delay-5 { animation-delay: 2.5s; }
+    .delay-6 { animation-delay: 3.0s; }
+    .delay-7 { animation-delay: 3.4s; }
+
+    @keyframes typeout {
+      to { width: 100%; }
+    }
+
+    /* Lines that appear after typing */
+    .t-appear {
+      opacity: 0;
+      animation: appear 0.01s forwards;
+    }
+
+    .appear-1 { animation-delay: 0.75s; }
+    .appear-2 { animation-delay: 1.35s; }
+    .appear-3 { animation-delay: 1.85s; }
+    .appear-4 { animation-delay: 2.35s; }
+    .appear-5 { animation-delay: 2.85s; }
+    .appear-6 { animation-delay: 3.35s; }
+
+    @keyframes appear { to { opacity: 1; } }
+
+    /* ════════════════════════════════
+       HEADING + SUB
+    ════════════════════════════════ */
+    .error-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-tertiary);
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fade-up 0.5s ease 0.2s forwards;
+    }
+
+    .error-heading {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fade-up 0.5s ease 0.35s forwards;
+    }
+
+    .error-sub {
+      font-size: 15px;
+      color: var(--ink-subtle);
+      line-height: 1.6;
+      max-width: 360px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fade-up 0.5s ease 0.5s forwards;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ════════════════════════════════
+       CTA BUTTONS
+    ════════════════════════════════ */
+    .error-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fade-up 0.5s ease 3.6s forwards;
+    }
+
+    .btn-primary-404 {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 11px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.15s, transform 0.12s, box-shadow 0.18s;
+      box-shadow: 0 0 0 0 rgba(107,99,255,0);
+    }
+
+    .btn-primary-404::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.15) 50%, transparent 65%);
+      transform: translateX(-100%);
+      transition: transform 0.45s ease;
+    }
+
+    .btn-primary-404:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(107,99,255,0.35);
+    }
+
+    .btn-primary-404:hover::before { transform: translateX(100%); }
+
+    .btn-ghost-404 {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--ink-subtle);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 400;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--hairline);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .btn-ghost-404:hover {
+      color: var(--ink);
+      border-color: var(--hairline-strong);
+      background: var(--surface-1);
+    }
+
+    .btn-primary-404 svg, .btn-ghost-404 svg {
+      width: 15px; height: 15px; flex-shrink: 0;
+    }
+
+    /* ════════════════════════════════
+       AMBIENT BG TEXT
+    ════════════════════════════════ */
+    .ambient-text {
+      position: fixed;
+      bottom: -0.1em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(64px, 14vw, 160px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    /* ════════════════════════════════
+       CUSTOM CURSOR
+    ════════════════════════════════ */
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(107,99,255,0.55);
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%,-50%);
+      transition: width 0.18s ease, height 0.18s ease,
+                  border-color 0.18s ease, background 0.18s ease,
+                  opacity 0.3s ease;
+      will-change: transform;
+    }
+
+    #cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      pointer-events: none;
+      z-index: 100000;
+      transform: translate(-50%,-50%);
+      will-change: transform;
+      transition: opacity 0.3s ease;
+    }
+
+    body.cursor-pointer #cursor-ring {
+      width: 44px; height: 44px;
+      border-color: rgba(107,99,255,0.4);
+      background: rgba(107,99,255,0.07);
+    }
+
+    body.cursor-out #cursor-ring,
+    body.cursor-out #cursor-dot { opacity: 0; }
+
+    /* ════════════════════════════════
+       MOBILE
+    ════════════════════════════════ */
+    @media (max-width: 768px) {
+      html, body { overflow: auto; }
+      .page { padding: 80px 20px 60px; justify-content: flex-start; padding-top: 100px; }
+      .error-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary-404, .btn-ghost-404 { justify-content: center; }
+      .ambient-text { font-size: clamp(48px, 18vw, 80px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background particle canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient footer text -->
+  <span class="ambient-text" aria-hidden="true">NOT FOUND</span>
+
+  <!-- Custom cursor -->
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+
+  <main class="page">
+
+    <!-- Glitch 404 -->
+    <div class="error-code" aria-label="404">404</div>
+
+    <!-- Label + heading -->
+    <p class="error-label">Page not found</p>
+    <h1 class="error-heading">This signal got lost in the noise.</h1>
+    <p class="error-sub">The page you're looking for doesn't exist, was moved, or the URL might have a typo.</p>
+
+    <!-- Terminal block -->
+    <div class="terminal" role="region" aria-label="Error log">
+      <div class="terminal-bar">
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+        <span class="terminal-title">bash — mkrp-portfolio</span>
+      </div>
+      <div class="terminal-body">
+
+        <div class="t-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd t-typed delay-1">fetch --url "$REQUEST_PATH"</span>
+        </div>
+
+        <div class="t-line t-appear appear-1">
+          <span class="t-err">→ Error 404: Resource not found</span>
+        </div>
+
+        <div class="t-line" style="margin-top:8px">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd t-typed delay-2">ls ./pages/</span>
+        </div>
+
+        <div class="t-line t-appear appear-2">
+          <span class="t-out">projects/ &nbsp; experience/ &nbsp; certifications/</span>
+        </div>
+        <div class="t-line t-appear appear-3">
+          <span class="t-out">skills/ &nbsp;&nbsp;&nbsp; about/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contact/</span>
+        </div>
+
+        <div class="t-line" style="margin-top:8px">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd t-typed delay-3">cd ./home</span>
+        </div>
+
+        <div class="t-line t-appear appear-4">
+          <span class="t-ok">✓ Redirecting to home...</span>
+        </div>
+
+        <div class="t-line" style="margin-top:8px">
+          <span class="t-prompt">$</span>
+          <span class="t-cursor"></span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="error-actions">
+      <a href="/" class="btn-primary-404">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Back to Home
+      </a>
+      <a href="/#projects" class="btn-ghost-404">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/>
+        </svg>
+        View Projects
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+  (function () {
+
+    /* ════════════════════════════════
+       FLOATING PARTICLE BACKGROUND
+    ════════════════════════════════ */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H;
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const NUM_PARTICLES = 55;
+    const particles = [];
+
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      particles.push({
+        x:  Math.random() * 1,
+        y:  Math.random() * 1,
+        vx: (Math.random() - 0.5) * 0.00015,
+        vy: (Math.random() - 0.5) * 0.00015,
+        r:  Math.random() * 1.5 + 0.5,
+        a:  Math.random() * 0.25 + 0.05,
+      });
+    }
+
+    const CONNECT_DIST = 0.18; /* fraction of screen width */
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+
+      /* Update positions */
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > 1) p.vx *= -1;
+        if (p.y < 0 || p.y > 1) p.vy *= -1;
+      });
+
+      /* Draw connections */
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          const dx = (a.x - b.x) * W;
+          const dy = (a.y - b.y) * H;
+          const d  = Math.sqrt(dx*dx + dy*dy);
+          const maxD = CONNECT_DIST * W;
+
+          if (d < maxD) {
+            const alpha = (1 - d / maxD) * 0.12;
+            ctx.beginPath();
+            ctx.moveTo(a.x * W, a.y * H);
+            ctx.lineTo(b.x * W, b.y * H);
+            ctx.strokeStyle = `rgba(107,99,255,${alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* Draw dots */
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(107,99,255,${p.a})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    drawParticles();
+
+    /* ════════════════════════════════
+       CUSTOM CURSOR
+    ════════════════════════════════ */
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const ring = document.getElementById('cursor-ring');
+    const dot  = document.getElementById('cursor-dot');
+
+    let mouseX = -100, mouseY = -100;
+    let ringX  = -100, ringY  = -100;
+
+    const CLICKABLE = 'a, button, [role="button"]';
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      document.body.classList.remove('cursor-out');
+      document.body.classList.toggle('cursor-pointer', !!e.target.closest(CLICKABLE));
+    });
+
+    document.addEventListener('mouseleave', () => document.body.classList.add('cursor-out'));
+
+    const LERP = 0.12;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function animateCursor() {
+      dot.style.transform  = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+      ringX = lerp(ringX, mouseX, LERP);
+      ringY = lerp(ringY, mouseY, LERP);
+      ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+      requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+  })();
+  </script>
+</body>
+</html>
