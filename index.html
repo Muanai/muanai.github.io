@@ -663,8 +663,8 @@
       .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; box-sizing: border-box; }
 
       /* Pills: 2x2 grid so they wrap evenly */
-      .focus-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-      .focus-pill { justify-content: center; font-size: 12px; padding: 8px 10px; }
+      .focus-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .focus-pill { font-size: 12px; padding: 8px 12px; }
 
       /* Back to top — smaller on mobile */
       #back-to-top { bottom: 20px; right: 16px; width: 36px; height: 36px; border-radius: 8px; }
@@ -994,8 +994,12 @@
         <span class="focus-label">Area of focus</span>
         <div class="focus-pills">
           <span class="focus-pill">
-            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/></svg>
-            Fintech
+            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.955 11.955 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+            Risk Intelligence
+          </span>
+          <span class="focus-pill">
+            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/></svg>
+            Operational Analytics
           </span>
           <span class="focus-pill">
             <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
@@ -1004,10 +1008,6 @@
           <span class="focus-pill">
             <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"/></svg>
             NLP
-          </span>
-          <span class="focus-pill">
-            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
-            ML Engineering
           </span>
         </div>
       </div>
@@ -1693,10 +1693,10 @@
       <!-- Tabs -->
       <div class="project-tabs" role="tablist">
         <button class="tab-btn active" data-tab="featured" role="tab">Featured</button>
-        <button class="tab-btn" data-tab="fintech" role="tab">Fintech</button>
+        <button class="tab-btn" data-tab="risk-intel" role="tab">Risk Intelligence</button>
+        <button class="tab-btn" data-tab="ops-analytics" role="tab">Operational Analytics</button>
         <button class="tab-btn" data-tab="comvis" role="tab">Computer Vision</button>
         <button class="tab-btn" data-tab="nlp" role="tab">NLP</button>
-        <button class="tab-btn" data-tab="mleng" role="tab">ML Engineering</button>
       </div>
 
       <!-- Layout: list + panel (desktop) -->
@@ -1723,7 +1723,7 @@
         tech: 'Ultralytics / YOLOv8',
         image: 'assets/projects/telkomsel_app.webp',
         imageLabel: 'Desktop Inference App',
-        tags: ['comvis'],
+        tags: ['ops-analytics', 'comvis'],
         featured: true,
         wip: false,
         tabs: {
@@ -1798,7 +1798,7 @@
         tech: 'Python / Numba',
         image: 'assets/projects/numba_benchmark.webp',
         imageLabel: 'Benchmark',
-        tags: ['fintech', 'mleng'],
+        tags: ['risk-intel'],
         featured: false,
         wip: false,
         tabs: {
@@ -1836,7 +1836,7 @@
         tech: 'Hugging Face / PyTorch',
         image: 'assets/projects/indobart_loss.webp', // Pastikan Anda menyimpan gambar grafik loss di sini
         imageLabel: 'Training vs Validation Loss Divergence',
-        tags: ['nlp', 'mleng'],
+        tags: ['nlp'],
         featured: false,
         wip: false,
         tabs: {
@@ -1870,11 +1870,11 @@
       {
         id: 'ragpojk',
         title: 'RAG POJK',
-        shortDesc: 'Retrieval-Augmented Generation system for Indonesian financial regulation (OJK) documents.',
+        shortDesc: 'RAG system for Indonesian credit risk explainability based on financial regulation documents.',
         tech: 'RAG / LLM',
         image: null,
         imageLabel: null,
-        tags: ['fintech', 'nlp'],
+        tags: ['risk-intel', 'nlp'],
         featured: false,
         wip: true,
         tabs: null,
@@ -1889,10 +1889,10 @@
     /* ── HELPERS ── */
     function getProjectsByTab(tab) {
       if (tab === 'featured') return PROJECTS.filter(p => p.featured);
-      if (tab === 'fintech')  return PROJECTS.filter(p => p.tags.includes('fintech'));
+      if (tab === 'risk-intel')  return PROJECTS.filter(p => p.tags.includes('risk-intel'));
+      if (tab === 'ops-analytics')    return PROJECTS.filter(p => p.tags.includes('ops-analytics'));
       if (tab === 'comvis')   return PROJECTS.filter(p => p.tags.includes('comvis'));
       if (tab === 'nlp')      return PROJECTS.filter(p => p.tags.includes('nlp'));
-      if (tab === 'mleng')    return PROJECTS.filter(p => p.tags.includes('mleng'));
       return PROJECTS;
     }
 
@@ -3364,12 +3364,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
               </svg>
             </div>
-            <span class="skill-card-title">Languages & Cores</span>
+            <span class="skill-card-title">Languages & Data Tools</span>
           </div>
           <div class="skill-tags">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">Java</span>
             <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Typescript</span>
             <span class="skill-tag">Bash / Shell</span>
             <span class="skill-tag">NumPy</span>
             <span class="skill-tag">Pandas</span>
@@ -3390,14 +3391,16 @@
             <span class="skill-card-title">ML Engineering</span>
           </div>
           <div class="skill-tags">
-            <span class="skill-tag">Scikit-learn</span>
             <span class="skill-tag">PyTorch</span>
             <span class="skill-tag">TensorFlow / Keras</span>
+            <span class="skill-tag">XGBoost</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">SHAP</span>
+            <span class="skill-tag">Hugging Face</span>
             <span class="skill-tag">Numba (JIT)</span>
             <span class="skill-tag">Computer Vision</span>
             <span class="skill-tag">NLP</span>
-            <span class="skill-tag">Training & Evaluation</span>
-            <span class="skill-tag">Image Annotation</span>
+            <span class="skill-tag">RAG</span>
           </div>
         </div>
         </div><!-- /skill-card-wrap -->
@@ -3415,11 +3418,15 @@
           </div>
           <div class="skill-tags">
             <span class="skill-tag">Git / GitHub</span>
-            <span class="skill-tag">Jupyter Notebook</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">pytest</span>
+            <span class="skill-tag">Streamlit</span>
+            <span class="skill-tag">Ollame</span>
+            <span class="skill-tag">uv</span>
             <span class="skill-tag">CVAT</span>
-            <span class="skill-tag">Experiment Docs</span>
-            <span class="skill-tag">Reproducible ML</span>
-            <span class="skill-tag">venv</span>
+            <span class="skill-tag">QGIS</span>
+            <span class="skill-tag">PyQt</span>
           </div>
         </div>
 
@@ -3679,27 +3686,34 @@
         <div class="about-left">
           <p class="about-handle">Muanai Khalifah Revindo</p>
           <h3 class="about-name">
-            Curious by nature,<br/>
-            <span class="muted">analytical by practice.</span>
+            Curious about data,<br/>
+            <span class="muted">pragmatic about impact.</span>
           </h3>
           <div class="about-bio">
             <p>
-              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>,
-              building ML systems that sit at the intersection of technical rigor and real 
-              business problems. No single dramatic origin story — just someone who found early 
-              on that <span class="highlight">playing with data and seeing what it reveals is genuinely 
-              fun.</span> — and got hooked on them.
+              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>, 
+              building ML systems at the intersection of technical rigor and real business problems. 
+              No grand origin story, just someone who found early on that <span class="highlight">playing 
+              with data and seeing what it reveals is genuinely fun,</span> and then realized the 
+              interesting problems live where complexity demands explainability.
             </p>
             <p>
-              The interest in <strong>fintech</strong> runs deeper than the projects suggest. I opened 
-              my first stock investment account at 17, before I even knew what a model was. That early 
-              habit of reading market behavior, looking for patterns in price movement, and thinking 
-              probabilistically about risk — it quietly shaped the kind of problems I now want to solve 
-              with ML.
+              These days, I'm focused on <strong>risk intelligence and operational analytics 
+              for emerging markets</strong>, work that spans credit scoring pipelines, geospatial 
+              infrastructure mapping, and production systems that survive contact with the real world. 
+              Recent projects share the same DNA: <span class="highlight">making sense of messy data 
+              in contexts where decisions matter.</span>
             </p>
             <p>
-              Outside of data, I draw and care about <strong>UI/UX</strong> —
-              which is why a portfolio should look as good as what's in it.
+              The pattern-recognition habit started with stock markets at 17, still a stock investor, 
+              still thinking probabilistically about risk. That lens shaped how I approach ML: 
+              explainability by design, not afterthought. Because when regulators ask why a loan 
+              was denied, or field teams need to act on infrastructure intelligence, a black-box model 
+              becomes a liability in regulated and operational settings.
+            </p>
+            <p>
+              Outside of data, I draw and care about UI/UX
+              because the best analysis means nothing if it's trapped in unusable interfaces.
             </p>
           </div>
         </div>
@@ -3718,6 +3732,7 @@
                 </div>
                 <div class="fact-text">
                   <strong>Teknik Informatika</strong> — Universitas Sriwijaya
+                  <span class="fact-period">GPA: 3.81/4.00</span>
                 </div>
               </div>
             </div>
@@ -3729,18 +3744,27 @@
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 7c0-1.105-.895-2-2-2a2 2 0 0 0-2 2c0 .738.401 1.376 1 1.723V11H7a4 4 0 0 0-4 4v1a1 1 0 0 0 1 1h1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1a4 4 0 0 0-4-4h-2V8.723A2 2 0 0 0 12 7Z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 7c0-1.105.895-2 2-2a2 2 0 0 1 2 2c0 .738-.401 1.376-1 1.723V11h2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-1 1"/>
                   </svg>
                 </div>
-                <span class="fact-text">ML for <strong>Fintech</strong> — credit risk, fraud, financial NLP</span>
+                  <span class="fact-text">
+                    <strong>Risk Intelligence</strong> — credit risk, behavioral signals, explainable decisions
+                  </span>
               </div>
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6Z"/>
+                    <circle cx="12" cy="8" r="2.5"/>
                   </svg>
                 </div>
-                <span class="fact-text">Building toward <strong>production-grade</strong> ML — Docker, Go, deployment</span>
+                <span class="fact-text">
+                  <strong>Operational Analytics</strong> — geospatial & computer vision for infrastructure intelligence
+                </span>
               </div>
             </div>
           </div>
@@ -3755,7 +3779,7 @@
                   </svg>
                 </div>
                 <div class="fact-text">
-                  <strong>Head of Academic Dept.</strong> — Network Administrator Club (NAC) Unsri
+                  <strong>Head of Academic Dept.</strong> — NAC Unsri
                   <span class="fact-period">Nov 2025 – Present</span>
                 </div>
               </div>
@@ -3766,7 +3790,7 @@
                   </svg>
                 </div>
                 <div class="fact-text">
-                  <strong>Head of Scientific Event Organizer Dept.</strong> — FASCO Unsri
+                  <strong>Head of Event Organizer Dept.</strong> — FASCO Unsri
                   <span class="fact-period">Dec 2024 – Dec 2025</span>
                 </div>
               </div>
@@ -3791,7 +3815,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/>
                   </svg>
                 </div>
-                <span class="fact-text">Stock investor since 17 — the original reason fintech clicked</span>
+                <span class="fact-text">Stock investor since 17 — the original pattern-recognition habit</span>
               </div>
 
             </div>
@@ -3811,24 +3835,34 @@
         <div class="about-tab-panel about-tab-bio active" id="about-panel-bio">
           <p class="about-handle">Muanai Khalifah Revindo</p>
           <h3 class="about-name">
-            Curious by nature,<br/>
-            <span class="muted">analytical by practice.</span>
+            Curious about data,<br/>
+            <span class="muted">pragmatic about impact.</span>
           </h3>
           <div class="about-bio">
             <p>
-              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>,
-              building ML systems at the intersection of technical rigor and real business impact.
-              Found early on that <span class="highlight">data tells stories</span> — and got hooked on finding them.
+              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>, 
+              building ML systems at the intersection of technical rigor and real business problems. 
+              No grand origin story, just someone who found early on that <span class="highlight">playing 
+              with data and seeing what it reveals is genuinely fun,</span> and then realized the 
+              interesting problems live where complexity demands explainability.
             </p>
             <p>
-              The pull toward <strong>fintech</strong> started before ML did —
-              opened a stock account at 17, spent years reading market behavior and thinking
-              probabilistically about risk. That shaped the problems I now want to solve:
-              credit risk, fraud detection, financial NLP.
+              These days, I'm focused on <strong>risk intelligence and operational analytics 
+              for emerging markets</strong>, work that spans credit scoring pipelines, geospatial 
+              infrastructure mapping, and production systems that survive contact with the real world. 
+              Recent projects share the same DNA: <span class="highlight">making sense of messy data 
+              in contexts where decisions matter.</span>
             </p>
             <p>
-              Outside of data, I draw and care about <strong>UI/UX</strong> —
-              which is why a portfolio should look as good as what's in it.
+              The pattern-recognition habit started with stock markets at 17, still a stock investor, 
+              still thinking probabilistically about risk. That lens shaped how I approach ML: 
+              explainability by design, not afterthought. Because when regulators ask why a loan 
+              was denied, or field teams need to act on infrastructure intelligence, a black-box model 
+              becomes a liability in regulated and operational settings.
+            </p>
+            <p>
+              Outside of data, I draw and care about UI/UX
+              because the best analysis means nothing if it's trapped in unusable interfaces.
             </p>
           </div>
         </div>
@@ -3836,7 +3870,6 @@
         <!-- Facts panel -->
         <div class="about-tab-panel active-facts" id="about-panel-facts">
           <div class="about-tab-facts">
-
             <div class="about-fact-group">
               <p class="fact-group-label">Education</p>
               <div class="fact-group-items">
@@ -3846,7 +3879,8 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.39 51.39 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/>
                     </svg>
                   </div>
-                  <div class="fact-text"><strong>Teknik Informatika</strong> — Universitas Sriwijaya</div>
+                  <div class="fact-text"><strong>Teknik Informatika</strong> — Universitas Sriwijaya<span class="fact-period">GPA: 3.81/4.00</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3857,18 +3891,27 @@
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7c0-1.105-.895-2-2-2a2 2 0 0 0-2 2c0 .738.401 1.376 1 1.723V11H7a4 4 0 0 0-4 4v1a1 1 0 0 0 1 1h1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1a4 4 0 0 0-4-4h-2V8.723A2 2 0 0 0 12 7Z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7c0-1.105.895-2 2-2a2 2 0 0 1 2 2c0 .738-.401 1.376-1 1.723V11h2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-1 1"/>
                     </svg>
                   </div>
-                  <span class="fact-text">ML for <strong>Fintech</strong> — credit risk, fraud, financial NLP</span>
+                    <span class="fact-text">
+                      <strong>Risk Intelligence</strong> — credit risk, behavioral signals, explainable decisions
+                    </span>
                 </div>
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6Z"/>
+                      <circle cx="12" cy="8" r="2.5"/>
                     </svg>
                   </div>
-                  <span class="fact-text">Building toward <strong>production-grade</strong> ML — Docker, Go, deployment</span>
+                  <span class="fact-text">
+                    <strong>Operational Analytics</strong> — geospatial & computer vision for infrastructure intelligence
+                  </span>
                 </div>
               </div>
             </div>
@@ -3882,21 +3925,21 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>
                     </svg>
                   </div>
-                  <div class="fact-text">
-                    <strong>Head of Academic Dept.</strong> — NAC Unsri
-                    <span class="fact-period">Nov 2025 – Present</span>
-                  </div>
+                <div class="fact-text">
+                  <strong>Head of Academic Dept.</strong> — NAC Unsri
+                  <span class="fact-period">Nov 2025 – Present</span>
                 </div>
-                <div class="fact-item">
-                  <div class="fact-icon">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
-                    </svg>
-                  </div>
-                  <div class="fact-text">
-                    <strong>Head of Scientific Event Organizer Dept.</strong> — FASCO Unsri
-                    <span class="fact-period">Dec 2024 – Dec 2025</span>
-                  </div>
+              </div>
+              <div class="fact-item">
+                <div class="fact-icon">
+                  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
+                  </svg>
+                </div>
+                <div class="fact-text">
+                  <strong>Head of Event Organizer Dept.</strong> — FASCO Unsri
+                  <span class="fact-period">Dec 2024 – Dec 2025</span>
+                </div>
                 </div>
               </div>
             </div>
@@ -3918,7 +3961,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/>
                     </svg>
                   </div>
-                  <span class="fact-text">Stock investor since 17 — the original reason fintech clicked</span>
+                  <span class="fact-text">Stock investor since 17 — the original pattern-recognition habit</span>
                 </div>
               </div>
             </div>
