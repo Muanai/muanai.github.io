@@ -1083,14 +1083,37 @@
     }
 
     /* ── TABS ── */
+    .project-tabs-wrapper {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    /* Fading right edge hint for mobile scroll */
+    @media (max-width: 768px) {
+      .project-tabs-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 1px;
+        width: 48px;
+        background: linear-gradient(to right, transparent, var(--canvas));
+        pointer-events: none;
+      }
+    }
+
     .project-tabs {
       display: flex;
       align-items: center;
       gap: 4px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
       border-bottom: 1px solid var(--hairline);
       padding-bottom: 0;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    .project-tabs::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
     }
 
     .tab-btn {
@@ -1692,12 +1715,14 @@
       <h2 class="section-heading">Selected Projects</h2>
 
       <!-- Tabs -->
-      <div class="project-tabs" role="tablist">
-        <button class="tab-btn active" data-tab="featured" role="tab">Featured</button>
-        <button class="tab-btn" data-tab="risk-intel" role="tab">Risk Intelligence</button>
-        <button class="tab-btn" data-tab="ops-analytics" role="tab">Operational Analytics</button>
-        <button class="tab-btn" data-tab="comvis" role="tab">Computer Vision</button>
-        <button class="tab-btn" data-tab="nlp" role="tab">NLP</button>
+      <div class="project-tabs-wrapper">
+        <div class="project-tabs" role="tablist">
+          <button class="tab-btn active" data-tab="featured" role="tab">Featured</button>
+          <button class="tab-btn" data-tab="risk-intel" role="tab">Risk Intelligence</button>
+          <button class="tab-btn" data-tab="ops-analytics" role="tab">Operational Analytics</button>
+          <button class="tab-btn" data-tab="comvis" role="tab">Computer Vision</button>
+          <button class="tab-btn" data-tab="nlp" role="tab">NLP</button>
+        </div>
       </div>
 
       <!-- Layout: list + panel (desktop) -->
