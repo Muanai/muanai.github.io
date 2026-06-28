@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,32 +8,42 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --canvas:       #010102;
-      --surface-1:    #0f1011;
-      --surface-2:    #141516;
-      --hairline:     #23252a;
-      --hairline-strong: #34343a;
-      --ink:          #f7f8f8;
-      --ink-muted:    #d0d6e0;
-      --ink-subtle:   #8a8f98;
-      --ink-tertiary: #62666d;
-      --accent:       #6b63ff;
-      --accent-hover: #8a84ff;
-      --accent-dim:   rgba(107, 99, 255, 0.12);
-      --font-display: 'Geist', -apple-system, system-ui, sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --canvas: #010102;
+      --surface-1: #0f1011;
+      --surface-2: #141516;
+      --hairline: #23252a;
+      --hairline-strong: #34343a;
+      --ink: #f7f8f8;
+      --ink-muted: #d0d6e0;
+      --ink-subtle: #8a8f98;
+      --ink-tertiary: #62666d;
+      --accent: #6b63ff;
+      --accent-hover: #8a84ff;
+      --accent-dim: rgba(107, 99, 255, 0.12);
+      --font-display: 'Geist', -apple-system, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--canvas);
@@ -45,7 +56,9 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 9999;
       height: 56px;
       display: flex;
@@ -134,7 +147,7 @@
     .nav-progress {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(107,99,255,0.12) 0%, rgba(107,99,255,0.06) 100%);
+      background: linear-gradient(90deg, rgba(107, 99, 255, 0.12) 0%, rgba(107, 99, 255, 0.06) 100%);
       border-radius: 6px;
       transform-origin: left center;
       transform: scaleX(0);
@@ -143,7 +156,10 @@
       z-index: 0;
     }
 
-    .nav-links a > :not(.nav-progress) { position: relative; z-index: 1; }
+    .nav-links a> :not(.nav-progress) {
+      position: relative;
+      z-index: 1;
+    }
 
     /* ── Project image lazy load ── */
     .detail-img-wrap {
@@ -162,7 +178,8 @@
     .detail-img-wrap img {
       opacity: 0;
       transition: opacity 0.4s ease;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
@@ -170,7 +187,7 @@
       opacity: 1;
     }
 
-    .detail-img-wrap img.loaded ~ .detail-img-blur,
+    .detail-img-wrap img.loaded~.detail-img-blur,
     .detail-img-wrap:has(img.loaded) .detail-img-blur {
       opacity: 0;
     }
@@ -216,7 +233,9 @@
       white-space: nowrap;
     }
 
-    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
 
     /* ── HERO ── */
     .hero {
@@ -255,7 +274,7 @@
       transform: translateX(-50%);
       width: 600px;
       height: 300px;
-      background: radial-gradient(ellipse at center, rgba(107,99,255,0.10) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(107, 99, 255, 0.10) 0%, transparent 70%);
       z-index: 1;
       pointer-events: none;
     }
@@ -312,8 +331,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 2px rgba(39, 166, 68, 0.2); }
-      50%       { box-shadow: 0 0 0 5px rgba(39, 166, 68, 0.08); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 2px rgba(39, 166, 68, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(39, 166, 68, 0.08);
+      }
     }
 
     /* ── HEADING ── */
@@ -365,55 +391,20 @@
       font-weight: 500;
       color: #fff;
       background: var(--accent);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 10px 20px;
-      padding-right: 44px;
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
       position: relative;
       overflow: hidden;
-      transition: opacity 0.2s ease;
+      transition: background 0.2s ease, opacity 0.2s ease;
     }
 
     .btn-hero-primary:hover {
       opacity: 0.95;
+      background: var(--accent-hover);
     }
-
-    .btn-hero-primary .btn-text {
-      transition: opacity 0.4s ease;
-      position: relative;
-      z-index: 2;
-    }
-
-    .btn-hero-primary:hover .btn-text {
-      opacity: 0;
-    }
-
-    .btn-hero-primary .btn-icon-wrapper {
-      position: absolute;
-      right: 4px;
-      top: 4px;
-      bottom: 4px;
-      border-radius: 4px;
-      z-index: 10;
-      display: grid;
-      width: 32px;
-      place-items: center;
-      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-    }
-
-    .btn-hero-primary:hover .btn-icon-wrapper {
-      width: calc(100% - 8px);
-    }
-
-    .btn-hero-primary:active .btn-icon-wrapper {
-      transform: scale(0.95);
-    }
-
-    .btn-hero-primary svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     .btn-hero-secondary {
       display: inline-flex;
@@ -437,7 +428,10 @@
       border-color: var(--hairline-strong);
     }
 
-    .btn-hero-secondary svg { width: 14px; height: 14px; }
+    .btn-hero-secondary svg {
+      width: 14px;
+      height: 14px;
+    }
 
     /* ── FOCUS PILLS ── */
     .focus-block {
@@ -508,8 +502,15 @@
     }
 
     @keyframes bob {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(5px); }
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(5px);
+      }
     }
 
     .scroll-hint span {
@@ -555,15 +556,26 @@
     }
 
     /* X state */
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
 
     /* ── MOBILE DRAWER ── */
     .nav-drawer {
       position: fixed;
-      top: 56px; /* nav height */
-      left: 0; right: 0;
+      top: 56px;
+      /* nav height */
+      left: 0;
+      right: 0;
       z-index: 9998;
       background: var(--canvas);
       border-bottom: 1px solid var(--hairline);
@@ -571,8 +583,8 @@
       opacity: 0;
       visibility: hidden;
       transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-                  opacity 0.2s ease,
-                  visibility 0.2s ease;
+        opacity 0.2s ease,
+        visibility 0.2s ease;
     }
 
     .nav-drawer.open {
@@ -598,8 +610,13 @@
       transition: color 0.12s;
     }
 
-    .nav-drawer-link:last-of-type { border-bottom: none; }
-    .nav-drawer-link:hover { color: var(--ink); }
+    .nav-drawer-link:last-of-type {
+      border-bottom: none;
+    }
+
+    .nav-drawer-link:hover {
+      color: var(--ink);
+    }
 
     .nav-drawer-cta {
       display: flex;
@@ -607,7 +624,11 @@
       margin-top: 16px;
     }
 
-    .nav-drawer-cta a { flex: 1; text-align: center; justify-content: center; }
+    .nav-drawer-cta a {
+      flex: 1;
+      text-align: center;
+      justify-content: center;
+    }
 
     /* Backdrop */
     .nav-backdrop {
@@ -644,7 +665,7 @@
       visibility: hidden;
       transform: translateY(8px);
       transition: opacity 0.2s ease, visibility 0.2s ease,
-                  transform 0.2s ease, border-color 0.15s, background 0.15s;
+        transform 0.2s ease, border-color 0.15s, background 0.15s;
     }
 
     #back-to-top.visible {
@@ -666,26 +687,71 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-cta   { display: none; }
-      .nav-hamburger { display: flex; }
+      nav {
+        padding: 0 20px;
+      }
 
-      .hero { padding: 56px 20px 0; }
-      .hero-inner { padding-bottom: 64px; }
-      .hero-heading { font-size: 36px; }
-      .hero-actions { gap: 10px; flex-direction: column; align-items: stretch; width: 100%; }
-      .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; box-sizing: border-box; }
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 56px 20px 0;
+      }
+
+      .hero-inner {
+        padding-bottom: 64px;
+      }
+
+      .hero-heading {
+        font-size: 36px;
+      }
+
+      .hero-actions {
+        gap: 10px;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .btn-hero-primary,
+      .btn-hero-secondary {
+        flex: 1;
+        justify-content: center;
+        box-sizing: border-box;
+      }
 
       /* Pills: 2x2 grid so they wrap evenly */
-      .focus-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-      .focus-pill { font-size: 12px; padding: 8px 12px; }
+      .focus-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .focus-pill {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
 
       /* Back to top — smaller on mobile */
-      #back-to-top { bottom: 20px; right: 16px; width: 36px; height: 36px; border-radius: 8px; }
+      #back-to-top {
+        bottom: 20px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+      }
     }
   </style>
 </head>
+
 <body>
   <style>
     /* ── MOBILE SECTION BREADCRUMB ── */
@@ -712,7 +778,9 @@
       transition: opacity 0.3s ease;
     }
 
-    #section-breadcrumb.visible { opacity: 1; }
+    #section-breadcrumb.visible {
+      opacity: 1;
+    }
 
     #section-breadcrumb .bc-accent {
       color: rgba(107, 99, 255, 0.9);
@@ -720,7 +788,9 @@
     }
 
     @media (max-width: 768px) {
-      #section-breadcrumb { display: block; }
+      #section-breadcrumb {
+        display: block;
+      }
     }
   </style>
 
@@ -748,7 +818,9 @@
     }
 
     /* Hide scrollbar while loading */
-    body.loading { overflow: hidden; }
+    body.loading {
+      overflow: hidden;
+    }
 
     /* ── Text reveal ── */
     .loader-text {
@@ -769,7 +841,7 @@
       overflow: hidden;
     }
 
-    .loader-word + .loader-word {
+    .loader-word+.loader-word {
       margin-left: 0.3em;
     }
 
@@ -797,7 +869,8 @@
 
     .loader-bar-fill {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       height: 100%;
       width: 0%;
       background: var(--accent);
@@ -818,7 +891,9 @@
       transition: opacity 0.4s ease;
     }
 
-    .loader-label.visible { opacity: 1; }
+    .loader-label.visible {
+      opacity: 1;
+    }
   </style>
 
   <div id="loader">
@@ -830,86 +905,86 @@
   </div>
 
   <script>
-  (function () {
-    const loader   = document.getElementById('loader');
-    const textEl   = document.getElementById('loader-text');
-    const bar      = document.getElementById('loader-bar');
-    const label    = document.getElementById('loader-label');
+    (function () {
+      const loader = document.getElementById('loader');
+      const textEl = document.getElementById('loader-text');
+      const bar = document.getElementById('loader-bar');
+      const label = document.getElementById('loader-label');
 
-    document.body.classList.add('loading');
+      document.body.classList.add('loading');
 
-    /* ── Build character spans ── */
-    const WORDS = ['SIGNAL', 'OVER', 'NOISE'];
-    const allChars = [];
+      /* ── Build character spans ── */
+      const WORDS = ['SIGNAL', 'OVER', 'NOISE'];
+      const allChars = [];
 
-    WORDS.forEach(word => {
-      const wordEl = document.createElement('span');
-      wordEl.className = 'loader-word';
-      word.split('').forEach(ch => {
-        const span = document.createElement('span');
-        span.className = 'loader-char';
-        span.textContent = ch;
-        wordEl.appendChild(span);
-        allChars.push(span);
+      WORDS.forEach(word => {
+        const wordEl = document.createElement('span');
+        wordEl.className = 'loader-word';
+        word.split('').forEach(ch => {
+          const span = document.createElement('span');
+          span.className = 'loader-char';
+          span.textContent = ch;
+          wordEl.appendChild(span);
+          allChars.push(span);
+        });
+        textEl.appendChild(wordEl);
       });
-      textEl.appendChild(wordEl);
-    });
 
-    /* ── Animate chars one by one ── */
-    const CHAR_DELAY = 48;   /* ms between each char */
-    const totalCharTime = allChars.length * CHAR_DELAY + 300;
+      /* ── Animate chars one by one ── */
+      const CHAR_DELAY = 48;   /* ms between each char */
+      const totalCharTime = allChars.length * CHAR_DELAY + 300;
 
-    allChars.forEach((ch, i) => {
-      setTimeout(() => ch.classList.add('visible'), i * CHAR_DELAY);
-    });
+      allChars.forEach((ch, i) => {
+        setTimeout(() => ch.classList.add('visible'), i * CHAR_DELAY);
+      });
 
-    /* ── Show label after first word ── */
-    setTimeout(() => label.classList.add('visible'), WORDS[0].length * CHAR_DELAY + 100);
+      /* ── Show label after first word ── */
+      setTimeout(() => label.classList.add('visible'), WORDS[0].length * CHAR_DELAY + 100);
 
-    /* ── Progress bar fills over totalCharTime ── */
-    let progress = 0;
-    const BAR_DURATION = totalCharTime + 200;
-    const TICK = 40;
-    const increment = (TICK / BAR_DURATION) * 100;
+      /* ── Progress bar fills over totalCharTime ── */
+      let progress = 0;
+      const BAR_DURATION = totalCharTime + 200;
+      const TICK = 40;
+      const increment = (TICK / BAR_DURATION) * 100;
 
-    const barInterval = setInterval(() => {
-      progress = Math.min(progress + increment, 92); /* stop at 92, jump to 100 at end */
-      bar.style.width = progress + '%';
-    }, TICK);
+      const barInterval = setInterval(() => {
+        progress = Math.min(progress + increment, 92); /* stop at 92, jump to 100 at end */
+        bar.style.width = progress + '%';
+      }, TICK);
 
-    /* ── Dismiss loader ── */
-    function dismiss() {
-      clearInterval(barInterval);
-      bar.style.width = '100%';
-      bar.style.transition = 'width 0.2s ease';
+      /* ── Dismiss loader ── */
+      function dismiss() {
+        clearInterval(barInterval);
+        bar.style.width = '100%';
+        bar.style.transition = 'width 0.2s ease';
 
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          document.body.classList.remove('loading');
+        }, 250);
+      }
+
+      /* Dismiss when: chars done + page loaded (whichever is later) */
+      let charsReady = false;
+      let pageReady = false;
+
+      function tryDismiss() {
+        if (charsReady && pageReady) dismiss();
+      }
+
+      setTimeout(() => { charsReady = true; tryDismiss(); }, totalCharTime);
+
+      if (document.readyState === 'complete') {
+        pageReady = true;
+      } else {
+        window.addEventListener('load', () => { pageReady = true; tryDismiss(); });
+      }
+
+      /* Safety fallback — dismiss after 4s no matter what */
       setTimeout(() => {
-        loader.classList.add('hidden');
-        document.body.classList.remove('loading');
-      }, 250);
-    }
-
-    /* Dismiss when: chars done + page loaded (whichever is later) */
-    let charsReady = false;
-    let pageReady   = false;
-
-    function tryDismiss() {
-      if (charsReady && pageReady) dismiss();
-    }
-
-    setTimeout(() => { charsReady = true; tryDismiss(); }, totalCharTime);
-
-    if (document.readyState === 'complete') {
-      pageReady = true;
-    } else {
-      window.addEventListener('load', () => { pageReady = true; tryDismiss(); });
-    }
-
-    /* Safety fallback — dismiss after 4s no matter what */
-    setTimeout(() => {
-      if (!loader.classList.contains('hidden')) dismiss();
-    }, 4000);
-  })();
+        if (!loader.classList.contains('hidden')) dismiss();
+      }, 4000);
+    })();
   </script>
 
   <!-- Scroll progress bar -->
@@ -949,11 +1024,11 @@
   <!-- Mobile drawer -->
   <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
     <nav class="nav-drawer-inner">
-      <a href="#projects"      class="nav-drawer-link" onclick="closeDrawer()">Projects</a>
-      <a href="#experience"    class="nav-drawer-link" onclick="closeDrawer()">Experience</a>
+      <a href="#projects" class="nav-drawer-link" onclick="closeDrawer()">Projects</a>
+      <a href="#experience" class="nav-drawer-link" onclick="closeDrawer()">Experience</a>
       <a href="#certifications" class="nav-drawer-link" onclick="closeDrawer()">Certifications</a>
-      <a href="#skills"        class="nav-drawer-link" onclick="closeDrawer()">Stack</a>
-      <a href="#about"         class="nav-drawer-link" onclick="closeDrawer()">About</a>
+      <a href="#skills" class="nav-drawer-link" onclick="closeDrawer()">Stack</a>
+      <a href="#about" class="nav-drawer-link" onclick="closeDrawer()">About</a>
       <div class="nav-drawer-cta">
         <a href="https://github.com/Muanai" target="_blank" class="btn-ghost" onclick="closeDrawer()">GitHub</a>
         <a href="mailto:muanaikhalifahr@gmail.com" class="btn-primary" onclick="closeDrawer()">Contact</a>
@@ -978,27 +1053,27 @@
 
       <!-- Heading -->
       <h1 class="hero-heading">
-        Building intelligent<br/>
+        Building intelligent<br />
         <span class="line-muted">engines that ship.</span>
       </h1>
 
       <!-- Subheading -->
       <p class="hero-sub">
-        Designing robust ML systems for 
-        <strong>risk intelligence</strong>, <strong>operational analytics</strong>, and <strong>emerging market environments</strong>.
+        Designing robust ML systems for
+        <strong>risk intelligence</strong>, <strong>operational analytics</strong>, and <strong>emerging market
+          environments</strong>.
       </p>
 
       <!-- CTA -->
       <div class="hero-actions">
         <a href="#projects" class="btn-hero-primary">
-          <span class="btn-text">See What I've Built</span>
-          <i class="btn-icon-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-          </i>
+          See What I've Built
         </a>
         <a href="https://github.com/Muanai" target="_blank" class="btn-hero-secondary">
           <svg fill="currentColor" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              clip-rule="evenodd" />
           </svg>
           GitHub
         </a>
@@ -1009,19 +1084,31 @@
         <span class="focus-label">Area of focus</span>
         <div class="focus-pills">
           <span class="focus-pill">
-            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.955 11.955 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.955 11.955 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+            </svg>
             Risk Intelligence
           </span>
           <span class="focus-pill">
-            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/></svg>
+            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" />
+            </svg>
             Operational Analytics
           </span>
           <span class="focus-pill">
-            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>
             Computer Vision
           </span>
           <span class="focus-pill">
-            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"/></svg>
+            <svg class="pill-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+            </svg>
             NLP
           </span>
         </div>
@@ -1033,7 +1120,7 @@
     <div class="scroll-hint">
       <span>Scroll</span>
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
 
@@ -1107,7 +1194,9 @@
       .project-tabs-wrapper::after {
         content: '';
         position: absolute;
-        top: 0; right: 0; bottom: 1px;
+        top: 0;
+        right: 0;
+        bottom: 1px;
         width: 48px;
         background: linear-gradient(to right, transparent, var(--canvas));
         pointer-events: none;
@@ -1122,12 +1211,15 @@
       overflow-x: auto;
       border-bottom: 1px solid var(--hairline);
       padding-bottom: 0;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
     }
 
     .project-tabs::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+      display: none;
+      /* Chrome/Safari */
     }
 
     .tab-btn {
@@ -1145,7 +1237,9 @@
       white-space: nowrap;
     }
 
-    .tab-btn:hover { color: var(--ink-muted); }
+    .tab-btn:hover {
+      color: var(--ink-muted);
+    }
 
     .tab-btn.active {
       color: var(--ink);
@@ -1181,9 +1275,13 @@
       position: relative;
     }
 
-    .project-list-item:last-child { border-bottom: none; }
+    .project-list-item:last-child {
+      border-bottom: none;
+    }
 
-    .project-list-item:hover { background: var(--surface-2); }
+    .project-list-item:hover {
+      background: var(--surface-2);
+    }
 
     .project-list-item.active {
       background: var(--surface-2);
@@ -1192,7 +1290,9 @@
     .project-list-item.active::before {
       content: '';
       position: absolute;
-      left: 0; top: 0; bottom: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
       width: 2px;
       background: var(--accent);
       border-radius: 0 2px 2px 0;
@@ -1250,7 +1350,7 @@
       font-weight: 500;
       color: var(--accent);
       background: var(--accent-dim);
-      border: 1px solid rgba(107,99,255,0.2);
+      border: 1px solid rgba(107, 99, 255, 0.2);
       padding: 2px 7px;
       border-radius: 4px;
       white-space: nowrap;
@@ -1297,7 +1397,9 @@
       transition: opacity 0.3s;
     }
 
-    .detail-image:hover img { opacity: 0.9; }
+    .detail-image:hover img {
+      opacity: 0.9;
+    }
 
     .detail-image-overlay {
       position: absolute;
@@ -1313,7 +1415,7 @@
       font-family: var(--font-mono);
       font-size: 10px;
       color: var(--ink-muted);
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       border: 1px solid var(--hairline);
       padding: 3px 8px;
       border-radius: 4px;
@@ -1350,7 +1452,7 @@
       font-family: var(--font-mono);
       font-size: 10px;
       color: var(--accent);
-      border: 1px solid rgba(107,99,255,0.25);
+      border: 1px solid rgba(107, 99, 255, 0.25);
       background: var(--accent-dim);
       padding: 3px 8px;
       border-radius: 4px;
@@ -1386,7 +1488,9 @@
       letter-spacing: 0.04em;
     }
 
-    .detail-tab-btn:hover { color: var(--ink-muted); }
+    .detail-tab-btn:hover {
+      color: var(--ink-muted);
+    }
 
     .detail-tab-btn.active {
       color: var(--ink);
@@ -1394,8 +1498,16 @@
     }
 
     /* Detail content panes */
-    .detail-pane { display: none; flex-direction: column; gap: 10px; flex: 1; }
-    .detail-pane.active { display: flex; }
+    .detail-pane {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .detail-pane.active {
+      display: flex;
+    }
 
     .pane-label {
       font-family: var(--font-mono);
@@ -1465,12 +1577,12 @@
     .detail-link.primary {
       color: var(--accent);
       background: var(--accent-dim);
-      border: 1px solid rgba(107,99,255,0.25);
+      border: 1px solid rgba(107, 99, 255, 0.25);
     }
 
     .detail-link.primary:hover {
-      background: rgba(107,99,255,0.2);
-      border-color: rgba(107,99,255,0.4);
+      background: rgba(107, 99, 255, 0.2);
+      border-color: rgba(107, 99, 255, 0.4);
     }
 
     .detail-link.secondary {
@@ -1484,7 +1596,10 @@
       border-color: var(--hairline-strong);
     }
 
-    .detail-link svg { width: 12px; height: 12px; }
+    .detail-link svg {
+      width: 12px;
+      height: 12px;
+    }
 
     /* WIP placeholder state */
     .detail-wip {
@@ -1533,18 +1648,29 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .projects-section { padding: 64px 20px; }
+      .projects-section {
+        padding: 64px 20px;
+      }
 
       /* Hide desktop list+panel layout on mobile */
-      .projects-layout { display: none; }
+      .projects-layout {
+        display: none;
+      }
 
       /* Show mobile card stack instead */
-      .projects-mobile { display: flex; flex-direction: column; gap: 12px; }
+      .projects-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
     }
 
     @media (min-width: 769px) {
+
       /* Hide mobile card stack on desktop */
-      .projects-mobile { display: none; }
+      .projects-mobile {
+        display: none;
+      }
     }
 
     /* ── MOBILE CARD STACK ── */
@@ -1557,7 +1683,9 @@
       transition: border-color 0.15s;
     }
 
-    .mobile-project-card:hover { border-color: var(--hairline-strong); }
+    .mobile-project-card:hover {
+      border-color: var(--hairline-strong);
+    }
 
     .mobile-card-image {
       width: 100%;
@@ -1581,7 +1709,7 @@
       font-family: var(--font-mono);
       font-size: 10px;
       color: var(--ink-muted);
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       border: 1px solid var(--hairline);
       padding: 3px 8px;
       border-radius: 4px;
@@ -1613,7 +1741,10 @@
       user-select: none;
     }
 
-    .mobile-card-header-left { flex: 1; min-width: 0; }
+    .mobile-card-header-left {
+      flex: 1;
+      min-width: 0;
+    }
 
     .mobile-card-title {
       font-size: 14px;
@@ -1629,7 +1760,7 @@
       font-size: 10px;
       color: var(--accent);
       background: var(--accent-dim);
-      border: 1px solid rgba(107,99,255,0.2);
+      border: 1px solid rgba(107, 99, 255, 0.2);
       padding: 2px 7px;
       border-radius: 4px;
       display: inline-block;
@@ -1660,7 +1791,9 @@
       border-top: 1px solid var(--hairline);
     }
 
-    .mobile-project-card.open .mobile-card-body { display: block; }
+    .mobile-project-card.open .mobile-card-body {
+      display: block;
+    }
 
     /* Detail tabs inside mobile card */
     .mobile-detail-tabs {
@@ -1687,16 +1820,28 @@
       transition: color 0.12s, background 0.12s;
     }
 
-    .mobile-detail-tab-btn:hover { color: var(--ink-muted); }
+    .mobile-detail-tab-btn:hover {
+      color: var(--ink-muted);
+    }
+
     .mobile-detail-tab-btn.active {
       color: var(--ink);
       background: var(--surface-2);
     }
 
-    .mobile-detail-panes { padding: 14px 16px; }
+    .mobile-detail-panes {
+      padding: 14px 16px;
+    }
 
-    .mobile-detail-pane { display: none; flex-direction: column; gap: 8px; }
-    .mobile-detail-pane.active { display: flex; }
+    .mobile-detail-pane {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-detail-pane.active {
+      display: flex;
+    }
 
     .mobile-card-footer {
       display: flex;
@@ -1715,8 +1860,18 @@
       gap: 8px;
     }
 
-    .mobile-card-wip svg { width: 24px; height: 24px; color: var(--ink-tertiary); opacity: 0.4; }
-    .mobile-card-wip p { font-size: 12px; color: var(--ink-tertiary); line-height: 1.5; }
+    .mobile-card-wip svg {
+      width: 24px;
+      height: 24px;
+      color: var(--ink-tertiary);
+      opacity: 0.4;
+    }
+
+    .mobile-card-wip p {
+      font-size: 12px;
+      color: var(--ink-tertiary);
+      line-height: 1.5;
+    }
   </style>
 
   <!-- ─────────────────────────────────────────
@@ -1929,10 +2084,10 @@
     /* ── HELPERS ── */
     function getProjectsByTab(tab) {
       if (tab === 'featured') return PROJECTS.filter(p => p.featured);
-      if (tab === 'risk-intel')  return PROJECTS.filter(p => p.tags.includes('risk-intel'));
-      if (tab === 'ops-analytics')    return PROJECTS.filter(p => p.tags.includes('ops-analytics'));
-      if (tab === 'comvis')   return PROJECTS.filter(p => p.tags.includes('comvis'));
-      if (tab === 'nlp')      return PROJECTS.filter(p => p.tags.includes('nlp'));
+      if (tab === 'risk-intel') return PROJECTS.filter(p => p.tags.includes('risk-intel'));
+      if (tab === 'ops-analytics') return PROJECTS.filter(p => p.tags.includes('ops-analytics'));
+      if (tab === 'comvis') return PROJECTS.filter(p => p.tags.includes('comvis'));
+      if (tab === 'nlp') return PROJECTS.filter(p => p.tags.includes('nlp'));
       return PROJECTS;
     }
 
@@ -2029,7 +2184,7 @@
           </div>
 
           <div class="detail-tabs">
-            ${['overview','problem','data','method','outcome'].map(t => `
+            ${['overview', 'problem', 'data', 'method', 'outcome'].map(t => `
               <button class="detail-tab-btn ${t === activeDetailTab ? 'active' : ''}" data-dtab="${t}">
                 ${t}
               </button>
@@ -2052,7 +2207,7 @@
     }
 
     function renderPanes(p) {
-      const tabKeys = ['overview','problem','data','method','outcome'];
+      const tabKeys = ['overview', 'problem', 'data', 'method', 'outcome'];
       return tabKeys.map(key => {
         const data = p.tabs[key];
         const metricHtml = data.metric
@@ -2127,21 +2282,21 @@
              </div>`
           : `${imgHtml}
              <div class="mobile-detail-tabs" id="mob-tabs-${p.id}">
-               ${['overview','problem','data','method','outcome'].map((t, i) =>
-                 `<button class="mobile-detail-tab-btn ${i===0?'active':''}" data-pid="${p.id}" data-t="${t}">${t}</button>`
-               ).join('')}
+               ${['overview', 'problem', 'data', 'method', 'outcome'].map((t, i) =>
+            `<button class="mobile-detail-tab-btn ${i === 0 ? 'active' : ''}" data-pid="${p.id}" data-t="${t}">${t}</button>`
+          ).join('')}
              </div>
              <div class="mobile-detail-panes">
-               ${['overview','problem','data','method','outcome'].map((key, i) => {
-                 const d = p.tabs[key];
-                 const metric = d.metric
-                   ? `<div class="pane-highlight"><div class="metric-val">${d.metric.val}</div><div class="metric-label">${d.metric.sub}</div></div>`
-                   : '';
-                 return `<div class="mobile-detail-pane ${i===0?'active':''}" data-mob-pane="${p.id}-${key}">
+               ${['overview', 'problem', 'data', 'method', 'outcome'].map((key, i) => {
+            const d = p.tabs[key];
+            const metric = d.metric
+              ? `<div class="pane-highlight"><div class="metric-val">${d.metric.val}</div><div class="metric-label">${d.metric.sub}</div></div>`
+              : '';
+            return `<div class="mobile-detail-pane ${i === 0 ? 'active' : ''}" data-mob-pane="${p.id}-${key}">
                    <p class="pane-label">${d.label}</p>
                    <p class="pane-text">${d.text}</p>${metric}
                  </div>`;
-               }).join('')}
+          }).join('')}
              </div>
              ${p.links.length ? `<div class="mobile-card-footer">
                ${p.links.map(l => `<a href="${l.url}" target="_blank" class="detail-link ${l.type}">${l.label}
@@ -2203,68 +2358,258 @@
        EXPERIENCE SECTION STYLES
   ───────────────────────────────────────── -->
   <style>
-    .exp-section { background: var(--canvas); padding: 96px 32px; }
-    .exp-inner { max-width: 1280px; margin: 0 auto; }
+    .exp-section {
+      background: var(--canvas);
+      padding: 96px 32px;
+    }
+
+    .exp-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
 
     /* Timeline */
-    .exp-timeline { position: relative; display: flex; flex-direction: column; gap: 0; padding-left: 32px; }
-    .exp-timeline::before { content: ''; position: absolute; left: 6px; top: 14px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--hairline-strong) 60%, transparent 100%); }
-    .exp-entry { position: relative; padding-bottom: 48px; }
-    .exp-entry:last-child { padding-bottom: 0; }
-    .exp-entry::before { content: ''; position: absolute; left: -27px; top: 14px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--canvas); box-shadow: 0 0 0 1px var(--accent); }
+    .exp-timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-left: 32px;
+    }
+
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 14px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--hairline-strong) 60%, transparent 100%);
+    }
+
+    .exp-entry {
+      position: relative;
+      padding-bottom: 48px;
+    }
+
+    .exp-entry:last-child {
+      padding-bottom: 0;
+    }
+
+    .exp-entry::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 14px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--canvas);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
 
     /* Card */
-    .exp-card { background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 12px; padding: 24px; transition: border-color 0.15s; }
-    .exp-card:hover { border-color: var(--hairline-strong); }
+    .exp-card {
+      background: var(--surface-1);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.15s;
+    }
+
+    .exp-card:hover {
+      border-color: var(--hairline-strong);
+    }
 
     /* LinkedIn-style header */
-    .exp-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 0; }
+    .exp-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 0;
+    }
 
     .exp-logo {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: rgba(255,255,255,0.92); border: 1px solid var(--hairline);
-      overflow: hidden; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--hairline);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .exp-logo img { width: 100%; height: 100%; object-fit: contain; padding: 7px; }
-    .exp-logo-fallback { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--ink-tertiary); }
 
-    .exp-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .exp-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 7px;
+    }
+
+    .exp-logo-fallback {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-tertiary);
+    }
+
+    .exp-meta {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
 
     /* Row 1: Role title — bold */
-    .exp-role { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1.3; }
+    .exp-role {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.3;
+    }
 
     /* Row 2: Company · Badge */
-    .exp-company-line { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-    .exp-company { font-size: 13px; font-weight: 500; color: var(--ink-muted); }
-    .exp-badge-type { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--accent); background: var(--accent-dim); border: 1px solid rgba(107,99,255,0.2); padding: 1px 7px; border-radius: 4px; white-space: nowrap; }
+    .exp-company-line {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .exp-company {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .exp-badge-type {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(107, 99, 255, 0.2);
+      padding: 1px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
 
     /* Row 3 & 4: Meta lines */
-    .exp-meta-line { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-    .exp-meta-sep { font-size: 11px; color: var(--ink-tertiary); opacity: 0.5; flex-shrink: 0; }
-    .exp-period, .exp-duration, .exp-location, .exp-workmode { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary); white-space: nowrap; }
+    .exp-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .exp-meta-sep {
+      font-size: 11px;
+      color: var(--ink-tertiary);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    .exp-period,
+    .exp-duration,
+    .exp-location,
+    .exp-workmode {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-tertiary);
+      white-space: nowrap;
+    }
 
     /* Divider between header and body */
-    .exp-card-divider { height: 1px; background: var(--hairline); margin: 20px 0; }
+    .exp-card-divider {
+      height: 1px;
+      background: var(--hairline);
+      margin: 20px 0;
+    }
 
     /* Achievements */
-    .exp-achievements { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .exp-achievement { display: flex; align-items: flex-start; gap: 10px; }
-    .exp-achievement-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
-    .exp-achievement-text { font-size: 13px; line-height: 1.65; color: var(--ink-subtle); }
-    .exp-achievement-text strong { color: var(--ink-muted); font-weight: 500; }
+    .exp-achievements {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .exp-achievement {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .exp-achievement-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .exp-achievement-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-subtle);
+    }
+
+    .exp-achievement-text strong {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
 
     /* Stack tags */
-    .exp-stack { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 16px; border-top: 1px solid var(--hairline); }
-    .exp-stack-tag { font-family: var(--font-mono); font-size: 10px; color: var(--ink-subtle); background: var(--canvas); border: 1px solid var(--hairline); padding: 3px 9px; border-radius: 4px; }
+    .exp-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .exp-stack-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--ink-subtle);
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
 
     @media (max-width: 768px) {
-      .exp-section { padding: 64px 20px; }
-      .exp-timeline { padding-left: 24px; }
-      .exp-entry::before { left: -20px; }
-      .exp-timeline::before { left: 5px; }
-      .exp-role { font-size: 14px; }
-      .exp-logo { width: 44px; height: 44px; }
+      .exp-section {
+        padding: 64px 20px;
+      }
+
+      .exp-timeline {
+        padding-left: 24px;
+      }
+
+      .exp-entry::before {
+        left: -20px;
+      }
+
+      .exp-timeline::before {
+        left: 5px;
+      }
+
+      .exp-role {
+        font-size: 14px;
+      }
+
+      .exp-logo {
+        width: 44px;
+        height: 44px;
+      }
     }
   </style>
 
@@ -2310,19 +2655,27 @@
             <div class="exp-achievements">
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Engineered an end-to-end <strong>YOLOv8 object detection pipeline</strong> to automate the identification of competitor fixed broadband infrastructure from street-level imagery, replacing costly manual field surveys.</p>
+                <p class="exp-achievement-text">Engineered an end-to-end <strong>YOLOv8 object detection
+                    pipeline</strong> to automate the identification of competitor fixed broadband infrastructure from
+                  street-level imagery, replacing costly manual field surveys.</p>
               </div>
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Improved overall model accuracy from <strong>0.522 to 0.763 mAP50</strong> (+24%) through a data-centric approach: stratified dataset splitting, physics-aware augmentation, and high-resolution training at 1248px.</p>
+                <p class="exp-achievement-text">Improved overall model accuracy from <strong>0.522 to 0.763
+                    mAP50</strong> (+24%) through a data-centric approach: stratified dataset splitting, physics-aware
+                  augmentation, and high-resolution training at 1248px.</p>
               </div>
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Resurrected failing minority classes from <strong>near-zero (~0%) to ~50% mAP50</strong> via targeted synthetic data injection with a strict zero-contamination validation policy.</p>
+                <p class="exp-achievement-text">Resurrected failing minority classes from <strong>near-zero (~0%) to
+                    ~50% mAP50</strong> via targeted synthetic data injection with a strict zero-contamination
+                  validation policy.</p>
               </div>
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Built a <strong>geo-spatial inference engine</strong> integrating EXIF GPS extraction and offline reverse geocoding via BPS shapefiles, transforming raw detections into regional infrastructure intelligence reports.</p>
+                <p class="exp-achievement-text">Built a <strong>geo-spatial inference engine</strong> integrating EXIF
+                  GPS extraction and offline reverse geocoding via BPS shapefiles, transforming raw detections into
+                  regional infrastructure intelligence reports.</p>
               </div>
             </div>
 
@@ -2343,7 +2696,7 @@
     </div>
   </section>
 
-    <!-- ─────────────────────────────────────────
+  <!-- ─────────────────────────────────────────
        CERTIFICATIONS SECTION
   ───────────────────────────────────────── -->
   <style>
@@ -2376,7 +2729,9 @@
       transition: border-color 0.15s;
     }
 
-    .cert-card:hover { border-color: var(--hairline-strong); }
+    .cert-card:hover {
+      border-color: var(--hairline-strong);
+    }
 
     .cert-card-top {
       display: flex;
@@ -2388,7 +2743,7 @@
       width: 48px;
       height: 48px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--hairline);
       overflow: hidden;
       flex-shrink: 0;
@@ -2508,7 +2863,10 @@
       border-color: var(--hairline-strong);
     }
 
-    .cert-view-btn svg { width: 11px; height: 11px; }
+    .cert-view-btn svg {
+      width: 11px;
+      height: 11px;
+    }
 
     /* ── TIER 2: GROUPED CERTS ── */
     .cert-grouped-grid {
@@ -2526,7 +2884,9 @@
       transition: border-color 0.15s;
     }
 
-    .cert-group-card:hover { border-color: var(--hairline-strong); }
+    .cert-group-card:hover {
+      border-color: var(--hairline-strong);
+    }
 
     .cert-group-header {
       display: flex;
@@ -2548,7 +2908,7 @@
       width: 36px;
       height: 36px;
       border-radius: 8px;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--hairline);
       overflow: hidden;
       flex-shrink: 0;
@@ -2564,7 +2924,11 @@
       padding: 6px;
     }
 
-    .cert-group-info { flex: 1; min-width: 0; overflow: hidden; }
+    .cert-group-info {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
 
     .cert-group-name {
       font-size: 13px;
@@ -2625,10 +2989,13 @@
       transition: opacity 0.15s;
     }
 
-    .cert-group-view-all:hover { opacity: 1; }
+    .cert-group-view-all:hover {
+      opacity: 1;
+    }
 
     .cert-group-view-all svg {
-      width: 13px; height: 13px;
+      width: 13px;
+      height: 13px;
       flex-shrink: 0;
     }
 
@@ -2641,9 +3008,14 @@
       gap: 12px;
     }
 
-    .cert-group-item:last-child { border-bottom: none; }
+    .cert-group-item:last-child {
+      border-bottom: none;
+    }
 
-    .cert-group-item-info { flex: 1; min-width: 0; }
+    .cert-group-item-info {
+      flex: 1;
+      min-width: 0;
+    }
 
     .cert-group-item-name {
       font-size: 12px;
@@ -2711,9 +3083,14 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .cert-section { padding: 64px 20px; }
+      .cert-section {
+        padding: 64px 20px;
+      }
+
       .cert-featured-grid,
-      .cert-grouped-grid { grid-template-columns: 1fr; }
+      .cert-grouped-grid {
+        grid-template-columns: 1fr;
+      }
 
       /* Stack cert item vertically on mobile */
       .cert-group-item {
@@ -2723,7 +3100,9 @@
         padding: 12px 16px;
       }
 
-      .cert-group-item-info { width: 100%; }
+      .cert-group-item-info {
+        width: 100%;
+      }
 
       .cert-group-item-name {
         white-space: normal;
@@ -2739,7 +3118,9 @@
         gap: 8px;
       }
 
-      .cert-group-item-tags { flex: 1; }
+      .cert-group-item-tags {
+        flex: 1;
+      }
 
       .cert-group-item-date {
         flex-shrink: 0;
@@ -2789,7 +3170,8 @@
             <a href="assets/certifications/huawei.png" target="_blank" class="cert-view-btn">
               View Certificate
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
           </div>
@@ -2824,7 +3206,8 @@
             <a href="assets/certifications/bcgx-genai.png" target="_blank" class="cert-view-btn">
               View Certificate
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
           </div>
@@ -2855,7 +3238,7 @@
               </div>
             </div>
             <svg class="cert-group-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </div>
           <div class="cert-group-body">
@@ -2915,7 +3298,8 @@
             <div class="cert-group-footer">
               <a href="assets/certifications/dicoding-certificates.pdf" target="_blank" class="cert-group-view-all">
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                 </svg>
                 View All Certificates (PDF)
               </a>
@@ -2937,7 +3321,7 @@
               </div>
             </div>
             <svg class="cert-group-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </div>
           <div class="cert-group-body">
@@ -2971,7 +3355,8 @@
             <div class="cert-group-footer">
               <a href="assets/certifications/digitalent-certificates.pdf" target="_blank" class="cert-group-view-all">
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                 </svg>
                 View All Certificates (PDF)
               </a>
@@ -3021,7 +3406,8 @@
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.08s ease;
-      display: flex;            /* make child stretch to full height */
+      display: flex;
+      /* make child stretch to full height */
       flex-direction: column;
     }
 
@@ -3031,19 +3417,19 @@
       position: absolute;
       inset: 0;
       border-radius: 13px;
-      background: conic-gradient(
-        from var(--angle, 0deg),
-        transparent 60%,
-        rgba(107, 99, 255, 0.45) 75%,
-        rgba(160, 155, 255, 0.55) 82%,
-        rgba(107, 99, 255, 0.45) 89%,
-        transparent 100%
-      );
+      background: conic-gradient(from var(--angle, 0deg),
+          transparent 60%,
+          rgba(107, 99, 255, 0.45) 75%,
+          rgba(160, 155, 255, 0.55) 82%,
+          rgba(107, 99, 255, 0.45) 89%,
+          transparent 100%);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
-    .skill-card-wrap:hover::before { opacity: 1; }
+    .skill-card-wrap:hover::before {
+      opacity: 1;
+    }
 
     @property --angle {
       syntax: '<angle>';
@@ -3052,7 +3438,9 @@
     }
 
     @keyframes rotate-border {
-      to { --angle: 360deg; }
+      to {
+        --angle: 360deg;
+      }
     }
 
     .skill-card-wrap:hover {
@@ -3066,7 +3454,8 @@
       position: relative;
       z-index: 1;
       overflow: hidden;
-      flex: 1;                  /* fill remaining height inside wrapper */
+      flex: 1;
+      /* fill remaining height inside wrapper */
     }
 
     /* Subtle inner spotlight that follows tilt direction */
@@ -3075,17 +3464,17 @@
       position: absolute;
       inset: 0;
       border-radius: 12px;
-      background: radial-gradient(
-        circle at var(--tx, 50%) var(--ty, 50%),
-        rgba(107, 99, 255, 0.06) 0%,
-        transparent 65%
-      );
+      background: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%),
+          rgba(107, 99, 255, 0.06) 0%,
+          transparent 65%);
       opacity: 0;
       transition: opacity 0.25s ease;
       pointer-events: none;
     }
 
-    .skill-card-wrap:hover .skill-card::after { opacity: 1; }
+    .skill-card-wrap:hover .skill-card::after {
+      opacity: 1;
+    }
 
     .skill-card-header {
       display: flex;
@@ -3146,8 +3535,13 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .skills-section { padding: 64px 20px; }
-      .skills-grid { grid-template-columns: 1fr; }
+      .skills-section {
+        padding: 64px 20px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 
@@ -3166,81 +3560,84 @@
 
         <!-- Languages & Cores -->
         <div class="skill-card-wrap">
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-card-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
-              </svg>
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-card-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                </svg>
+              </div>
+              <span class="skill-card-title">Languages & Data Tools</span>
             </div>
-            <span class="skill-card-title">Languages & Data Tools</span>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Typescript</span>
+              <span class="skill-tag">Bash / Shell</span>
+              <span class="skill-tag">NumPy</span>
+              <span class="skill-tag">Pandas</span>
+              <span class="skill-tag">OpenCV</span>
+            </div>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Typescript</span>
-            <span class="skill-tag">Bash / Shell</span>
-            <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">OpenCV</span>
-          </div>
-        </div>
         </div><!-- /skill-card-wrap -->
 
         <!-- ML Engineering -->
         <div class="skill-card-wrap">
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-card-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z"/>
-              </svg>
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-card-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
+                </svg>
+              </div>
+              <span class="skill-card-title">ML Engineering</span>
             </div>
-            <span class="skill-card-title">ML Engineering</span>
+            <div class="skill-tags">
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">TensorFlow / Keras</span>
+              <span class="skill-tag">XGBoost</span>
+              <span class="skill-tag">Scikit-learn</span>
+              <span class="skill-tag">SHAP</span>
+              <span class="skill-tag">Hugging Face</span>
+              <span class="skill-tag">Numba (JIT)</span>
+              <span class="skill-tag">Computer Vision</span>
+              <span class="skill-tag">NLP</span>
+              <span class="skill-tag">RAG</span>
+            </div>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">TensorFlow / Keras</span>
-            <span class="skill-tag">XGBoost</span>
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">SHAP</span>
-            <span class="skill-tag">Hugging Face</span>
-            <span class="skill-tag">Numba (JIT)</span>
-            <span class="skill-tag">Computer Vision</span>
-            <span class="skill-tag">NLP</span>
-            <span class="skill-tag">RAG</span>
-          </div>
-        </div>
         </div><!-- /skill-card-wrap -->
 
         <!-- Tools & Workflow -->
         <div class="skill-card-wrap">
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-card-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l5.654-4.654m5.96-4.643.315-.279c.833-.74 2.067-.731 2.89.01l1.738 1.738c.823.823.833 2.146-.01 2.89l-.28.314"/>
-              </svg>
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-card-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l5.654-4.654m5.96-4.643.315-.279c.833-.74 2.067-.731 2.89.01l1.738 1.738c.823.823.833 2.146-.01 2.89l-.28.314" />
+                </svg>
+              </div>
+              <span class="skill-card-title">Tools & Workflow</span>
             </div>
-            <span class="skill-card-title">Tools & Workflow</span>
+            <div class="skill-tags">
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">pytest</span>
+              <span class="skill-tag">Streamlit</span>
+              <span class="skill-tag">Ollame</span>
+              <span class="skill-tag">uv</span>
+              <span class="skill-tag">CVAT</span>
+              <span class="skill-tag">QGIS</span>
+              <span class="skill-tag">PyQt</span>
+            </div>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Git / GitHub</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">pytest</span>
-            <span class="skill-tag">Streamlit</span>
-            <span class="skill-tag">Ollame</span>
-            <span class="skill-tag">uv</span>
-            <span class="skill-tag">CVAT</span>
-            <span class="skill-tag">QGIS</span>
-            <span class="skill-tag">PyQt</span>
-          </div>
-        </div>
 
+        </div>
       </div>
-    </div>
   </section>
 
 
@@ -3270,14 +3667,14 @@
       z-index: 0;
       opacity: 0;
       transition: opacity 0.4s ease;
-      background: radial-gradient(
-        600px circle at var(--mx, 50%) var(--my, 50%),
-        rgba(107, 99, 255, 0.06) 0%,
-        transparent 70%
-      );
+      background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(107, 99, 255, 0.06) 0%,
+          transparent 70%);
     }
 
-    .about-section:hover .about-spotlight { opacity: 1; }
+    .about-section:hover .about-spotlight {
+      opacity: 1;
+    }
 
     /* ── LAYOUT ── */
     .about-grid {
@@ -3319,7 +3716,9 @@
       margin-bottom: 28px;
     }
 
-    .about-name .muted { color: var(--ink-tertiary); }
+    .about-name .muted {
+      color: var(--ink-tertiary);
+    }
 
     .about-bio {
       display: flex;
@@ -3359,7 +3758,9 @@
       transition: border-color 0.15s;
     }
 
-    .about-fact-group:hover { border-color: var(--hairline-strong); }
+    .about-fact-group:hover {
+      border-color: var(--hairline-strong);
+    }
 
     .fact-group-label {
       font-family: var(--font-mono);
@@ -3422,10 +3823,14 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .about-section { padding: 64px 20px; }
+      .about-section {
+        padding: 64px 20px;
+      }
 
       /* Hide desktop grid, show tab UI */
-      .about-grid { display: none; }
+      .about-grid {
+        display: none;
+      }
 
       /* ── Tab switcher ── */
       .about-tabs {
@@ -3457,13 +3862,27 @@
         background: var(--surface-2);
       }
 
-      .about-tab-panel { display: none; }
-      .about-tab-panel.active { display: block; }
+      .about-tab-panel {
+        display: none;
+      }
+
+      .about-tab-panel.active {
+        display: block;
+      }
 
       /* Bio panel */
-      .about-tab-bio .about-handle { margin-bottom: 16px; }
-      .about-tab-bio .about-name   { font-size: 24px; margin-bottom: 20px; }
-      .about-tab-bio .about-bio p  { font-size: 14px; }
+      .about-tab-bio .about-handle {
+        margin-bottom: 16px;
+      }
+
+      .about-tab-bio .about-name {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .about-tab-bio .about-bio p {
+        font-size: 14px;
+      }
 
       /* Facts panel */
       .about-tab-facts {
@@ -3475,7 +3894,9 @@
 
     /* Desktop: hide mobile tabs */
     @media (min-width: 769px) {
-      .about-mobile-tabs { display: none; }
+      .about-mobile-tabs {
+        display: none;
+      }
     }
   </style>
 
@@ -3495,29 +3916,29 @@
         <div class="about-left">
           <p class="about-handle">Muanai Khalifah Revindo</p>
           <h3 class="about-name">
-            Curious about data,<br/>
+            Curious about data,<br />
             <span class="muted">pragmatic about impact.</span>
           </h3>
           <div class="about-bio">
             <p>
-              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>, 
-              building ML systems at the intersection of technical rigor and real business problems. 
-              No grand origin story, just someone who found early on that <span class="highlight">playing 
-              with data and seeing what it reveals is genuinely fun,</span> and then realized the 
+              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>,
+              building ML systems at the intersection of technical rigor and real business problems.
+              No grand origin story, just someone who found early on that <span class="highlight">playing
+                with data and seeing what it reveals is genuinely fun,</span> and then realized the
               interesting problems live where complexity demands explainability.
             </p>
             <p>
-              These days, I'm focused on <strong>risk intelligence and operational analytics 
-              for emerging markets</strong>, work that spans credit scoring pipelines, geospatial 
-              infrastructure mapping, and production systems that survive contact with the real world. 
-              Recent projects share the same DNA: <span class="highlight">making sense of messy data 
-              in contexts where decisions matter.</span>
+              These days, I'm focused on <strong>risk intelligence and operational analytics
+                for emerging markets</strong>, work that spans credit scoring pipelines, geospatial
+              infrastructure mapping, and production systems that survive contact with the real world.
+              Recent projects share the same DNA: <span class="highlight">making sense of messy data
+                in contexts where decisions matter.</span>
             </p>
             <p>
-              The pattern-recognition habit started with stock markets at 17, still a stock investor, 
-              still thinking probabilistically about risk. That lens shaped how I approach ML: 
-              explainability by design, not afterthought. Because when regulators ask why a loan 
-              was denied, or field teams need to act on infrastructure intelligence, a black-box model 
+              The pattern-recognition habit started with stock markets at 17, still a stock investor,
+              still thinking probabilistically about risk. That lens shaped how I approach ML:
+              explainability by design, not afterthought. Because when regulators ask why a loan
+              was denied, or field teams need to act on infrastructure intelligence, a black-box model
               becomes a liability in regulated and operational settings.
             </p>
             <p>
@@ -3536,7 +3957,8 @@
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.39 51.39 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.39 51.39 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
                   </svg>
                 </div>
                 <div class="fact-text">
@@ -3554,21 +3976,21 @@
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 7c0-1.105-.895-2-2-2a2 2 0 0 0-2 2c0 .738.401 1.376 1 1.723V11H7a4 4 0 0 0-4 4v1a1 1 0 0 0 1 1h1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1a4 4 0 0 0-4-4h-2V8.723A2 2 0 0 0 12 7Z"/>
+                      d="M12 7c0-1.105-.895-2-2-2a2 2 0 0 0-2 2c0 .738.401 1.376 1 1.723V11H7a4 4 0 0 0-4 4v1a1 1 0 0 0 1 1h1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1a4 4 0 0 0-4-4h-2V8.723A2 2 0 0 0 12 7Z" />
                     <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 7c0-1.105.895-2 2-2a2 2 0 0 1 2 2c0 .738-.401 1.376-1 1.723V11h2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-1 1"/>
+                      d="M12 7c0-1.105.895-2 2-2a2 2 0 0 1 2 2c0 .738-.401 1.376-1 1.723V11h2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-1 1" />
                   </svg>
                 </div>
-                  <span class="fact-text">
-                    <strong>Risk Intelligence</strong> — credit risk, behavioral signals, explainable decisions
-                  </span>
+                <span class="fact-text">
+                  <strong>Risk Intelligence</strong> — credit risk, behavioral signals, explainable decisions
+                </span>
               </div>
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6Z"/>
-                    <circle cx="12" cy="8" r="2.5"/>
+                      d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6Z" />
+                    <circle cx="12" cy="8" r="2.5" />
                   </svg>
                 </div>
                 <span class="fact-text">
@@ -3584,7 +4006,8 @@
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                   </svg>
                 </div>
                 <div class="fact-text">
@@ -3595,7 +4018,8 @@
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                   </svg>
                 </div>
                 <div class="fact-text">
@@ -3612,7 +4036,8 @@
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
                   </svg>
                 </div>
                 <span class="fact-text">Drawing, UI/UX design — visual thinking as a side practice</span>
@@ -3621,7 +4046,8 @@
               <div class="fact-item">
                 <div class="fact-icon">
                   <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
                   </svg>
                 </div>
                 <span class="fact-text">Stock investor since 17 — the original pattern-recognition habit</span>
@@ -3644,29 +4070,29 @@
         <div class="about-tab-panel about-tab-bio active" id="about-panel-bio">
           <p class="about-handle">Muanai Khalifah Revindo</p>
           <h3 class="about-name">
-            Curious about data,<br/>
+            Curious about data,<br />
             <span class="muted">pragmatic about impact.</span>
           </h3>
           <div class="about-bio">
             <p>
-              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>, 
-              building ML systems at the intersection of technical rigor and real business problems. 
-              No grand origin story, just someone who found early on that <span class="highlight">playing 
-              with data and seeing what it reveals is genuinely fun,</span> and then realized the 
+              Undergraduate in <strong>Informatics Engineering at Universitas Sriwijaya</strong>,
+              building ML systems at the intersection of technical rigor and real business problems.
+              No grand origin story, just someone who found early on that <span class="highlight">playing
+                with data and seeing what it reveals is genuinely fun,</span> and then realized the
               interesting problems live where complexity demands explainability.
             </p>
             <p>
-              These days, I'm focused on <strong>risk intelligence and operational analytics 
-              for emerging markets</strong>, work that spans credit scoring pipelines, geospatial 
-              infrastructure mapping, and production systems that survive contact with the real world. 
-              Recent projects share the same DNA: <span class="highlight">making sense of messy data 
-              in contexts where decisions matter.</span>
+              These days, I'm focused on <strong>risk intelligence and operational analytics
+                for emerging markets</strong>, work that spans credit scoring pipelines, geospatial
+              infrastructure mapping, and production systems that survive contact with the real world.
+              Recent projects share the same DNA: <span class="highlight">making sense of messy data
+                in contexts where decisions matter.</span>
             </p>
             <p>
-              The pattern-recognition habit started with stock markets at 17, still a stock investor, 
-              still thinking probabilistically about risk. That lens shaped how I approach ML: 
-              explainability by design, not afterthought. Because when regulators ask why a loan 
-              was denied, or field teams need to act on infrastructure intelligence, a black-box model 
+              The pattern-recognition habit started with stock markets at 17, still a stock investor,
+              still thinking probabilistically about risk. That lens shaped how I approach ML:
+              explainability by design, not afterthought. Because when regulators ask why a loan
+              was denied, or field teams need to act on infrastructure intelligence, a black-box model
               becomes a liability in regulated and operational settings.
             </p>
             <p>
@@ -3685,10 +4111,12 @@
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.39 51.39 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.39 51.39 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
                     </svg>
                   </div>
-                  <div class="fact-text"><strong>Teknik Informatika</strong> — Universitas Sriwijaya<span class="fact-period">GPA: 3.81/4.00</span>
+                  <div class="fact-text"><strong>Teknik Informatika</strong> — Universitas Sriwijaya<span
+                      class="fact-period">GPA: 3.81/4.00</span>
                   </div>
                 </div>
               </div>
@@ -3701,25 +4129,26 @@
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 7c0-1.105-.895-2-2-2a2 2 0 0 0-2 2c0 .738.401 1.376 1 1.723V11H7a4 4 0 0 0-4 4v1a1 1 0 0 0 1 1h1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1a4 4 0 0 0-4-4h-2V8.723A2 2 0 0 0 12 7Z"/>
+                        d="M12 7c0-1.105-.895-2-2-2a2 2 0 0 0-2 2c0 .738.401 1.376 1 1.723V11H7a4 4 0 0 0-4 4v1a1 1 0 0 0 1 1h1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1a4 4 0 0 0-4-4h-2V8.723A2 2 0 0 0 12 7Z" />
                       <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 7c0-1.105.895-2 2-2a2 2 0 0 1 2 2c0 .738-.401 1.376-1 1.723V11h2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-1 1"/>
+                        d="M12 7c0-1.105.895-2 2-2a2 2 0 0 1 2 2c0 .738-.401 1.376-1 1.723V11h2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-1 1" />
                     </svg>
                   </div>
-                    <span class="fact-text">
-                      <strong>Risk Intelligence</strong> — credit risk, behavioral signals, explainable decisions
-                    </span>
+                  <span class="fact-text">
+                    <strong>Risk Intelligence</strong> — credit risk, behavioral signals, explainable decisions
+                  </span>
                 </div>
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6Z"/>
-                      <circle cx="12" cy="8" r="2.5"/>
+                        d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6Z" />
+                      <circle cx="12" cy="8" r="2.5" />
                     </svg>
                   </div>
                   <span class="fact-text">
-                    <strong>Operational Analytics</strong> — geospatial & computer vision for infrastructure intelligence
+                    <strong>Operational Analytics</strong> — geospatial & computer vision for infrastructure
+                    intelligence
                   </span>
                 </div>
               </div>
@@ -3731,24 +4160,26 @@
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                     </svg>
                   </div>
-                <div class="fact-text">
-                  <strong>Head of Academic Dept.</strong> — NAC Unsri
-                  <span class="fact-period">Nov 2025 – Present</span>
+                  <div class="fact-text">
+                    <strong>Head of Academic Dept.</strong> — NAC Unsri
+                    <span class="fact-period">Nov 2025 – Present</span>
+                  </div>
                 </div>
-              </div>
-              <div class="fact-item">
-                <div class="fact-icon">
-                  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
-                  </svg>
-                </div>
-                <div class="fact-text">
-                  <strong>Head of Event Organizer Dept.</strong> — FASCO Unsri
-                  <span class="fact-period">Dec 2024 – Dec 2025</span>
-                </div>
+                <div class="fact-item">
+                  <div class="fact-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                  </div>
+                  <div class="fact-text">
+                    <strong>Head of Event Organizer Dept.</strong> — FASCO Unsri
+                    <span class="fact-period">Dec 2024 – Dec 2025</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3759,7 +4190,8 @@
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
                     </svg>
                   </div>
                   <span class="fact-text">Drawing, UI/UX design — visual thinking as a side practice</span>
@@ -3767,7 +4199,8 @@
                 <div class="fact-item">
                   <div class="fact-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
                     </svg>
                   </div>
                   <span class="fact-text">Stock investor since 17 — the original pattern-recognition habit</span>
@@ -3786,13 +4219,13 @@
   <script>
     (function () {
       /* About spotlight */
-      const section   = document.getElementById('about');
+      const section = document.getElementById('about');
       const spotlight = document.getElementById('about-spotlight');
       if (section && spotlight) {
         section.addEventListener('mousemove', (e) => {
           const rect = section.getBoundingClientRect();
           const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top)  / rect.height) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
           spotlight.style.setProperty('--mx', x + '%');
           spotlight.style.setProperty('--my', y + '%');
         });
@@ -3826,19 +4259,21 @@
       z-index: 0;
       opacity: 0;
       transition: opacity 0.4s ease;
-      background: radial-gradient(
-        600px circle at var(--fx, 50%) var(--fy, 50%),
-        rgba(107, 99, 255, 0.05) 0%,
-        transparent 70%
-      );
+      background: radial-gradient(600px circle at var(--fx, 50%) var(--fy, 50%),
+          rgba(107, 99, 255, 0.05) 0%,
+          transparent 70%);
     }
 
-    .site-footer:hover .footer-spotlight { opacity: 1; }
+    .site-footer:hover .footer-spotlight {
+      opacity: 1;
+    }
 
     /* Gradient fade from canvas (about section) into surface-1 */
     .footer-fade {
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 160px;
       background: linear-gradient(to bottom, var(--canvas) 0%, transparent 100%);
       pointer-events: none;
@@ -3930,7 +4365,8 @@
     }
 
     .footer-cta-btn svg {
-      width: 15px; height: 15px;
+      width: 15px;
+      height: 15px;
       flex-shrink: 0;
     }
 
@@ -3966,13 +4402,15 @@
     }
 
     .footer-link svg {
-      width: 14px; height: 14px;
+      width: 14px;
+      height: 14px;
       flex-shrink: 0;
       opacity: 0.7;
     }
 
     .footer-link-sep {
-      width: 3px; height: 3px;
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
       background: var(--hairline-strong);
       flex-shrink: 0;
@@ -4004,7 +4442,8 @@
     }
 
     .footer-status-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #3ecf8e;
       flex-shrink: 0;
@@ -4012,15 +4451,37 @@
     }
 
     @keyframes pulse-green {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(62,207,142,0.4); }
-      50%       { opacity: 0.7; box-shadow: 0 0 0 4px rgba(62,207,142,0); }
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(62, 207, 142, 0.4);
+      }
+
+      50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 4px rgba(62, 207, 142, 0);
+      }
     }
 
     @media (max-width: 768px) {
-      .footer-inner { padding: 64px 20px 40px; }
-      .footer-ambient { font-size: clamp(48px, 16vw, 80px); }
-      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .footer-links { gap: 4px; }
+      .footer-inner {
+        padding: 64px 20px 40px;
+      }
+
+      .footer-ambient {
+        font-size: clamp(48px, 16vw, 80px);
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .footer-links {
+        gap: 4px;
+      }
     }
   </style>
 
@@ -4045,7 +4506,8 @@
         <p class="footer-cta-sub">Open for internships, collaborations, and interesting ML problems.</p>
         <a href="mailto:muanaikhalifahr@gmail.com" class="footer-cta-btn">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
           </svg>
           Send an email
         </a>
@@ -4055,21 +4517,25 @@
       <div class="footer-links">
         <a href="https://github.com/Muanai/" target="_blank" rel="noopener" class="footer-link">
           <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
           </svg>
           GitHub
         </a>
         <div class="footer-link-sep"></div>
-        <a href="https://www.linkedin.com/in/muanai-revindo-a0020b2ab/" target="_blank" rel="noopener" class="footer-link">
+        <a href="https://www.linkedin.com/in/muanai-revindo-a0020b2ab/" target="_blank" rel="noopener"
+          class="footer-link">
           <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
           LinkedIn
         </a>
         <div class="footer-link-sep"></div>
         <a href="https://medium.com/@muanaikhalifahr" target="_blank" rel="noopener" class="footer-link">
           <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+            <path
+              d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
           </svg>
           Medium
         </a>
@@ -4078,7 +4544,6 @@
       <!-- Bottom bar -->
       <div class="footer-bottom">
         <span class="footer-copy">
-          <img src="assets/logos/own2.png" alt="" style="height: 16px; width: auto; vertical-align: middle; margin-right: 8px; opacity: 0.4;" />
           © 2025 Muanai Khalifah Revindo
         </span>
         <span class="footer-status">
@@ -4099,7 +4564,7 @@
       opacity: 0;
       transform: translateY(22px);
       transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .anim-fade.is-visible {
@@ -4108,12 +4573,29 @@
     }
 
     /* Stagger delays — applied to children */
-    .anim-fade.delay-1 { transition-delay: 0.08s; }
-    .anim-fade.delay-2 { transition-delay: 0.16s; }
-    .anim-fade.delay-3 { transition-delay: 0.24s; }
-    .anim-fade.delay-4 { transition-delay: 0.32s; }
-    .anim-fade.delay-5 { transition-delay: 0.40s; }
-    .anim-fade.delay-6 { transition-delay: 0.48s; }
+    .anim-fade.delay-1 {
+      transition-delay: 0.08s;
+    }
+
+    .anim-fade.delay-2 {
+      transition-delay: 0.16s;
+    }
+
+    .anim-fade.delay-3 {
+      transition-delay: 0.24s;
+    }
+
+    .anim-fade.delay-4 {
+      transition-delay: 0.32s;
+    }
+
+    .anim-fade.delay-5 {
+      transition-delay: 0.40s;
+    }
+
+    .anim-fade.delay-6 {
+      transition-delay: 0.48s;
+    }
 
     /* Respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -4126,124 +4608,124 @@
   </style>
 
   <script>
-  (function () {
-    /* ── Tag elements to animate ── */
+    (function () {
+      /* ── Tag elements to animate ── */
 
-    /* Helper: add anim-fade + optional delay class to an element */
-    function tag(el, delayIndex) {
-      if (!el) return;
-      el.classList.add('anim-fade');
-      if (delayIndex) el.classList.add('delay-' + delayIndex);
-    }
-
-    /* Helper: tag a NodeList with staggered delays */
-    function tagAll(els, startDelay) {
-      Array.from(els).forEach((el, i) => {
-        tag(el, startDelay != null ? Math.min(startDelay + i, 6) : null);
-      });
-    }
-
-    /* ── Section eyebrows & headings (every section) ── */
-    document.querySelectorAll('.section-eyebrow').forEach(el => tag(el, null));
-    document.querySelectorAll('.section-heading').forEach(el => tag(el, 1));
-
-    /* ── Projects section ── */
-    const projectsTabBar = document.querySelector('.projects-tabs');
-    tag(projectsTabBar, 2);
-    const projectsPanel = document.querySelector('.projects-layout');
-    tag(projectsPanel, 3);
-
-    /* ── Experience ── */
-    document.querySelectorAll('.exp-card').forEach((el, i) => tag(el, i + 2));
-
-    /* ── Certifications ── */
-    const certsTier1 = document.querySelector('.certs-tier1');
-    tag(certsTier1, 2);
-    document.querySelectorAll('.tier-2-group').forEach((el, i) => tag(el, i + 3));
-
-    /* ── Skills ── */
-    document.querySelectorAll('.skill-card').forEach((el, i) => tag(el, i + 2));
-
-    /* ── About ── */
-    document.querySelectorAll('.about-col').forEach((el, i) => tag(el, i + 1));
-
-    /* ── Footer ── */
-    tag(document.querySelector('.footer-cta'),    1);
-    tag(document.querySelector('.footer-links'),   2);
-    tag(document.querySelector('.footer-bottom'),  3);
-
-    /* ── Intersection Observer ── */
-    /* Standard observer — for normal-sized elements */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -40px 0px',
-    });
-
-    /* Sensitive observer — for short/thin elements like dividers and footer bar */
-    const observerSensitive = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observerSensitive.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0,        /* trigger the moment even 1px is visible */
-      rootMargin: '0px 0px 0px 0px',
-    });
-
-    /* Assign sensitive observer to footer-bottom and footer-divider */
-    const sensitiveEls = new Set([
-      document.querySelector('.footer-bottom'),
-    ]);
-
-    const fadeEls = document.querySelectorAll('.anim-fade');
-    let remaining = fadeEls.length;
-
-    /* Override callbacks to disconnect when all elements have animated */
-    const originalObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          originalObserver.unobserve(entry.target);
-          remaining--;
-          if (remaining <= 0) {
-            originalObserver.disconnect();
-            sensitiveObserver.disconnect();
-          }
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    const sensitiveObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          sensitiveObserver.unobserve(entry.target);
-          remaining--;
-          if (remaining <= 0) {
-            originalObserver.disconnect();
-            sensitiveObserver.disconnect();
-          }
-        }
-      });
-    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-
-    fadeEls.forEach(el => {
-      if (sensitiveEls.has(el)) {
-        sensitiveObserver.observe(el);
-      } else {
-        originalObserver.observe(el);
+      /* Helper: add anim-fade + optional delay class to an element */
+      function tag(el, delayIndex) {
+        if (!el) return;
+        el.classList.add('anim-fade');
+        if (delayIndex) el.classList.add('delay-' + delayIndex);
       }
-    });
-  })();
+
+      /* Helper: tag a NodeList with staggered delays */
+      function tagAll(els, startDelay) {
+        Array.from(els).forEach((el, i) => {
+          tag(el, startDelay != null ? Math.min(startDelay + i, 6) : null);
+        });
+      }
+
+      /* ── Section eyebrows & headings (every section) ── */
+      document.querySelectorAll('.section-eyebrow').forEach(el => tag(el, null));
+      document.querySelectorAll('.section-heading').forEach(el => tag(el, 1));
+
+      /* ── Projects section ── */
+      const projectsTabBar = document.querySelector('.projects-tabs');
+      tag(projectsTabBar, 2);
+      const projectsPanel = document.querySelector('.projects-layout');
+      tag(projectsPanel, 3);
+
+      /* ── Experience ── */
+      document.querySelectorAll('.exp-card').forEach((el, i) => tag(el, i + 2));
+
+      /* ── Certifications ── */
+      const certsTier1 = document.querySelector('.certs-tier1');
+      tag(certsTier1, 2);
+      document.querySelectorAll('.tier-2-group').forEach((el, i) => tag(el, i + 3));
+
+      /* ── Skills ── */
+      document.querySelectorAll('.skill-card').forEach((el, i) => tag(el, i + 2));
+
+      /* ── About ── */
+      document.querySelectorAll('.about-col').forEach((el, i) => tag(el, i + 1));
+
+      /* ── Footer ── */
+      tag(document.querySelector('.footer-cta'), 1);
+      tag(document.querySelector('.footer-links'), 2);
+      tag(document.querySelector('.footer-bottom'), 3);
+
+      /* ── Intersection Observer ── */
+      /* Standard observer — for normal-sized elements */
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px',
+      });
+
+      /* Sensitive observer — for short/thin elements like dividers and footer bar */
+      const observerSensitive = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observerSensitive.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0,        /* trigger the moment even 1px is visible */
+        rootMargin: '0px 0px 0px 0px',
+      });
+
+      /* Assign sensitive observer to footer-bottom and footer-divider */
+      const sensitiveEls = new Set([
+        document.querySelector('.footer-bottom'),
+      ]);
+
+      const fadeEls = document.querySelectorAll('.anim-fade');
+      let remaining = fadeEls.length;
+
+      /* Override callbacks to disconnect when all elements have animated */
+      const originalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            originalObserver.unobserve(entry.target);
+            remaining--;
+            if (remaining <= 0) {
+              originalObserver.disconnect();
+              sensitiveObserver.disconnect();
+            }
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      const sensitiveObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            sensitiveObserver.unobserve(entry.target);
+            remaining--;
+            if (remaining <= 0) {
+              originalObserver.disconnect();
+              sensitiveObserver.disconnect();
+            }
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+
+      fadeEls.forEach(el => {
+        if (sensitiveEls.has(el)) {
+          sensitiveObserver.observe(el);
+        } else {
+          originalObserver.observe(el);
+        }
+      });
+    })();
   </script>
 
   <!-- ─────────────────────────────────────────
@@ -4251,29 +4733,37 @@
   ───────────────────────────────────────── -->
   <style>
     /* Blanket — kill system cursor on every element */
-    *, *::before, *::after { cursor: none !important; }
+    *,
+    *::before,
+    *::after {
+      cursor: none !important;
+    }
 
     /* Cursor ring — outer */
     #cursor-ring {
       position: fixed;
-      top: 0; left: 0;
-      width: 32px; height: 32px;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: 1.5px solid rgba(107, 99, 255, 0.55);
       pointer-events: none;
       z-index: 99999;
       transform: translate(-50%, -50%);
       transition: width 0.18s ease, height 0.18s ease,
-                  border-color 0.18s ease, background 0.18s ease,
-                  opacity 0.3s ease;
+        border-color 0.18s ease, background 0.18s ease,
+        opacity 0.3s ease;
       will-change: transform;
     }
 
     /* Cursor dot — inner */
     #cursor-dot {
       position: fixed;
-      top: 0; left: 0;
-      width: 5px; height: 5px;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--accent);
       pointer-events: none;
@@ -4281,23 +4771,27 @@
       transform: translate(-50%, -50%);
       will-change: transform;
       transition: width 0.12s ease, height 0.12s ease,
-                  background 0.12s ease, opacity 0.3s ease;
+        background 0.12s ease, opacity 0.3s ease;
     }
 
     /* Pointer state (clickable) — ring tightens, dot grows into arrow hint */
     body.cursor-pointer #cursor-ring {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-color: rgba(107, 99, 255, 0.5);
       background: rgba(107, 99, 255, 0.07);
     }
+
     body.cursor-pointer #cursor-dot {
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       background: #a09aff;
     }
 
     /* Click state — ring shrinks briefly */
     body.cursor-click #cursor-ring {
-      width: 22px; height: 22px;
+      width: 22px;
+      height: 22px;
       border-color: rgba(107, 99, 255, 0.9);
       background: rgba(107, 99, 255, 0.15);
       transition-duration: 0.08s;
@@ -4311,8 +4805,17 @@
 
     /* Never show custom cursor on touch/mobile */
     @media (hover: none) {
-      *, *::before, *::after { cursor: auto !important; }
-      #cursor-ring, #cursor-dot { display: none !important; }
+
+      *,
+      *::before,
+      *::after {
+        cursor: auto !important;
+      }
+
+      #cursor-ring,
+      #cursor-dot {
+        display: none !important;
+      }
     }
   </style>
 
@@ -4320,118 +4823,118 @@
        ACTIVE NAV + CUSTOM CURSOR JS
   ───────────────────────────────────────── -->
   <script>
-  (function () {
+    (function () {
 
-    /* ══════════════════════════════════════
-       D — ACTIVE NAV INDICATOR
-    ══════════════════════════════════════ */
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = [];
+      /* ══════════════════════════════════════
+         D — ACTIVE NAV INDICATOR
+      ══════════════════════════════════════ */
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const sections = [];
 
-    navLinks.forEach(link => {
-      const id      = link.getAttribute('href').replace('#', '');
-      const section = document.getElementById(id);
-      if (section) sections.push({ link, section });
-    });
+      navLinks.forEach(link => {
+        const id = link.getAttribute('href').replace('#', '');
+        const section = document.getElementById(id);
+        if (section) sections.push({ link, section });
+      });
 
-    const footer = document.querySelector('.site-footer');
+      const footer = document.querySelector('.site-footer');
 
-    function updateActiveNav() {
-      const scrollY  = window.scrollY;
-      const winH     = window.innerHeight;
-      const docH     = document.documentElement.scrollHeight;
+      function updateActiveNav() {
+        const scrollY = window.scrollY;
+        const winH = window.innerHeight;
+        const docH = document.documentElement.scrollHeight;
 
-      /* If footer is visible — deactivate all */
-      const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
-      if (footerTop < winH * 0.6) {
-        navLinks.forEach(l => l.classList.remove('nav-active'));
-        return;
-      }
-
-      /* Find deepest section whose top has passed 40% of viewport */
-      let activeLink = null;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const top = sections[i].section.getBoundingClientRect().top;
-        if (top <= winH * 0.4) {
-          activeLink = sections[i].link;
-          break;
+        /* If footer is visible — deactivate all */
+        const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
+        if (footerTop < winH * 0.6) {
+          navLinks.forEach(l => l.classList.remove('nav-active'));
+          return;
         }
+
+        /* Find deepest section whose top has passed 40% of viewport */
+        let activeLink = null;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const top = sections[i].section.getBoundingClientRect().top;
+          if (top <= winH * 0.4) {
+            activeLink = sections[i].link;
+            break;
+          }
+        }
+
+        navLinks.forEach(l => l.classList.remove('nav-active'));
+        if (activeLink) activeLink.classList.add('nav-active');
       }
 
-      navLinks.forEach(l => l.classList.remove('nav-active'));
-      if (activeLink) activeLink.classList.add('nav-active');
-    }
-
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+      updateActiveNav();
 
 
-    /* ══════════════════════════════════════
-       E — SMOOTH CUSTOM CURSOR
-    ══════════════════════════════════════ */
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      /* ══════════════════════════════════════
+         E — SMOOTH CUSTOM CURSOR
+      ══════════════════════════════════════ */
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-    const ring = document.createElement('div');
-    ring.id    = 'cursor-ring';
-    const dot  = document.createElement('div');
-    dot.id     = 'cursor-dot';
-    document.body.appendChild(ring);
-    document.body.appendChild(dot);
+      const ring = document.createElement('div');
+      ring.id = 'cursor-ring';
+      const dot = document.createElement('div');
+      dot.id = 'cursor-dot';
+      document.body.appendChild(ring);
+      document.body.appendChild(dot);
 
-    let mouseX = -100, mouseY = -100;
-    let ringX  = -100, ringY  = -100;
+      let mouseX = -100, mouseY = -100;
+      let ringX = -100, ringY = -100;
 
-    /* Clickable elements — pointer state */
-    const CLICKABLE = 'a, button, [role="button"], input, textarea, select, label, .skill-tag, .cert-card, .exp-card, .mobile-project-card, .tab-btn, .project-list-item, .accordion-trigger, .view-cert-btn, .project-link, .sub-tab-btn, [tabindex]';
+      /* Clickable elements — pointer state */
+      const CLICKABLE = 'a, button, [role="button"], input, textarea, select, label, .skill-tag, .cert-card, .exp-card, .mobile-project-card, .tab-btn, .project-list-item, .accordion-trigger, .view-cert-btn, .project-link, .sub-tab-btn, [tabindex]';
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      document.body.classList.remove('cursor-out');
+      document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        document.body.classList.remove('cursor-out');
 
-      /* Check what's under cursor and set state */
-      const over = e.target.closest(CLICKABLE);
-      if (over) {
-        document.body.classList.add('cursor-pointer');
-      } else {
-        document.body.classList.remove('cursor-pointer');
+        /* Check what's under cursor and set state */
+        const over = e.target.closest(CLICKABLE);
+        if (over) {
+          document.body.classList.add('cursor-pointer');
+        } else {
+          document.body.classList.remove('cursor-pointer');
+        }
+      });
+
+      document.addEventListener('mouseleave', () => {
+        document.body.classList.add('cursor-out');
+      });
+
+      /* Click feedback — shrink ring momentarily */
+      document.addEventListener('mousedown', () => {
+        document.body.classList.add('cursor-click');
+      });
+      document.addEventListener('mouseup', () => {
+        document.body.classList.remove('cursor-click');
+      });
+
+      /* Lerp animation */
+      const LERP = 0.12;
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function animateCursor() {
+        dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+        ringX = lerp(ringX, mouseX, LERP);
+        ringY = lerp(ringY, mouseY, LERP);
+        ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+        requestAnimationFrame(animateCursor);
       }
-    });
 
-    document.addEventListener('mouseleave', () => {
-      document.body.classList.add('cursor-out');
-    });
+      animateCursor();
 
-    /* Click feedback — shrink ring momentarily */
-    document.addEventListener('mousedown', () => {
-      document.body.classList.add('cursor-click');
-    });
-    document.addEventListener('mouseup', () => {
-      document.body.classList.remove('cursor-click');
-    });
-
-    /* Lerp animation */
-    const LERP = 0.12;
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function animateCursor() {
-      dot.style.transform  = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
-      ringX = lerp(ringX, mouseX, LERP);
-      ringY = lerp(ringY, mouseY, LERP);
-      ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
-      requestAnimationFrame(animateCursor);
-    }
-
-    animateCursor();
-
-  })();
+    })();
   </script>
   <!-- ─────────────────────────────────────────
        BACK TO TOP BUTTON
   ───────────────────────────────────────── -->
   <button id="back-to-top" aria-label="Back to top">
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"/>
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
     </svg>
   </button>
 
@@ -4439,248 +4942,249 @@
        HAMBURGER + BACK TO TOP JS
   ───────────────────────────────────────── -->
   <script>
-  (function () {
+    (function () {
 
-    /* Footer spotlight */
-    const footer          = document.querySelector('.site-footer');
-    const footerSpotlight = document.getElementById('footer-spotlight');
-    if (footer && footerSpotlight) {
-      footer.addEventListener('mousemove', (e) => {
-        const rect = footer.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width)  * 100;
-        const y = ((e.clientY - rect.top)  / rect.height) * 100;
-        footerSpotlight.style.setProperty('--fx', x + '%');
-        footerSpotlight.style.setProperty('--fy', y + '%');
+      /* Footer spotlight */
+      const footer = document.querySelector('.site-footer');
+      const footerSpotlight = document.getElementById('footer-spotlight');
+      if (footer && footerSpotlight) {
+        footer.addEventListener('mousemove', (e) => {
+          const rect = footer.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          footerSpotlight.style.setProperty('--fx', x + '%');
+          footerSpotlight.style.setProperty('--fy', y + '%');
+        });
+      }
+
+      /* Hamburger / Drawer */
+      const hamburger = document.getElementById('nav-hamburger');
+      const drawer = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      window.closeDrawer = function () {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+
+      hamburger.addEventListener('click', () => {
+        if (drawer.classList.contains('open')) closeDrawer();
+        else openDrawer();
       });
-    }
 
-    /* Hamburger / Drawer */
-    const hamburger = document.getElementById('nav-hamburger');
-    const drawer    = document.getElementById('nav-drawer');
-    const backdrop  = document.getElementById('nav-backdrop');
+      /* Close on Escape */
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeDrawer();
+      });
 
-    function openDrawer() {
-      hamburger.classList.add('open');
-      hamburger.setAttribute('aria-expanded', 'true');
-      drawer.classList.add('open');
-      backdrop.classList.add('open');
-      drawer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+      /* ── Back to Top ── */
+      const btn = document.getElementById('back-to-top');
 
-    window.closeDrawer = function () {
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      drawer.classList.remove('open');
-      backdrop.classList.remove('open');
-      drawer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+      }, { passive: true });
 
-    hamburger.addEventListener('click', () => {
-      if (drawer.classList.contains('open')) closeDrawer();
-      else openDrawer();
-    });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
 
-    /* Close on Escape */
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeDrawer();
-    });
-
-    /* ── Back to Top ── */
-    const btn = document.getElementById('back-to-top');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) btn.classList.add('visible');
-      else btn.classList.remove('visible');
-    }, { passive: true });
-
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-  })();
+    })();
   </script>
   <!-- ─────────────────────────────────────────
        SKILL CARD 3D TILT
   ───────────────────────────────────────── -->
   <script>
-  (function () {
-    if (!window.matchMedia('(hover: hover)').matches) return;
+    (function () {
+      if (!window.matchMedia('(hover: hover)').matches) return;
 
-    const TILT  = 8;    /* max tilt degrees */
-    const SCALE = 1.02; /* slight scale up on hover */
+      const TILT = 8;    /* max tilt degrees */
+      const SCALE = 1.02; /* slight scale up on hover */
 
-    document.querySelectorAll('.skill-card-wrap').forEach(wrap => {
-      const card = wrap.querySelector('.skill-card');
+      document.querySelectorAll('.skill-card-wrap').forEach(wrap => {
+        const card = wrap.querySelector('.skill-card');
 
-      wrap.addEventListener('mousemove', e => {
-        const r   = wrap.getBoundingClientRect();
-        const x   = (e.clientX - r.left)  / r.width;   /* 0–1 */
-        const y   = (e.clientY - r.top)   / r.height;  /* 0–1 */
+        wrap.addEventListener('mousemove', e => {
+          const r = wrap.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width;   /* 0–1 */
+          const y = (e.clientY - r.top) / r.height;  /* 0–1 */
 
-        const rotY =  (x - 0.5) * TILT * 2;  /* left→right */
-        const rotX = -(y - 0.5) * TILT * 2;  /* top→bottom */
+          const rotY = (x - 0.5) * TILT * 2;  /* left→right */
+          const rotX = -(y - 0.5) * TILT * 2;  /* top→bottom */
 
-        wrap.style.transform =
-          `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${SCALE})`;
+          wrap.style.transform =
+            `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${SCALE})`;
 
-        /* Move inner spotlight to follow cursor */
-        if (card) {
-          card.style.setProperty('--tx', (x * 100) + '%');
-          card.style.setProperty('--ty', (y * 100) + '%');
-        }
+          /* Move inner spotlight to follow cursor */
+          if (card) {
+            card.style.setProperty('--tx', (x * 100) + '%');
+            card.style.setProperty('--ty', (y * 100) + '%');
+          }
+        });
+
+        wrap.addEventListener('mouseleave', () => {
+          wrap.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
+          wrap.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1)';
+          setTimeout(() => { wrap.style.transition = 'transform 0.08s ease'; }, 450);
+        });
+
+        wrap.addEventListener('mouseenter', () => {
+          wrap.style.transition = 'transform 0.08s ease';
+        });
       });
-
-      wrap.addEventListener('mouseleave', () => {
-        wrap.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
-        wrap.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1)';
-        setTimeout(() => { wrap.style.transition = 'transform 0.08s ease'; }, 450);
-      });
-
-      wrap.addEventListener('mouseenter', () => {
-        wrap.style.transition = 'transform 0.08s ease';
-      });
-    });
-  })();
+    })();
   </script>
   <!-- ─────────────────────────────────────────
        SCROLL PROGRESS + NAV FILL + BREADCRUMB
   ───────────────────────────────────────── -->
   <script>
-  (function () {
+    (function () {
 
-    /* ══════════════════════════════════════
-       NAV ACTIVE INDICATOR
-    ══════════════════════════════════════ */
-    const SECTIONS = [
-      { id: 'projects',      label: 'Projects',      index: 0 },
-      { id: 'experience',    label: 'Experience',     index: 1 },
-      { id: 'certifications',label: 'Certifications', index: 2 },
-      { id: 'skills',        label: 'Stack',          index: 3 },
-      { id: 'about',         label: 'About',          index: 4 },
-    ];
+      /* ══════════════════════════════════════
+         NAV ACTIVE INDICATOR
+      ══════════════════════════════════════ */
+      const SECTIONS = [
+        { id: 'projects', label: 'Projects', index: 0 },
+        { id: 'experience', label: 'Experience', index: 1 },
+        { id: 'certifications', label: 'Certifications', index: 2 },
+        { id: 'skills', label: 'Stack', index: 3 },
+        { id: 'about', label: 'About', index: 4 },
+      ];
 
-    const navLinks    = document.querySelectorAll('.nav-links a');
-    const footer      = document.querySelector('.site-footer');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const footer = document.querySelector('.site-footer');
 
-    function updateNavProgress() {
-      const winH   = window.innerHeight;
-      const scrollY = window.scrollY;
+      function updateNavProgress() {
+        const winH = window.innerHeight;
+        const scrollY = window.scrollY;
 
-      /* Find active section index */
-      let activeIdx = -1;
-      const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
-      if (footerTop < winH * 0.6) {
-        /* In footer — clear all */
-        navLinks.forEach(l => {
-          l.classList.remove('nav-active');
-          const p = l.querySelector('.nav-progress');
-          if (p) p.style.transform = 'scaleX(0)';
-        });
-        return;
-      }
-
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTIONS[i].id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top;
-        if (top <= winH * 0.4) { activeIdx = i; break; }
-      }
-
-      navLinks.forEach((link, i) => {
-        const progress = link.querySelector('.nav-progress');
-        if (!progress) return;
-
-        if (i !== activeIdx) {
-          link.classList.remove('nav-active');
-          progress.style.transform = 'scaleX(0)';
+        /* Find active section index */
+        let activeIdx = -1;
+        const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
+        if (footerTop < winH * 0.6) {
+          /* In footer — clear all */
+          navLinks.forEach(l => {
+            l.classList.remove('nav-active');
+            const p = l.querySelector('.nav-progress');
+            if (p) p.style.transform = 'scaleX(0)';
+          });
           return;
         }
 
-        link.classList.add('nav-active');
+        for (let i = SECTIONS.length - 1; i >= 0; i--) {
+          const el = document.getElementById(SECTIONS[i].id);
+          if (!el) continue;
+          const top = el.getBoundingClientRect().top;
+          if (top <= winH * 0.4) { activeIdx = i; break; }
+        }
 
-        /* Calculate how far through this section we are */
-        const el      = document.getElementById(SECTIONS[i].id);
-        const nextEl  = SECTIONS[i + 1] ? document.getElementById(SECTIONS[i + 1].id) : footer;
-        if (!el) return;
+        navLinks.forEach((link, i) => {
+          const progress = link.querySelector('.nav-progress');
+          if (!progress) return;
 
-        const sTop = el.getBoundingClientRect().top + scrollY;
-        const sBot = nextEl
-          ? nextEl.getBoundingClientRect().top + scrollY
-          : document.documentElement.scrollHeight;
-        const sLen  = sBot - sTop;
-        const pct   = Math.min(Math.max((scrollY - sTop + winH * 0.4) / sLen, 0), 1);
-        progress.style.transform = `scaleX(${pct})`;
+          if (i !== activeIdx) {
+            link.classList.remove('nav-active');
+            progress.style.transform = 'scaleX(0)';
+            return;
+          }
+
+          link.classList.add('nav-active');
+
+          /* Calculate how far through this section we are */
+          const el = document.getElementById(SECTIONS[i].id);
+          const nextEl = SECTIONS[i + 1] ? document.getElementById(SECTIONS[i + 1].id) : footer;
+          if (!el) return;
+
+          const sTop = el.getBoundingClientRect().top + scrollY;
+          const sBot = nextEl
+            ? nextEl.getBoundingClientRect().top + scrollY
+            : document.documentElement.scrollHeight;
+          const sLen = sBot - sTop;
+          const pct = Math.min(Math.max((scrollY - sTop + winH * 0.4) / sLen, 0), 1);
+          progress.style.transform = `scaleX(${pct})`;
+        });
+      }
+
+      /* ══════════════════════════════════════
+         3. MOBILE SECTION BREADCRUMB
+      ══════════════════════════════════════ */
+      const breadcrumb = document.getElementById('section-breadcrumb');
+      const dotsEl = document.getElementById('breadcrumb-dots');
+      const labelEl = document.getElementById('breadcrumb-label');
+      const ALL_SECTIONS = [
+        { id: null, label: 'Home' },
+        { id: 'projects', label: 'Projects' },
+        { id: 'experience', label: 'Experience' },
+        { id: 'certifications', label: 'Certifications' },
+        { id: 'skills', label: 'Stack' },
+        { id: 'about', label: 'About' },
+      ];
+
+      /* Build dots */
+      ALL_SECTIONS.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'breadcrumb-dot';
+        dotsEl.appendChild(dot);
       });
-    }
 
-    /* ══════════════════════════════════════
-       3. MOBILE SECTION BREADCRUMB
-    ══════════════════════════════════════ */
-    const breadcrumb  = document.getElementById('section-breadcrumb');
-    const dotsEl      = document.getElementById('breadcrumb-dots');
-    const labelEl     = document.getElementById('breadcrumb-label');
-    const ALL_SECTIONS = [
-      { id: null,              label: 'Home' },
-      { id: 'projects',        label: 'Projects' },
-      { id: 'experience',      label: 'Experience' },
-      { id: 'certifications',  label: 'Certifications' },
-      { id: 'skills',          label: 'Stack' },
-      { id: 'about',           label: 'About' },
-    ];
+      const dots = dotsEl.querySelectorAll('.breadcrumb-dot');
+      let breadcrumbTimeout;
+      let lastActiveIdx = -1;
 
-    /* Build dots */
-    ALL_SECTIONS.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.className = 'breadcrumb-dot';
-      dotsEl.appendChild(dot);
-    });
-
-    const dots = dotsEl.querySelectorAll('.breadcrumb-dot');
-    let breadcrumbTimeout;
-    let lastActiveIdx = -1;
-
-    function showBreadcrumb() {
-      breadcrumb.classList.add('visible');
-      clearTimeout(breadcrumbTimeout);
-      breadcrumbTimeout = setTimeout(() => breadcrumb.classList.remove('visible'), 2000);
-    }
-
-    function updateBreadcrumb() {
-      if (window.innerWidth >= 769) return;
-
-      const winH    = window.innerHeight;
-      let activeIdx = 0; /* default: Home */
-
-      for (let i = ALL_SECTIONS.length - 1; i >= 1; i--) {
-        const el = document.getElementById(ALL_SECTIONS[i].id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top;
-        if (top <= winH * 0.5) { activeIdx = i; break; }
+      function showBreadcrumb() {
+        breadcrumb.classList.add('visible');
+        clearTimeout(breadcrumbTimeout);
+        breadcrumbTimeout = setTimeout(() => breadcrumb.classList.remove('visible'), 2000);
       }
 
-      /* Show breadcrumb on section change */
-      if (activeIdx !== lastActiveIdx) {
-        lastActiveIdx = activeIdx;
-        labelEl.textContent = `${ALL_SECTIONS[activeIdx].label} (${activeIdx + 1}/${ALL_SECTIONS.length})`;
-        dots.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
-        if (window.scrollY > 100) showBreadcrumb();
-      }
-    }
+      function updateBreadcrumb() {
+        if (window.innerWidth >= 769) return;
 
-    /* ── Combined scroll listener ── */
-    window.addEventListener('scroll', () => {
+        const winH = window.innerHeight;
+        let activeIdx = 0; /* default: Home */
+
+        for (let i = ALL_SECTIONS.length - 1; i >= 1; i--) {
+          const el = document.getElementById(ALL_SECTIONS[i].id);
+          if (!el) continue;
+          const top = el.getBoundingClientRect().top;
+          if (top <= winH * 0.5) { activeIdx = i; break; }
+        }
+
+        /* Show breadcrumb on section change */
+        if (activeIdx !== lastActiveIdx) {
+          lastActiveIdx = activeIdx;
+          labelEl.textContent = `${ALL_SECTIONS[activeIdx].label} (${activeIdx + 1}/${ALL_SECTIONS.length})`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
+          if (window.scrollY > 100) showBreadcrumb();
+        }
+      }
+
+      /* ── Combined scroll listener ── */
+      window.addEventListener('scroll', () => {
+        updateNavProgress();
+        updateBreadcrumb();
+      }, { passive: true });
+
+      /* Initial state */
       updateNavProgress();
       updateBreadcrumb();
-    }, { passive: true });
 
-    /* Initial state */
-    updateNavProgress();
-    updateBreadcrumb();
-
-  })();
+    })();
   </script>
 
 </body>
+
 </html>
