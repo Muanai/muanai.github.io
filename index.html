@@ -1404,7 +1404,7 @@
     .detail-image-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, var(--surface-2) 100%);
+      background: linear-gradient(to bottom, transparent 75%, var(--surface-2) 100%);
       pointer-events: none;
     }
 
@@ -1913,7 +1913,7 @@
     const PROJECTS = [
       {
         id: 'telkomsel',
-        title: 'Fixed Broadband Infrastructure Detection',
+        title: 'Telligence',
         shortDesc: 'Automated pipeline to detect competitor telecom infrastructure using YOLOv8.',
         tech: 'Ultralytics / YOLOv8',
         image: 'assets/projects/telkomsel_app.webp',
@@ -1924,7 +1924,7 @@
         tabs: {
           overview: {
             label: 'Competitive Intelligence via Computer Vision',
-            text: 'Developed an automated pipeline to detect competitor telecom infrastructure using YOLOv8 for Telkomsel\'s Business Growth and Analytics division. Transformed manual, labor-intensive field surveys into a scalable, visual analytics prototype for market penetration analysis.',
+            text: 'Developed an <strong>automated pipeline</strong> to detect competitor telecom infrastructure using YOLOv8 for Telkomsel\'s Business Growth and Analytics division. Transformed manual, labor-intensive field surveys into a scalable, visual analytics prototype for market penetration analysis.',
           },
           problem: {
             label: 'Invisible Infrastructure',
@@ -1932,16 +1932,16 @@
           },
           data: {
             label: 'Hybrid Dataset Strategy',
-            text: 'Constructed a proprietary dataset from scratch via manual field collection of street-level infrastructure imagery. Curated and annotated specifically for this task, then augmented with synthetic data to address severe class imbalance.',
+            text: 'Constructed a proprietary dataset from scratch via manual field collection of street-level infrastructure imagery. Curated and annotated <strong>specifically for this task</strong>, then augmented with synthetic data to address severe class imbalance.',
           },
           method: {
             label: 'High-Res YOLOv8 Engineering',
-            text: 'Optimized YOLOv8 training with 1248px resolution scaling to recover fine-grained features like fiber optic cables. Implemented a custom inference engine with EXIF extraction and geospatial mapping (BPS shapefiles) to link detections to specific sub-districts.',
+            text: 'Optimized YOLOv8 training with 1248px resolution scaling to recover fine-grained features like fiber optic cables. Implemented a custom inference engine with EXIF extraction and geospatial mapping (BPS shapefiles) to <strong>link detections to specific sub-districts</strong>.',
           },
           outcome: {
             label: 'Technical Result',
             metric: { val: '0.763 mAP50', sub: '+24% accuracy from 0.52 baseline' },
-            text: 'Successfully resurrected failing minority classes (~0% → ~50%). Delivered a deployment-ready tool that automates the conversion of raw street photos into mapped competitive intelligence.',
+            text: 'Successfully resurrected failing minority classes (~0% → ~50%). Delivered a deployment-ready tool that automates the conversion of raw street photos into <strong>mapped competitive intelligence</strong>.',
           },
         },
         links: [
@@ -1950,14 +1950,50 @@
         ],
       },
       {
+        id: 'cortex',
+        title: 'Cortex Risk',
+        shortDesc: 'RAG system for credit risk explainability based on financial regulation documents.',
+        tech: 'RAG / LLM',
+        image: 'assets/projects/cortex_preview.webp',
+        imageLabel: 'Page Preview',
+        tags: ['risk-intel', 'nlp'],
+        featured: true,
+        wip: false,
+        tabs: {
+          overview: {
+            label: 'Hybrid XAI & Compliance Audit Pipeline',
+            text: 'Designed an end-to-end credit risk scoring engine that <strong>bridges black-box machine learning</strong> predictions with automated legal compliance. Combines tabular risk modeling with a generative legal audit framework to ensure full adherence to OJK financial regulations (POJK 40/2024).',
+          },
+          problem: {
+            label: 'The Black-Box Risk & Compliance Gap',
+            text: 'Standard high-performance credit scoring models provide accurate probability of default metrics but <strong>lack interpretability</strong>. Financial institutions struggle to explain localized risk decisions to auditors and map complex data features to strict regulatory frameworks in real-time.',
+          },
+          data: {
+            label: 'Financial Tabular Data & Legal Documents',
+            text: 'Processed historical credit records to evaluate line utilization, payment delays, and income dynamics. Concurrently ingested semi-structured text data from official financial authority regulations (POJK) into a vector database to enable targeted semantic retrieval.',
+          },
+          method: {
+            label: 'Dual-Engine Architecture: SHAP + RAG',
+            text: 'Implemented a pipeline where an XGBoost model generates risk probabilities and SHAP computes localized feature attributions. These analytical metrics are injected as context into ChromaDB and synthesized by Llama 3.1 via Groq LPU to produce deterministic, audit-grade legal narratives.',
+          },
+          outcome: {
+            label: 'Production-Grade Explainable Credit Decisions',
+            text: 'Delivers full interpretability for risk-critical applications, mapping model feature weights directly to legal clauses with <strong>zero-hallucination</strong> compliance checking ready for production deployment.',
+          },
+        },
+        links: [
+          { label: 'View on Github', url: 'https://github.com/Muanai/fintech-credit-risk-xai', type: 'primary' },
+        ],
+      },
+      {
         id: 'food',
         title: 'Traditional Food Image Classification',
         shortDesc: 'Competition-grade CV system using SwinV2 & ConvNeXt to classify 15 Indonesian cuisines.',
         tech: 'SwinV2 / ConvNeXt',
-        image: 'assets/projects/action_gradcam.webp',
+        image: 'assets/projects/grad_cam.webp',
         imageLabel: 'GRAD-CAM Visualization',
         tags: ['comvis'],
-        featured: true,
+        featured: false,
         wip: false,
         tabs: {
           overview: {
@@ -1987,36 +2023,36 @@
         ],
       },
       {
-        id: 'creditrisk',
-        title: 'Credit Risk Feature Engine',
-        shortDesc: 'High-performance feature engineering pipeline using Numba JIT, achieving 50,000x speedup.',
-        tech: 'Python / Numba',
-        image: 'assets/projects/numba_benchmark.webp',
+        id: 'flux',
+        title: 'Feature Flux',
+        shortDesc: 'Production-grade dual-store infrastructure serving stateful risk features sub-2ms latency.',
+        tech: 'Go / Numba',
+        image: 'assets/projects/flux_benchmark.webp',
         imageLabel: 'Benchmark',
         tags: ['risk-intel'],
-        featured: false,
+        featured: true,
         wip: false,
         tabs: {
           overview: {
-            label: 'High-Performance Feature Engineering',
-            text: 'Optimizing a credit risk pipeline using Numba (JIT Compiler) to process behavioral data at C-like speeds. Enabling the calculation of complex, stateful features without the overhead of standard Python loops.',
+            label: 'Dual-Store Fintech Infrastructure',
+            text: 'An end-to-end <strong>high-performance feature store</strong> separating heavy analytical computations from real-time operational serving. Utilizes JIT-compiled Numba loops for complex data extraction and containerized Go microservices for ultra-low latency inference pipelines.',
           },
           problem: {
-            label: 'Computational Latency',
-            text: '<strong>Standard Python and Pandas operations were computationally prohibitive</strong> (~58s per batch) making granular analysis impossible. Forced reliance on weak "static aggregates" that blind the model to critical behavioral trends like delinquency streaks.',
+            label: 'Production Serving Bottlenecks',
+            text: 'Traditional synchronous Python pipelines are incapable of <strong>serving millions of real-time credit verdicts at digital checkouts</strong>. Analytical code belongs in data warehouses, while operational layers require immediate data persistence and zero on-the-fly computational overhead to prevent customer churn.',
           },
           data: {
-            label: 'Dense User-Time Matrix',
-            text: 'Raw transaction logs were pivoted into a dense, cache-friendly NumPy matrix (User × Time) structure. This specific layout is optimized for Numba iteration, allowing efficient sequential access to historical payment behaviors.',
+            label: 'Polyglot Integration Schema',
+            text: 'Implements a robust data pipeline mapping across explicit system boundaries. Features are split between an <strong>offline training store (PostgreSQL)</strong> and a volatile high-speed <strong>online operational memory cache (Redis)</strong> utilizing defensive string mapping to guarantee data integrity.',
           },
           method: {
-            label: 'JIT Compilation & Robust Validation',
-            text: 'Applied the @njit decorator to compile custom loops into optimized machine code, strictly reinforced by pytest for logic and PSI for stability. Unlocked complex stateful features like late streaks and velocity slopes, ensuring PSI < 0.1.',
+            label: 'Asynchronous Persistence & Containerization',
+            text: 'Built an <strong>ultra-lightweight serving endpoint</strong> containerized via multi-stage Alpine Docker builds. Enforced hard data resilience by executing non-blocking background disk dumps (bgsave) directly to persistent physical storage immediately following python ingestion cycles.',
           },
           outcome: {
-            label: 'Business Impact',
-            metric: { val: '50,000×', sub: 'Speedup: 58s → 1ms per batch' },
-            text: 'The inclusion of new behavioral features directly resulted in a +4.2% AUC uplift. Minimized cloud compute overhead by eliminating high-latency processing bottlenecks.',
+            label: 'System Metrics & Business Impact',
+            metric: { val: '+7.3%', sub: 'OOF ROC-AUC Uplift via Regularized LightGBM' },
+            text: 'Achieved a definitive 617.69 Requests Per Second (RPS) throughput with a 1.61ms average latency under a strict 10,000-request load test with a 0% failure rate. Restored the full feature trident, preventing millions in non-performing toxic loans.',
           },
         },
         links: [
@@ -2027,9 +2063,9 @@
       {
         id: 'textsum',
         title: 'Indonesian Abstractive Summarization',
-        shortDesc: 'Production-ready NLP pipeline using IndoBART-v2 with legacy library runtime patching.',
+        shortDesc: 'Production-ready NLP pipeline using IndoBART-v2 with legacy library patching.',
         tech: 'Hugging Face / PyTorch',
-        image: 'assets/projects/indobart_loss.webp', // Pastikan Anda menyimpan gambar grafik loss di sini
+        image: 'assets/projects/sum_architecture.webp',
         imageLabel: 'Training vs Validation Loss Divergence',
         tags: ['nlp'],
         featured: false,
@@ -2063,13 +2099,13 @@
         ],
       },
       {
-        id: 'ragpojk',
-        title: 'RAG POJK',
-        shortDesc: 'RAG system for Indonesian credit risk explainability based on financial regulation documents.',
-        tech: 'RAG / LLM',
+        id: 'basa',
+        title: 'BASA',
+        shortDesc: 'Indonesian text normalization toolkit built for dirty social media, e-commerce, and chat logs.',
+        tech: 'Regex / Hatchling',
         image: null,
         imageLabel: null,
-        tags: ['risk-intel', 'nlp'],
+        tags: ['nlp'],
         featured: false,
         wip: true,
         tabs: null,
