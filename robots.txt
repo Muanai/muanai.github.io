@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muanai.github.io/sitemap.xml
