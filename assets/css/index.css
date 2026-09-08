@@ -1635,11 +1635,17 @@
     .exp-entry::before {
       content: '';
       position: absolute;
-      left: -27px;
+      left: -30px;
       top: 14px;
       width: 9px;
       height: 9px;
       border-radius: 50%;
+      background: var(--surface-1);
+      border: 2px solid var(--hairline-strong);
+      box-shadow: 0 0 0 1px transparent;
+    }
+
+    .exp-entry:first-child::before {
       background: var(--accent);
       border: 2px solid var(--canvas);
       box-shadow: 0 0 0 1px var(--accent);
@@ -1831,7 +1837,7 @@
       }
 
       .exp-entry::before {
-        left: -20px;
+        left: -23px;
       }
 
       .exp-timeline::before {
