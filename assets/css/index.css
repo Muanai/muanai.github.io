@@ -1644,7 +1644,7 @@ body.loading {
   box-shadow: 0 0 0 1px transparent;
 }
 
-.exp-entry:first-child::before {
+.exp-entry.active::before {
   background: var(--accent);
   border: 2px solid var(--canvas);
   box-shadow: 0 0 0 1px var(--accent);
