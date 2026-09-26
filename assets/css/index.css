@@ -7,19 +7,50 @@
 }
 
 :root {
-  --canvas: #010102;
-  --surface-1: #0f1011;
-  --surface-2: #141516;
-  --hairline: #23252a;
-  --hairline-strong: #34343a;
-  --ink: #f7f8f8;
-  --ink-muted: #d0d6e0;
-  --ink-subtle: #8a8f98;
-  --ink-tertiary: #62666d;
-  --accent: #6b63ff;
-  --accent-hover: #8a84ff;
-  --accent-dim: rgba(107, 99, 255, 0.12);
-  --font-display: 'Geist', -apple-system, system-ui, sans-serif;
+  /* ── Raycast Dark Surface Ladder ── */
+  --canvas: #07080a;
+  --surface-1: #0d0d0d;
+  --surface-2: #101111;
+  --surface-card: #121212;
+  --button-fg: #18191a;
+  --hairline: #242728;
+  --hairline-soft: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.16);
+
+  /* ── Raycast Typography & Ink ── */
+  --ink: #f4f4f6;
+  --ink-muted: #d3d3d4;
+  --ink-subtle: #cdcdcd;
+  --ink-tertiary: #9c9c9d;
+  --ash: #6a6b6c;
+  --stone: #434345;
+
+  /* ── Raycast Universal Primary CTA Pill ── */
+  --primary-white: #ffffff;
+  --primary-white-pressed: #e8e8e8;
+  --on-primary: #000000;
+
+  /* ── Raycast Red Accent (Primary Accent Focus) ── */
+  --accent: #ff6161;
+  --accent-hover: #ff7878;
+  --accent-dim: rgba(255, 97, 97, 0.15);
+  --accent-rgb: 255, 97, 97;
+
+  /* ── Raycast Signature Hero Red Stripe Gradient ── */
+  --hero-stripe-start: #ff5757;
+  --hero-stripe-end: #a1131a;
+  --hero-gradient: linear-gradient(135deg, #ff5757 0%, #a1131a 100%);
+  --hero-glow-color: rgba(255, 97, 97, 0.16);
+
+  /* ── Raycast Secondary Accents (Ready for upcoming variations) ── */
+  --accent-blue: #57c1ff;
+  --accent-blue-soft: rgba(87, 193, 255, 0.15);
+  --accent-green: #59d499;
+  --accent-green-soft: rgba(89, 212, 153, 0.15);
+  --accent-yellow: #ffc533;
+  --accent-yellow-soft: rgba(255, 197, 51, 0.15);
+
+  --font-display: 'Inter', 'Geist', -apple-system, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -73,7 +104,7 @@ nav {
   height: 28px;
   border-radius: 6px;
   background: var(--accent-dim);
-  border: 1px solid rgba(107, 99, 255, 0.3);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +160,7 @@ nav {
 .nav-progress {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(107, 99, 255, 0.12) 0%, rgba(107, 99, 255, 0.06) 100%);
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.14) 0%, rgba(var(--accent-rgb), 0.05) 100%);
   border-radius: 6px;
   transform-origin: left center;
   transform: scaleX(0);
@@ -248,17 +279,40 @@ nav {
   pointer-events: none;
 }
 
-/* Subtle top-center glow — single, restrained */
+/* Raycast Red Gradient Hero Glow */
 .hero-glow {
   position: absolute;
-  top: 56px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 300px;
-  background: radial-gradient(ellipse at center, rgba(107, 99, 255, 0.10) 0%, transparent 70%);
+  width: 760px;
+  height: 380px;
+  background: radial-gradient(ellipse 70% 50% at 50% 20%, rgba(255, 97, 97, 0.16) 0%, rgba(161, 19, 26, 0.06) 50%, transparent 75%);
   z-index: 1;
   pointer-events: none;
+}
+
+/* Raycast Signature Hero Stripe Motif */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 87, 87, 0.04) 20px,
+    rgba(161, 19, 26, 0.07) 36px,
+    transparent 36px,
+    transparent 56px
+  );
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, black 20%, transparent 80%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-inner {
@@ -289,7 +343,7 @@ nav {
   text-transform: uppercase;
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(107, 99, 255, 0.25);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   padding: 4px 10px;
   border-radius: 9999px;
 }
@@ -742,7 +796,7 @@ nav {
   transform: translateX(-50%);
   z-index: 8000;
   background: rgba(15, 16, 17, 0.92);
-  border: 1px solid rgba(107, 99, 255, 0.25);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   border-radius: 999px;
   padding: 6px 14px;
   backdrop-filter: blur(12px);
@@ -762,7 +816,7 @@ nav {
 }
 
 #section-breadcrumb .bc-accent {
-  color: rgba(107, 99, 255, 0.9);
+  color: rgba(var(--accent-rgb), 0.95);
   font-weight: 600;
 }
 
@@ -851,7 +905,7 @@ body.loading {
   background: var(--accent);
   border-radius: 1px;
   transition: width 0.08s linear;
-  box-shadow: 0 0 8px rgba(107, 99, 255, 0.6);
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.65);
 }
 
 /* ── Sub label ── */
@@ -1069,7 +1123,7 @@ body.loading {
   font-weight: 500;
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(107, 99, 255, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   padding: 2px 7px;
   border-radius: 4px;
   white-space: nowrap;
@@ -1171,7 +1225,7 @@ body.loading {
   font-family: var(--font-mono);
   font-size: 10px;
   color: var(--accent);
-  border: 1px solid rgba(107, 99, 255, 0.25);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   background: var(--accent-dim);
   padding: 3px 8px;
   border-radius: 4px;
@@ -1296,12 +1350,12 @@ body.loading {
 .detail-link.primary {
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(107, 99, 255, 0.25);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
 }
 
 .detail-link.primary:hover {
-  background: rgba(107, 99, 255, 0.2);
-  border-color: rgba(107, 99, 255, 0.4);
+  background: rgba(var(--accent-rgb), 0.22);
+  border-color: rgba(var(--accent-rgb), 0.45);
 }
 
 .detail-link.secondary {
@@ -1479,7 +1533,7 @@ body.loading {
   font-size: 10px;
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(107, 99, 255, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   padding: 2px 7px;
   border-radius: 4px;
   display: inline-block;
@@ -1735,7 +1789,7 @@ body.loading {
   font-weight: 500;
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(107, 99, 255, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   padding: 1px 7px;
   border-radius: 4px;
   white-space: nowrap;
@@ -2323,9 +2377,9 @@ body.loading {
   border-radius: 13px;
   background: conic-gradient(from var(--angle, 0deg),
       transparent 60%,
-      rgba(107, 99, 255, 0.45) 75%,
-      rgba(160, 155, 255, 0.55) 82%,
-      rgba(107, 99, 255, 0.45) 89%,
+      rgba(var(--accent-rgb), 0.45) 75%,
+      rgba(255, 130, 130, 0.55) 82%,
+      rgba(var(--accent-rgb), 0.45) 89%,
       transparent 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -2369,7 +2423,7 @@ body.loading {
   inset: 0;
   border-radius: 12px;
   background: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%),
-      rgba(107, 99, 255, 0.06) 0%,
+      rgba(var(--accent-rgb), 0.08) 0%,
       transparent 65%);
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -2472,7 +2526,7 @@ body.loading {
   opacity: 0;
   transition: opacity 0.4s ease;
   background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(107, 99, 255, 0.06) 0%,
+      rgba(var(--accent-rgb), 0.07) 0%,
       transparent 70%);
 }
 
@@ -2543,7 +2597,7 @@ body.loading {
 
 .about-bio .highlight {
   color: var(--ink-muted);
-  border-bottom: 1px solid rgba(107, 99, 255, 0.35);
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.35);
   padding-bottom: 1px;
 }
 
@@ -2719,7 +2773,7 @@ body.loading {
   opacity: 0;
   transition: opacity 0.4s ease;
   background: radial-gradient(600px circle at var(--fx, 50%) var(--fy, 50%),
-      rgba(107, 99, 255, 0.05) 0%,
+      rgba(var(--accent-rgb), 0.06) 0%,
       transparent 70%);
 }
 
@@ -3007,7 +3061,7 @@ body.loading {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1.5px solid rgba(107, 99, 255, 0.55);
+  border: 1.5px solid rgba(var(--accent-rgb), 0.55);
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
@@ -3038,22 +3092,22 @@ body.loading {
 body.cursor-pointer #cursor-ring {
   width: 44px;
   height: 44px;
-  border-color: rgba(107, 99, 255, 0.5);
-  background: rgba(107, 99, 255, 0.07);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  background: rgba(var(--accent-rgb), 0.07);
 }
 
 body.cursor-pointer #cursor-dot {
   width: 7px;
   height: 7px;
-  background: #a09aff;
+  background: #ff8080;
 }
 
 /* Click state — ring shrinks briefly */
 body.cursor-click #cursor-ring {
   width: 22px;
   height: 22px;
-  border-color: rgba(107, 99, 255, 0.9);
-  background: rgba(107, 99, 255, 0.15);
+  border-color: rgba(var(--accent-rgb), 0.9);
+  background: rgba(var(--accent-rgb), 0.15);
   transition-duration: 0.08s;
 }
 
