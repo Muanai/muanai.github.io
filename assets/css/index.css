@@ -273,7 +273,7 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   width: 190vw;
-  height: 70vh;
+  height: 55vh;
   background: radial-gradient(ellipse 70% 60% at 50% -10%,
       rgba(255, 97, 97, 0.45) 0%,
       rgba(255, 87, 34, 0.18) 40%,
@@ -288,7 +288,7 @@ nav {
 @media (min-width: 768px) {
   .hero-top-glow {
     width: 90vw;
-    height: 60vh;
+    height: 40vh;
     background: radial-gradient(ellipse 65% 55% at 50% -10%,
         rgba(255, 97, 97, 0.35) 0%,
         rgba(255, 87, 34, 0.12) 45%,
@@ -316,7 +316,7 @@ nav {
   z-index: 0;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: 0.25;
+  opacity: 0.2;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
