@@ -8,9 +8,9 @@
   <title>Muanai Khalifah Revindo — ML Engineer</title>
   <meta name="description"
     content="Portfolio of Muanai Khalifah Revindo, an ML Engineer specializing in machine learning, data science, and AI solutions." />
-  <meta property="og:title" content="Muanai Khalifah Revindo — ML Engineer" />
+  <meta property="og:title" content="Muanai Khalifah Revindo — Applied AI Engineer" />
   <meta property="og:description"
-    content="Portfolio of Muanai Khalifah Revindo, an ML Engineer specializing in machine learning, data science, and AI solutions." />
+    content="Portfolio of Muanai Khalifah Revindo, an Applied AI Engineer specializing in machine learning, data science, and AI solutions." />
   <meta property="og:image" content="https://muanai.github.io/favicon.png" />
   <meta property="og:url" content="https://muanai.github.io/" />
   <meta property="og:type" content="website" />
@@ -97,60 +97,86 @@
 
   <!-- ── HERO ── -->
   <section class="hero" id="home">
-    <canvas id="hero-shader-canvas" class="hero-shader"></canvas>
-    <div class="hero-mask"></div>
-    <div class="hero-glow"></div>
+    <div class="hero-dot-bg"></div>
 
-    <div class="hero-inner">
+    <main class="hero-inner">
 
-      <!-- Eyebrow -->
-      <div class="hero-eyebrow">
-        <div class="apple-glass-badge">
-          <span class="glass-badge-glow"></span>
-          <span class="glass-badge-title">Applied AI Engineer</span>
+      <!-- Giant Typography Grid -->
+      <div class="hero-giant-grid">
+
+        <!-- Row 1: desc + APPLIED -->
+        <div class="hero-row">
+          <p class="hero-row-desc">Applied AI engineer<br>based in Palembang, Indonesia.</p>
+          <h1 class="hero-huge-text">APPLIED</h1>
+        </div>
+
+        <!-- Row 2: AI [AI Star icon] ENGINEER (outline) -->
+        <div class="hero-row row-indent-1">
+          <h1 class="hero-huge-text">
+            <span class="text-accent-bold">AI</span>
+            <svg class="hero-icon hero-icon-ai" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 1.5C12 7.299 7.299 12 1.5 12C7.299 12 12 16.701 12 22.5C12 16.701 16.701 12 22.5 12C16.701 12 12 7.299 12 1.5Z" />
+            </svg>
+            <span class="text-outline">ENGINEER</span>
+          </h1>
+        </div>
+
+        <!-- Row 3: & DATA CODE + desc -->
+        <div class="hero-row row-indent-2">
+          <h1 class="hero-huge-text">
+            <span class="text-thin">&</span>
+            <span>DATA</span>
+            <svg class="hero-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+            </svg>
+            <span>CODE</span>
+          </h1>
+          <p class="hero-row-desc right-align">Detection systems, risk models,<br>and operational tools.</p>
+        </div>
+
+      </div>
+
+      <!-- Ticker Strip -->
+      <div class="hero-ticker-wrap">
+        <div class="hero-ticker-track">
+          <div class="hero-ticker-group" id="base-ticker-group">
+            <span>Backend AI Engineer Internship at FlyRank AI</span>
+            <span class="ticker-dot">◆</span>
+            <span>Machine Learning Engineer Internship at Telkomsel</span>
+            <span class="ticker-dot">◆</span>
+            <span>Business Intelligence Analyst Internship at Perum BULOG</span>
+            <span class="ticker-dot">◆</span>
+            <span>Runner-up Best Hacker of 10th IndonesiaNext by Telkomsel</span>
+            <span class="ticker-dot">◆</span>
+            <span>Apple Developer Academy 2027 @ IL</span>
+            <span class="ticker-dot">◆</span>
+            <span>Created BASA with over 7K PyPI Download</span>
+            <span class="ticker-dot">◆</span>
+            <span>Peer Reviewer at JSI: Jurnal Sistem Informasi</span>
+            <span class="ticker-dot">◆</span>
+            <span>9 Certifications</span>
+            <span class="ticker-dot">◆</span>
+          </div>
         </div>
       </div>
 
-      <!-- Heading -->
-      <h1 class="hero-heading">
-        Muanai Khalifah<br />
-        <span class="line-light">Revindo.</span>
-      </h1>
-
-      <!-- Subheading -->
-      <div class="hero-sub-wrapper">
-        <div class="sub-line"></div>
-        <p class="hero-sub">
-          ML engineer building detection systems, risk models, and operational tools for telecom and finance.
-        </p>
+      <!-- Info Footer -->
+      <div class="hero-info-footer">
+        <div class="hero-separator-inline"></div>
+        <div class="hero-location">
+          <span>LOCAL TIME <span id="local-time">--:--</span></span>
+        </div>
+        <div class="hero-role-name">
+          <span class="hero-role">ENGINEER</span>
+          <span class="hero-name">Muanai</span>
+        </div>
       </div>
 
-      <!-- CTA -->
-      <div class="hero-actions">
-        <a href="#projects" class="btn-hero-primary">
-          View Projects
-        </a>
-        <a href="https://github.com/Muanai" target="_blank" class="btn-hero-secondary">
-          <svg fill="currentColor" viewBox="0 0 24 24">
-            <path fill-rule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-              clip-rule="evenodd" />
-          </svg>
-          GitHub
-        </a>
-      </div>
-
-    </div>
+    </main>
 
   </section>
-
-  <!-- Vanta Init -->
-
-
-  <!-- ─────────────────────────────────────────
-       PROJECTS SECTION STYLES
-  ───────────────────────────────────────── -->
-
 
   <!-- ─────────────────────────────────────────
        PROJECTS SECTION HTML
@@ -183,16 +209,6 @@
 
     </div>
   </section>
-
-  <!-- ─────────────────────────────────────────
-       PROJECTS DATA + LOGIC
-  ───────────────────────────────────────── -->
-
-
-  <!-- ─────────────────────────────────────────
-       EXPERIENCE SECTION STYLES
-  ───────────────────────────────────────── -->
-
 
   <!-- ─────────────────────────────────────────
        EXPERIENCE SECTION HTML
@@ -268,15 +284,23 @@
             <div class="exp-achievements">
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Built and maintained <strong>BASA</strong> (<code style="font-family: var(--font-mono); font-size: 11px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">pip install basa</code>), a lightweight NLP toolkit designed to make Indonesian and regional language text processing more accessible for developers, researchers, and AI practitioners.</p>
+                <p class="exp-achievement-text">Built and maintained <strong>BASA</strong> (<code
+                    style="font-family: var(--font-mono); font-size: 11px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">pip install basa</code>),
+                  a lightweight NLP toolkit designed to make Indonesian and regional language text processing more
+                  accessible for developers, researchers, and AI practitioners.</p>
               </div>
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Designed practical preprocessing workflows tailored for modern NLP applications, including text normalization, slang translation, and tokenization optimized for <strong>LLM and retrieval-based systems (RAG)</strong>.</p>
+                <p class="exp-achievement-text">Designed practical preprocessing workflows tailored for modern NLP
+                  applications, including text normalization, slang translation, and tokenization optimized for
+                  <strong>LLM and retrieval-based systems (RAG)</strong>.
+                </p>
               </div>
               <div class="exp-achievement">
                 <span class="exp-achievement-dot"></span>
-                <p class="exp-achievement-text">Achieved <strong>6K+ downloads</strong> on PyPI and maintained strong open-source quality signals, receiving a perfect <strong>100/100 score</strong> across security, vulnerability, quality, maintenance, and license checks on Socket.dev's supply chain analysis.</p>
+                <p class="exp-achievement-text">Achieved <strong>7K+ downloads</strong> on PyPI and maintained strong
+                  open-source quality signals, receiving a perfect <strong>100/100 score</strong> across security,
+                  vulnerability, quality, maintenance, and license checks on Socket.dev's supply chain analysis.</p>
               </div>
             </div>
 
@@ -494,11 +518,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ─────────────────────────────────────────
-       CERTIFICATIONS SECTION
-  ───────────────────────────────────────── -->
-
 
   <!-- ─────────────────────────────────────────
        CERTIFICATIONS SECTION HTML
@@ -826,13 +845,6 @@
     </div>
   </section>
 
-
-
-  <!-- ─────────────────────────────────────────
-       SKILLS SECTION STYLES
-  ───────────────────────────────────────── -->
-
-
   <!-- ─────────────────────────────────────────
        SKILLS SECTION HTML
   ───────────────────────────────────────── -->
@@ -930,12 +942,6 @@
         </div>
       </div>
   </section>
-
-
-  <!-- ─────────────────────────────────────────
-       ABOUT SECTION STYLES
-  ───────────────────────────────────────── -->
-
 
   <!-- ─────────────────────────────────────────
        ABOUT SECTION HTML
@@ -1254,12 +1260,6 @@
 
   <!-- Cursor spotlight JS + tab switcher -->
 
-
-  <!-- ─────────────────────────────────────────
-       FOOTER STYLES
-  ───────────────────────────────────────── -->
-
-
   <!-- ─────────────────────────────────────────
        FOOTER HTML
   ───────────────────────────────────────── -->
@@ -1331,22 +1331,6 @@
   </footer>
 
   <!-- ─────────────────────────────────────────
-       SCROLL ANIMATION — FADE + STAGGER
-  ───────────────────────────────────────── -->
-
-
-
-
-  <!-- ─────────────────────────────────────────
-       CUSTOM CURSOR STYLES
-  ───────────────────────────────────────── -->
-
-
-  <!-- ─────────────────────────────────────────
-       ACTIVE NAV + CUSTOM CURSOR JS
-  ───────────────────────────────────────── -->
-
-  <!-- ─────────────────────────────────────────
        BACK TO TOP BUTTON
   ───────────────────────────────────────── -->
   <button id="back-to-top" aria-label="Back to top">
@@ -1355,21 +1339,26 @@
     </svg>
   </button>
 
-  <!-- ─────────────────────────────────────────
-       HAMBURGER + BACK TO TOP JS
-  ───────────────────────────────────────── -->
-
-  <!-- ─────────────────────────────────────────
-       SKILL CARD 3D TILT
-  ───────────────────────────────────────── -->
-
-  <!-- ─────────────────────────────────────────
-       SCROLL PROGRESS + NAV FILL + BREADCRUMB
-  ───────────────────────────────────────── -->
-
-
+  <script>
+    // Update local time (Jakarta)
+    function updateLocalTime() {
+      const timeEl = document.getElementById('local-time');
+      if (!timeEl) return;
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Jakarta',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      };
+      const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
+      timeEl.textContent = timeString;
+    }
+    updateLocalTime();
+    setInterval(updateLocalTime, 10000);
+  </script>
   <script src="assets/js/index.js"></script>
-  <script src="assets/js/hero-shader.js"></script>
+  <script src="assets/js/hero-ticker.js"></script>
 </body>
 
 </html>
