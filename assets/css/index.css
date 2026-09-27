@@ -267,6 +267,47 @@ nav {
   }
 }
 
+.hero-top-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 190vw;
+  height: 70vh;
+  background: radial-gradient(ellipse 70% 60% at 50% -10%,
+      rgba(255, 97, 97, 0.45) 0%,
+      rgba(255, 87, 34, 0.18) 40%,
+      transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(30px);
+  opacity: 1;
+  animation: glow-pulse 10s ease-in-out infinite alternate;
+}
+
+@media (min-width: 768px) {
+  .hero-top-glow {
+    width: 90vw;
+    height: 60vh;
+    background: radial-gradient(ellipse 65% 55% at 50% -10%,
+        rgba(255, 97, 97, 0.35) 0%,
+        rgba(255, 87, 34, 0.12) 45%,
+        transparent 70%);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.04);
+  }
+}
+
 .hero-dot-bg {
   position: absolute;
   inset: 0;
@@ -275,8 +316,10 @@ nav {
   z-index: 0;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: 0.15;
+  opacity: 0.25;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
 }
 
 .hero-inner {
@@ -542,9 +585,17 @@ nav {
 }
 
 @keyframes blink-pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .hero-location {
