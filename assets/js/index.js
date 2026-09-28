@@ -318,6 +318,13 @@
       return PROJECTS;
     }
 
+    const TAG_TICKERS = {
+      'risk-intel': 'RISK',
+      'ops-analytics': 'OPS',
+      'comvis': 'COMV',
+      'nlp': 'NLP',
+    };
+
     function renderList(projects) {
       const list = document.getElementById('project-list');
       list.innerHTML = '';
@@ -327,7 +334,7 @@
         item.className = 'project-list-item';
         item.dataset.id = p.id;
 
-        const topBadge = p.featured
+        const topBadge = (p.featured && activeTab !== 'featured')
           ? `<span class="badge-featured">Featured</span>`
           : p.wip
             ? `<span class="badge-wip">In Progress</span>`
@@ -340,7 +347,7 @@
           </div>
           <p class="list-item-desc">${p.shortDesc}</p>
           <div class="list-item-tags">
-            ${p.tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}
+            ${p.tags.map(t => `<span class="tag-chip">${TAG_TICKERS[t] || t.toUpperCase()}</span>`).join('')}
           </div>
         `;
 
@@ -389,7 +396,7 @@
                <img src="${p.image}" alt="${p.title}" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
              </div>
              <div class="detail-image-overlay"></div>
-             ${p.imageLabel ? `<span class="detail-image-badge">${p.imageLabel}</span>` : ''}
+
            </div>`
         : '';
 
@@ -453,14 +460,47 @@
       }).join('');
     }
 
+    /* ── TAB INDICATOR ── */
+    function updateTabIndicator(activeBtn, animate = true) {
+      const indicator = document.getElementById('project-tab-indicator');
+      if (!indicator || !activeBtn) return;
+
+      const left = activeBtn.offsetLeft;
+      const width = activeBtn.offsetWidth;
+
+      if (!animate) {
+        const prevTransition = indicator.style.transition;
+        indicator.style.transition = 'none';
+        indicator.style.transform = `translateX(${left}px)`;
+        indicator.style.width = `${width}px`;
+        indicator.style.opacity = '1';
+        void indicator.offsetHeight;
+        indicator.style.transition = prevTransition;
+      } else {
+        indicator.style.transform = `translateX(${left}px)`;
+        indicator.style.width = `${width}px`;
+        indicator.style.opacity = '1';
+      }
+    }
+
     /* ── TAB SWITCHING ── */
-    function switchTab(tab) {
+    function switchTab(tab, animate = true) {
       activeTab = tab;
       activeProjectId = null;
+      let activeBtn = null;
 
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.tab === tab);
+        const isActive = btn.dataset.tab === tab;
+        btn.classList.toggle('active', isActive);
+        if (isActive) activeBtn = btn;
       });
+
+      if (activeBtn) {
+        updateTabIndicator(activeBtn, animate);
+        if (window.innerWidth <= 768) {
+          activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        }
+      }
 
       const projects = getProjectsByTab(tab);
 
@@ -489,14 +529,14 @@
         card.className = 'mobile-project-card';
         card.dataset.id = p.id;
 
-        const badgeHtml = p.featured
+        const badgeHtml = (p.featured && activeTab !== 'featured')
           ? `<span class="badge-featured">Featured</span>`
           : p.wip ? `<span class="badge-wip">In Progress</span>` : '';
 
         const imgHtml = p.image
           ? `<div class="mobile-card-image">
                <img src="${p.image}" alt="${p.title}" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-               ${p.imageLabel ? `<span class="mobile-card-image-badge">${p.imageLabel}</span>` : ''}
+               
              </div>`
           : '';
 
@@ -575,10 +615,22 @@
 
     /* ── INIT ── */
     document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab, true));
     });
 
-    switchTab('featured');
+    switchTab('featured', false);
+
+    window.addEventListener('resize', () => {
+      const currentActive = document.querySelector('.tab-btn.active');
+      if (currentActive) updateTabIndicator(currentActive, false);
+    });
+
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        const currentActive = document.querySelector('.tab-btn.active');
+        if (currentActive) updateTabIndicator(currentActive, false);
+      });
+    }
   
 
     function toggleGroup(id) {
