@@ -299,7 +299,7 @@
             type: 'secondary',
             subLinks: [
               { label: 'Part 1: Initial Implementation', url: 'https://medium.com/@muanaikhalifahr/credit-risk-feature-engineering-with-python-numba-eb9643908f9c' },
-              { label: 'Part 2: Latest Article', url: '#' }
+              { label: 'Part 2: End-to-End Feature Store', url: 'https://medium.com/@muanaikhalifahr/architecting-an-end-to-end-feature-store-for-credit-risk-from-python-numba-to-containerized-go-api-14e6de767992' }
             ]
           },
         ],
