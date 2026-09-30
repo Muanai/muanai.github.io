@@ -101,6 +101,51 @@
     });
   
 
+    window.toggleDropdown = function(e, btn) {
+      e.stopPropagation();
+      document.querySelectorAll('.detail-dropdown-menu.open').forEach(menu => {
+        if (menu !== btn.nextElementSibling) {
+          menu.classList.remove('open');
+          menu.previousElementSibling.classList.remove('active');
+        }
+      });
+      const menu = btn.nextElementSibling;
+      menu.classList.toggle('open');
+      btn.classList.toggle('active');
+    };
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.detail-dropdown-wrapper')) {
+        document.querySelectorAll('.detail-dropdown-menu.open').forEach(menu => {
+          menu.classList.remove('open');
+          menu.previousElementSibling.classList.remove('active');
+        });
+      }
+    });
+
+    function renderProjectLink(l) {
+      if (l.subLinks && l.subLinks.length > 0) {
+        const dropdownItems = l.subLinks.map(sub => `<a href="${sub.url}" target="_blank" class="detail-dropdown-item">${sub.label}</a>`).join('');
+        return `
+          <div class="detail-dropdown-wrapper">
+            <button class="detail-link ${l.type} detail-dropdown-trigger" onclick="toggleDropdown(event, this)">
+              ${l.label}
+              <svg class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="detail-dropdown-menu liquid-glass">
+              ${dropdownItems}
+            </div>
+          </div>`;
+      }
+      return `
+        <a href="${l.url}" target="_blank" class="detail-link ${l.type}">
+          ${l.label}
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </a>`;
+    }
+
     const PROJECTS = [
       {
         id: 'telkomsel',
@@ -174,7 +219,7 @@
           },
         },
         links: [
-          { label: 'View on Github', url: 'https://github.com/Muanai/fintech-credit-risk-xai', type: 'primary' },
+          { label: 'View on GitHub', url: 'https://github.com/Muanai/fintech-credit-risk-xai', type: 'primary' },
         ],
       },
       {
@@ -211,7 +256,7 @@
           },
         },
         links: [
-          { label: 'View on Github', url: 'https://github.com/Muanai/msmes-food-image-classification', type: 'primary' },
+          { label: 'View on GitHub', url: 'https://github.com/Muanai/msmes-food-image-classification', type: 'primary' },
         ],
       },
       {
@@ -249,7 +294,14 @@
         },
         links: [
           { label: 'View on GitHub', url: 'https://github.com/Muanai/credit-risk-feature-engine', type: 'primary' },
-          { label: 'Read Study Case', url: 'https://medium.com/@muanaikhalifahr/credit-risk-feature-engineering-with-python-numba-eb9643908f9c', type: 'secondary' },
+          { 
+            label: 'Read Study Case', 
+            type: 'secondary',
+            subLinks: [
+              { label: 'Part 1: Initial Implementation', url: 'https://medium.com/@muanaikhalifahr/credit-risk-feature-engineering-with-python-numba-eb9643908f9c' },
+              { label: 'Part 2: Latest Article', url: '#' }
+            ]
+          },
         ],
       },
       {
@@ -425,14 +477,7 @@
            </div>`
         : '';
 
-      const linksHtml = p.links.map(l => `
-        <a href="${l.url}" target="_blank" class="detail-link ${l.type}">
-          ${l.label}
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-          </svg>
-        </a>
-      `).join('');
+      const linksHtml = p.links.map(renderProjectLink).join('');
 
       panel.innerHTML = `
         ${imgHtml}
@@ -591,10 +636,7 @@
           }).join('')}
              </div>
              ${p.links.length ? `<div class="mobile-card-footer">
-               ${p.links.map(l => `<a href="${l.url}" target="_blank" class="detail-link ${l.type}">${l.label}
-                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                 </svg></a>`).join('')}
+               ${p.links.map(renderProjectLink).join('')}
              </div>` : ''}`;
 
         card.innerHTML = `

@@ -29,6 +29,7 @@
       const cloneGroup = baseGroup.cloneNode(true);
       cloneGroup.removeAttribute('id');
       cloneGroup.setAttribute('aria-hidden', 'true');
+      cloneGroup.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
       track.appendChild(cloneGroup);
     }
     
