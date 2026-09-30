@@ -108,7 +108,7 @@
         shortDesc: 'Automated pipeline to detect competitor telecom infrastructure using YOLOv8.',
         tech: 'Ultralytics / YOLOv8',
         image: 'assets/projects/telkomsel_app.webp',
-        imageLabel: 'Desktop Inference App',
+
         tags: ['ops-analytics', 'comvis'],
         featured: true,
         wip: false,
@@ -121,13 +121,13 @@
             label: 'Invisible Infrastructure',
             text: '<strong>Manual mapping is costly</strong>, while standard models fail to detect thin cables and heavily occluded poles in chaotic street environments. Severe class imbalance (e.g., rare providers) and environmental noise rendered off-the-shelf detection models ineffective.',
           },
-          data: {
-            label: 'Hybrid Dataset Strategy',
-            text: 'Constructed a proprietary dataset from scratch via manual field collection of street-level infrastructure imagery. Curated and annotated <strong>specifically for this task</strong>, then augmented with synthetic data to address severe class imbalance.',
-          },
-          method: {
+          process: {
             label: 'High-Res YOLOv8 Engineering',
-            text: 'Optimized YOLOv8 training with 1248px resolution scaling to recover fine-grained features like fiber optic cables. Implemented a custom inference engine with EXIF extraction and geospatial mapping (BPS shapefiles) to <strong>link detections to specific sub-districts</strong>.',
+            text: 'Constructed a proprietary dataset from scratch via manual field collection of street-level infrastructure imagery. Curated and annotated <strong>specifically for this task</strong>, then augmented with synthetic data to address severe class imbalance. Optimized YOLOv8 training with 1248px resolution scaling to recover fine-grained features like fiber optic cables. Implemented a custom inference engine with EXIF extraction and geospatial mapping (BPS shapefiles) to <strong>link detections to specific sub-districts</strong>.',
+          },
+          lesson: {
+            label: 'Physical Geometries & Minority Limits',
+            text: 'Standard unconstrained augmentations (vertical flips, 90° rotations) broke model convergence because street infrastructure strictly obeys gravity. For severe minority classes (Lintasarta), synthetic training data recovered feature representation (0.0 → 0.497 mAP50), but with only 2 real-world validation instances, production deployment mandates human-in-the-loop analyst verification rather than autonomous trust.',
           },
           outcome: {
             label: 'Technical Result',
@@ -146,7 +146,7 @@
         shortDesc: 'RAG system for credit risk explainability based on financial regulation documents.',
         tech: 'RAG / LLM',
         image: 'assets/projects/cortex_preview.webp',
-        imageLabel: 'Page Preview',
+
         tags: ['risk-intel', 'nlp'],
         featured: true,
         wip: false,
@@ -159,16 +159,17 @@
             label: 'The Black-Box Risk & Compliance Gap',
             text: 'Standard high-performance credit scoring models provide accurate probability of default metrics but <strong>lack interpretability</strong>. Financial institutions struggle to explain localized risk decisions to auditors and map complex data features to strict regulatory frameworks in real-time.',
           },
-          data: {
-            label: 'Financial Tabular Data & Legal Documents',
-            text: 'Processed historical credit records to evaluate line utilization, payment delays, and income dynamics. Concurrently ingested semi-structured text data from official financial authority regulations (POJK) into a vector database to enable targeted semantic retrieval.',
-          },
-          method: {
+          process: {
             label: 'Dual-Engine Architecture: SHAP + RAG',
-            text: 'Implemented a pipeline where an XGBoost model generates risk probabilities and SHAP computes localized feature attributions. These analytical metrics are injected as context into ChromaDB and synthesized by Llama 3.1 via Groq LPU to produce deterministic, audit-grade legal narratives.',
+            text: 'Processed historical credit records to evaluate line utilization, payment delays, and income dynamics. Concurrently ingested semi-structured text data from official financial authority regulations (POJK) into a vector database to enable targeted semantic retrieval. Implemented a pipeline where an XGBoost model generates risk probabilities and SHAP computes localized feature attributions. These analytical metrics are injected as context into ChromaDB and synthesized by Llama 3.1 via Groq LPU to produce deterministic, audit-grade legal narratives.',
+          },
+          lesson: {
+            label: 'Tabular Neural Tradeoffs & Hallucination Traps',
+            text: 'Deep tabular models (FT-Transformer, ~0.85 AUC) added 20x inference latency without beating regularized XGBoost (0.8687 AUC), while losing exact Shapley attribution. In the generative layer, compact local LLMs routinely hallucinated calendar dates in legal narratives, necessitating zero temperature, strict regex date stripping, and fallback legal templates to guarantee zero-hallucination compliance.',
           },
           outcome: {
             label: 'Production-Grade Explainable Credit Decisions',
+            metric: { val: '0.8687 AUC', sub: 'Gini 0.7374 | Sub-ms CPU Inference' },
             text: 'Delivers full interpretability for risk-critical applications, mapping model feature weights directly to legal clauses with <strong>zero-hallucination</strong> compliance checking ready for production deployment.',
           },
         },
@@ -182,7 +183,7 @@
         shortDesc: 'Competition-grade CV system using SwinV2 & ConvNeXt to classify 15 Indonesian cuisines.',
         tech: 'SwinV2 / ConvNeXt',
         image: 'assets/projects/grad_cam.webp',
-        imageLabel: 'GRAD-CAM Visualization',
+
         tags: ['comvis'],
         featured: false,
         wip: false,
@@ -195,17 +196,17 @@
             label: 'Fine-Grained Visual Ambiguity',
             text: 'Distinguishing between visually similar traditional dishes (high inter-class similarity) was difficult due to a limited dataset of only ~4,200 labeled images. Standard CNNs struggled to generalize, risking overfitting on the small, proprietary training set.',
           },
-          data: {
-            label: 'Limited Proprietary Dataset',
-            text: 'Worked with a restricted, proprietary dataset of 15 food classes, requiring aggressive augmentation strategies to prevent data starvation. Relied heavily on generating synthetic training signals via pseudo-labeling.',
-          },
-          method: {
+          process: {
             label: 'Semi-Supervised Teacher-Student Ensemble',
-            text: 'Implemented a Teacher-Student framework where high-confidence predictions (>0.86) from a ConvNeXt Teacher were used to train robust Student models. Combined local texture bias of ConvNeXtV2 with global context of SwinV2 using a Geometric Mean Ensemble.',
+            text: 'Worked with a restricted, proprietary dataset of 15 food classes, requiring aggressive augmentation strategies to prevent data starvation. Relied heavily on generating synthetic training signals via pseudo-labeling. Implemented a Teacher-Student framework where high-confidence predictions (>0.86) from a ConvNeXt Teacher were used to train robust Student models. Combined local texture bias of ConvNeXtV2 with global context of SwinV2 using a Geometric Mean Ensemble.',
+          },
+          lesson: {
+            label: 'Error Collinearity & Geometric Calibration',
+            text: 'Discarded EfficientNetV2-L despite high standalone accuracy because its errors were collinear with ConvNeXtV2, destabilizing the ensemble. In multi-model blending, naive arithmetic soft-voting over-rewarded uncertain predictions on ambiguous broths; switching to Weighted Geometric Mean in log-space with Temperature Scaling (T=1.6) strictly penalized cross-model disagreement and unlocked our Top 10 leaderboard finish.',
           },
           outcome: {
             label: 'Top-Tier Leaderboard Performance',
-            metric: { val: '0.9522', sub: 'Leaderboard score — Rank 11 / 131 (top 10%)' },
+            metric: { val: '0.9522', sub: 'Rank 10 / 131 Teams (Top 7%) — Kaggle Leaderboard' },
             text: 'Proven robustness with Test Time Augmentation (TTA), delivering high-confidence predictions even on unaligned or noisy test images.',
           },
         },
@@ -219,7 +220,7 @@
         shortDesc: 'Production-grade dual-store infrastructure serving stateful risk features sub-2ms latency.',
         tech: 'Go / Numba',
         image: 'assets/projects/flux_benchmark.webp',
-        imageLabel: 'Benchmark',
+
         tags: ['risk-intel'],
         featured: true,
         wip: false,
@@ -232,13 +233,13 @@
             label: 'Production Serving Bottlenecks',
             text: 'Traditional synchronous Python pipelines are incapable of <strong>serving millions of real-time credit verdicts at digital checkouts</strong>. Analytical code belongs in data warehouses, while operational layers require immediate data persistence and zero on-the-fly computational overhead to prevent customer churn.',
           },
-          data: {
-            label: 'Polyglot Integration Schema',
-            text: 'Implements a robust data pipeline mapping across explicit system boundaries. Features are split between an <strong>offline training store (PostgreSQL)</strong> and a volatile high-speed <strong>online operational memory cache (Redis)</strong> utilizing defensive string mapping to guarantee data integrity.',
-          },
-          method: {
+          process: {
             label: 'Asynchronous Persistence & Containerization',
-            text: 'Built an <strong>ultra-lightweight serving endpoint</strong> containerized via multi-stage Alpine Docker builds. Enforced hard data resilience by executing non-blocking background disk dumps (bgsave) directly to persistent physical storage immediately following python ingestion cycles.',
+            text: 'Implements a robust data pipeline mapping across explicit system boundaries. Features are split between an <strong>offline training store (PostgreSQL)</strong> and a volatile high-speed <strong>online operational memory cache (Redis)</strong> utilizing defensive string mapping to guarantee data integrity. Built an <strong>ultra-lightweight serving endpoint</strong> containerized via multi-stage Alpine Docker builds. Enforced hard data resilience by executing non-blocking background disk dumps (bgsave) directly to persistent physical storage immediately following python ingestion cycles.',
+          },
+          lesson: {
+            label: 'The Floating ID Trap & Memory Volatility',
+            text: 'Cross-boundary serialization caused silent failures: Pandas implicitly upcast sparse customer IDs to float64, writing Redis keys as customer:2.0 and breaking Go API lookups (customer:2) with 404s, resolved via defensive string casting. Furthermore, high-speed Python batch ingestion terminated before Redis triggered its default 5-minute disk snapshot, requiring explicit non-blocking r.bgsave() calls to prevent feature vaporization across container restarts.',
           },
           outcome: {
             label: 'System Metrics & Business Impact',
@@ -257,7 +258,7 @@
         shortDesc: 'Production-ready NLP pipeline using IndoBART-v2 with legacy library patching.',
         tech: 'Hugging Face / PyTorch',
         image: 'assets/projects/sum_architecture.webp',
-        imageLabel: 'Training vs Validation Loss Divergence',
+
         tags: ['nlp'],
         featured: false,
         wip: false,
@@ -270,18 +271,18 @@
             label: 'Legacy Dependencies & Compatibility',
             text: '<strong>Broken ecosystem compatibility</strong> threatened the project. The legacy Indonesian tokenizer (IndoNLG) suffered from severe signature mismatches with modern Hugging Face Transformers APIs, causing immediate runtime crashes during initialization.',
           },
-          data: {
-            label: 'Modular Data Orchestration',
-            text: 'Utilized the IndoSum dataset. To ensure maintainability, the data pipeline was completely decoupled from the model architecture using an isolated <code>IndoSumManager</code> class to handle text cleaning, JSON flattening, and deterministic splitting.',
-          },
-          method: {
+          process: {
             label: 'Runtime Surgery & Hardware Alignment',
-            text: 'Executed runtime "monkey-patching" to dynamically inject missing flags and wrap incompatible methods, rescuing the legacy tokenizer without altering source code. Optimized training on NVIDIA Turing architecture (T4) using FP16 Mixed Precision for maximum throughput.',
+            text: 'Utilized the IndoSum dataset. To ensure maintainability, the data pipeline was completely decoupled from the model architecture using an isolated <code>IndoSumManager</code> class to handle text cleaning, JSON flattening, and deterministic splitting. Executed runtime "monkey-patching" to dynamically inject missing flags and wrap incompatible methods, rescuing the legacy tokenizer without altering source code. Optimized training on NVIDIA Turing architecture (T4) using FP16 Mixed Precision for maximum throughput.',
+          },
+          lesson: {
+            label: 'The ROUGE Score Illusion & Generation Loops',
+            text: 'Identified the "ROUGE trap": between Epoch 3 and 5, ROUGE continued climbing (+0.004) while validation loss sharply diverged (1.82 → 2.05) as the model memorized training phrasing and began hallucinating out-of-domain facts; early stopping at the divergence knee was essential to preserve factual groundedness. In decoding, omitting explicit [ind] BOS/decoder token bindings caused the multilingual MBart architecture to enter degenerate loops emitting endless EOS tokens.',
           },
           outcome: {
             label: 'Strategic Evaluation',
             text: 'Achieved competitive ROUGE scores while proactively identifying the "overfitting trap" via loss curve divergence analysis (Epoch 3). Implemented strict generation parameters to prevent End-of-Sequence (EOS) hallucinations, prioritizing semantic groundedness over raw token matching.',
-            metric: { val: '~0.35', sub: 'ROUGE-1 with strict EOS control' }
+            metric: { val: '0.3540 R1', sub: 'ROUGE-2: 0.1620 | Tensor Core FP16' },
           },
         },
         links: [
@@ -293,14 +294,38 @@
         id: 'basa',
         title: 'BASA',
         shortDesc: 'Indonesian text normalization toolkit built for dirty social media, e-commerce, and chat logs.',
-        tech: 'Regex / Hatchling',
+        tech: 'Python / Hatchling',
         image: null,
-        imageLabel: null,
+
         tags: ['nlp'],
         featured: false,
-        wip: true,
-        tabs: null,
-        links: [],
+        wip: false,
+        tabs: {
+          overview: {
+            label: 'Modern Indonesian NLP Preprocessing for LLMs',
+            text: 'Engineered an open-source, lightweight text normalization library specifically designed for LLMs, RAG retrievers, and embedding models. Normalizes messy colloquial text (slang, elongated characters, punctuation spam) while preserving morphological sentence structures, packaged with a strictly typed Python 3.10+ interface and <strong>zero external dependencies</strong> for its core engine.',
+          },
+          problem: {
+            label: 'The Stemming Mismatch & Token Fragmentation',
+            text: 'Legacy Indonesian NLP tools (Sastrawi) relied on destructive morphological stemming that strips prefixes and suffixes—destroying active/passive voice and syntax, which causes modern LLMs to hallucinate. Furthermore, raw colloquial text (e.g. <code>"gkkkkkkk"</code>) shatters BPE tokenizers into 5–6 arbitrary subword fragments, diluting context windows and degrading RAG vector cosine retrieval.',
+          },
+          process: {
+            label: '5-Stage Sequential Pipeline & Zero-Dependency Core',
+            text: 'Built a high-performance normalization pipeline: case normalization → compiled longest-first slang expansion (1,300+ entries across 27 categories) → differential character repetition collapse (vowels $\\ge 2$ vs. consonants $\\ge 3$ to protect words like <i>maaf</i>, <i>saat</i>, and <i>dll</i>) → opt-in Levenshtein typo correction with LRU caching → punctuation/whitespace cleanup. All implemented exclusively using Python standard library modules for sub-millisecond cold starts in serverless microservices.',
+          },
+          lesson: {
+            label: 'Conservative Defaults & Opt-in Destruction',
+            text: 'Established that automated text preprocessing must be conservative by default: destructive typo correction using character edit distance is strictly opt-in and requires caller-provided domain vocabularies, as bundling static generic dictionaries (like KBBI) silently corrupts e-commerce jargon, brand names, and technical terms. Morphological affixes must remain intact for modern dense vector representations.',
+          },
+          outcome: {
+            label: 'Production-Ready Tooling & Test Coverage',
+            metric: { val: '90/90 Tests Passed', sub: '0.54s Runtime | Zero Core Dependencies' },
+            text: 'Achieved 100% automated test suite passing in 0.54s with strict static typing conforming to mypy. Eliminates subword fragmentation, reducing prompt token bloat while bridging vocabulary divergence in Indonesian RAG pipelines. Version 0.1.0 published under MIT License.',
+          },
+        },
+        links: [
+          { label: 'View on GitHub', url: 'https://github.com/Muanai/basa', type: 'primary' },
+        ],
       },
     ];
 
@@ -418,7 +443,7 @@
           </div>
 
           <div class="detail-tabs">
-            ${['overview', 'problem', 'data', 'method', 'outcome'].map(t => `
+            ${['overview', 'problem', 'process', 'outcome', 'lesson'].map(t => `
               <button class="detail-tab-btn ${t === activeDetailTab ? 'active' : ''}" data-dtab="${t}">
                 ${t}
               </button>
@@ -441,7 +466,7 @@
     }
 
     function renderPanes(p) {
-      const tabKeys = ['overview', 'problem', 'data', 'method', 'outcome'];
+      const tabKeys = ['overview', 'problem', 'process', 'outcome', 'lesson'];
       return tabKeys.map(key => {
         const data = p.tabs[key];
         const metricHtml = data.metric
@@ -549,12 +574,12 @@
              </div>`
           : `${imgHtml}
              <div class="mobile-detail-tabs" id="mob-tabs-${p.id}">
-               ${['overview', 'problem', 'data', 'method', 'outcome'].map((t, i) =>
+               ${['overview', 'problem', 'process', 'outcome', 'lesson'].map((t, i) =>
             `<button class="mobile-detail-tab-btn ${i === 0 ? 'active' : ''}" data-pid="${p.id}" data-t="${t}">${t}</button>`
           ).join('')}
              </div>
              <div class="mobile-detail-panes">
-               ${['overview', 'problem', 'data', 'method', 'outcome'].map((key, i) => {
+               ${['overview', 'problem', 'process', 'outcome', 'lesson'].map((key, i) => {
             const d = p.tabs[key];
             const metric = d.metric
               ? `<div class="pane-highlight"><div class="metric-val">${d.metric.val}</div><div class="metric-label">${d.metric.sub}</div></div>`
@@ -1286,3 +1311,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
