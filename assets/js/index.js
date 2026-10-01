@@ -263,7 +263,7 @@ const PROJECTS = [
     id: 'flux',
     title: 'Feature Flux',
     shortDesc: 'Production-grade dual-store infrastructure serving stateful risk features sub-2ms latency.',
-    tech: 'Go / Numba',
+    tech: 'Redis / Numba',
     image: 'assets/projects/flux_benchmark.webp',
 
     tags: ['risk-intel'],
@@ -347,7 +347,7 @@ const PROJECTS = [
     title: 'BASA',
     shortDesc: 'Indonesian text normalization toolkit built for dirty social media, e-commerce, and chat logs.',
     tech: 'Python / Hatchling',
-    image: null,
+    image: 'assets/projects/basa_banner.webp',
 
     tags: ['nlp'],
     featured: false,
