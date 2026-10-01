@@ -817,36 +817,37 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  width: 36px;
-  height: 36px;
-  background: var(--surface-1);
-  border: 1px solid var(--hairline);
-  border-radius: 8px;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
   padding: 0;
   flex-shrink: 0;
   position: relative;
   z-index: 9999;
+  cursor: pointer;
 }
 
 .nav-hamburger span {
   display: block;
-  width: 16px;
+  width: 20px;
   height: 1.5px;
   background: var(--ink-subtle);
   border-radius: 2px;
-  transition: transform 0.22s ease, opacity 0.22s ease, width 0.22s ease;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease;
   transform-origin: center;
 }
 
 /* X state */
 .nav-hamburger.open span:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform: translateY(3.75px) rotate(45deg);
+  background: var(--ink);
 }
 
 .nav-hamburger.open span:nth-child(2) {
-  opacity: 0;
-  width: 0;
+  transform: translateY(-3.75px) rotate(-45deg);
+  background: var(--ink);
 }
 
 .nav-hamburger.open span:nth-child(3) {
@@ -856,26 +857,34 @@ nav {
 /* ── MOBILE DRAWER ── */
 .nav-drawer {
   position: fixed;
-  top: 64px;
-  left: 16px;
-  right: 16px;
+  inset: 0;
   z-index: 9998;
-  background: rgba(16, 17, 17, 0.65);
-  backdrop-filter: blur(16px) saturate(1.8);
-  -webkit-backdrop-filter: blur(16px) saturate(1.8);
-  border: 1px solid var(--hairline-strong);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transform: translateY(-8px);
+  background: rgba(1, 1, 2, 0.85); /* Seamless match with dark theme */
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding-top: 88px; /* Room for transparent navbar */
+  padding-bottom: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-x: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.2s ease,
-    visibility 0.2s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* Hide navbar background and border when drawer is open for a seamless glass look */
+body:has(.nav-drawer.open) nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .nav-drawer.open {
-  transform: translateY(0);
   opacity: 1;
   visibility: visible;
 }
@@ -883,30 +892,69 @@ nav {
 .nav-drawer-inner {
   display: flex;
   flex-direction: column;
-  padding: 12px;
-  gap: 4px;
+  align-items: stretch; /* Force children to span full width */
+  padding: 0 16px; /* Container padding */
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .nav-drawer-link {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--ink-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 4px;
   text-decoration: none;
-  padding: 12px 16px;
-  border-radius: 8px;
-  transition: color 0.12s, background 0.15s ease;
+  padding: 16px 20px;
+  margin: 0; /* Moved spacing to inner padding */
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 16px;
+  border: none;
+  background: transparent;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-drawer-link-title {
+  display: block;
+  width: 100%;
+  text-align: left !important;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.nav-drawer-link-desc {
+  display: block;
+  width: 100%;
+  text-align: left !important;
+  font-size: 13px;
+  color: var(--ink-subtle);
+  font-weight: 400;
+  transition: color 0.2s ease;
 }
 
 .nav-drawer-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+}
+
+.nav-drawer-link:hover .nav-drawer-link-title {
+  color: #fff;
+}
+
+.nav-drawer-link:hover .nav-drawer-link-desc {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-drawer-cta {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
-  padding: 0 4px;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 0 20px; /* Align with nav-drawer-link text */
 }
 
 .nav-drawer-cta a {
