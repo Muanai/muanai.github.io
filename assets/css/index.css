@@ -3490,95 +3490,42 @@ body.loading {
   cursor: none !important;
 }
 
-/* Cursor ring — outer */
-#cursor-ring {
+/* Smooth Cursor */
+#smooth-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(var(--accent-rgb), 0.55);
+  width: 50px;
+  height: 54px;
   pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: width 0.18s ease, height 0.18s ease,
-    border-color 0.18s ease, background 0.18s ease,
-    opacity 0.3s ease;
+  z-index: 999999;
   will-change: transform;
+  transform: translate3d(-100px, -100px, 0);
+  opacity: 1;
+  transition: opacity 0.25s ease;
 }
 
-/* Cursor dot — inner */
-#cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  pointer-events: none;
-  z-index: 100000;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-  transition: width 0.12s ease, height 0.12s ease,
-    background 0.12s ease, opacity 0.3s ease;
+#smooth-cursor .smooth-cursor-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.5);
+  transform-origin: center center;
 }
 
-/* Pointer state (clickable) — ring tightens, dot grows into arrow hint */
-body.cursor-pointer #cursor-ring {
-  width: 44px;
-  height: 44px;
-  border-color: rgba(var(--accent-rgb), 0.5);
-  background: rgba(var(--accent-rgb), 0.07);
-}
-
-body.cursor-pointer #cursor-dot {
-  width: 7px;
-  height: 7px;
-  background: #ff8080;
-}
-
-/* Neutralize cursor over white buttons to eliminate any red glow aura */
-body:has(.detail-link.primary:hover) #cursor-ring,
-body:has(.btn-primary:hover) #cursor-ring,
-body:has(.footer-cta-btn:hover) #cursor-ring {
-  border-color: rgba(0, 0, 0, 0.25);
-  background: transparent;
-}
-
-body:has(.detail-link.primary:hover) #cursor-dot,
-body:has(.btn-primary:hover) #cursor-dot,
-body:has(.footer-cta-btn:hover) #cursor-dot {
-  background: #090a0c;
-}
-
-/* Click state — ring shrinks briefly */
-body.cursor-click #cursor-ring {
-  width: 22px;
-  height: 22px;
-  border-color: rgba(var(--accent-rgb), 0.9);
-  background: rgba(var(--accent-rgb), 0.15);
-  transition-duration: 0.08s;
-}
-
-/* Hide when cursor leaves window */
-body.cursor-out #cursor-ring,
-body.cursor-out #cursor-dot {
+body.cursor-out #smooth-cursor {
   opacity: 0;
 }
 
 /* Never show custom cursor on touch/mobile */
 @media (hover: none) {
-
   *,
   *::before,
   *::after {
     cursor: auto !important;
   }
 
-  #cursor-ring,
-  #cursor-dot {
+  #smooth-cursor {
     display: none !important;
   }
 }
