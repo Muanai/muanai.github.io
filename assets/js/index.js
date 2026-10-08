@@ -1039,11 +1039,9 @@ function toggleGroup(id) {
       wrap.style.transform =
         `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${SCALE})`;
 
-      /* Move inner spotlight to follow cursor */
-      if (card) {
-        card.style.setProperty('--tx', (x * 100) + '%');
-        card.style.setProperty('--ty', (y * 100) + '%');
-      }
+      /* Move outline flashlight to follow cursor */
+      wrap.style.setProperty('--tx', (x * 100) + '%');
+      wrap.style.setProperty('--ty', (y * 100) + '%');
     });
 
     wrap.addEventListener('mouseleave', () => {

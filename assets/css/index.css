@@ -2813,40 +2813,27 @@ body.loading {
   flex-direction: column;
 }
 
-/* Animated gradient border — rotates slowly */
+/* Cursor-following outline flashlight */
 .skill-card-wrap::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 13px;
-  background: conic-gradient(from var(--angle, 0deg),
-      transparent 60%,
-      rgba(var(--accent-rgb), 0.45) 75%,
-      rgba(255, 130, 130, 0.55) 82%,
-      rgba(var(--accent-rgb), 0.45) 89%,
-      transparent 100%);
+  background: radial-gradient(
+    240px circle at var(--tx, 50%) var(--ty, 50%),
+    rgba(255, 130, 130, 0.9) 0%,
+    rgba(var(--accent-rgb), 0.6) 28%,
+    rgba(var(--accent-rgb), 0.15) 55%,
+    transparent 75%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .skill-card-wrap:hover::before {
   opacity: 1;
-}
-
-@property --angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes rotate-border {
-  to {
-    --angle: 360deg;
-  }
-}
-
-.skill-card-wrap:hover {
-  animation: rotate-border 3s linear infinite;
 }
 
 .skill-card {
@@ -2860,31 +2847,31 @@ body.loading {
   /* fill remaining height inside wrapper */
 }
 
-/* Subtle inner spotlight that follows tilt direction */
-.skill-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  background: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%),
-      rgba(var(--accent-rgb), 0.08) 0%,
-      transparent 65%);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-}
-
-.skill-card-wrap:hover .skill-card::after {
-  opacity: 1;
+.skill-card-figure {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  border-radius: 9px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  position: relative;
+  /* Hairline isometric tokens matching site aesthetics */
+  --hairline-plate: #07080a;
+  --hairline-hi: #ffffff;
+  --hairline-edge: #c3c3c9;
+  --hairline-mid: #52525b;
+  --hairline-lo: #242728;
+  --hairline-stroke: 0.9;
+  cursor: default;
 }
 
 .skill-card-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 14px;
 }
 
 .skill-card-icon {
